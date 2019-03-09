@@ -16,3 +16,16 @@ C:\Users\Admin\Desktop\WindowsFormsApplication23\WindowsFormsApplication23\obj\D
 C:\Users\Admin\Desktop\WindowsFormsApplication23\WindowsFormsApplication23\obj\Debug\WindowsFormsApplication23.Form1.resources
 C:\Users\Admin\Desktop\WindowsFormsApplication23\WindowsFormsApplication23\obj\Debug\WindowsFormsApplication23.Properties.Resources.resources
 C:\Users\Admin\Desktop\WindowsFormsApplication23\WindowsFormsApplication23\obj\Debug\WindowsFormsApplication23.csproj.GenerateResource.Cache
+C:\Users\Admin\Desktop\New folder (3)\DBMS-Mid-Term-Project\WindowsFormsApplication23\WindowsFormsApplication23\bin\Debug\WindowsFormsApplication23.exe.config
+C:\Users\Admin\Desktop\New folder (3)\DBMS-Mid-Term-Project\WindowsFormsApplication23\WindowsFormsApplication23\obj\Debug\WindowsFormsApplication23.exe
+C:\Users\Admin\Desktop\New folder (3)\DBMS-Mid-Term-Project\WindowsFormsApplication23\WindowsFormsApplication23\obj\Debug\WindowsFormsApplication23.pdb
+C:\Users\Admin\Desktop\New folder (3)\DBMS-Mid-Term-Project\WindowsFormsApplication23\WindowsFormsApplication23\bin\Debug\WindowsFormsApplication23.exe
+C:\Users\Admin\Desktop\New folder (3)\DBMS-Mid-Term-Project\WindowsFormsApplication23\WindowsFormsApplication23\bin\Debug\WindowsFormsApplication23.pdb
+C:\Users\Admin\Desktop\New folder (3)\DBMS-Mid-Term-Project\WindowsFormsApplication23\WindowsFormsApplication23\obj\Debug\WindowsFormsApplication23.csprojResolveAssemblyReference.cache
+C:\Users\Admin\Desktop\New folder (3)\DBMS-Mid-Term-Project\WindowsFormsApplication23\WindowsFormsApplication23\obj\Debug\WindowsFormsApplication23.Add_Group.resources
+C:\Users\Admin\Desktop\New folder (3)\DBMS-Mid-Term-Project\WindowsFormsApplication23\WindowsFormsApplication23\obj\Debug\WindowsFormsApplication23.Person_Details.resources
+C:\Users\Admin\Desktop\New folder (3)\DBMS-Mid-Term-Project\WindowsFormsApplication23\WindowsFormsApplication23\obj\Debug\WindowsFormsApplication23.Properties.Resources.resources
+C:\Users\Admin\Desktop\New folder (3)\DBMS-Mid-Term-Project\WindowsFormsApplication23\WindowsFormsApplication23\obj\Debug\WindowsFormsApplication23.csproj.GenerateResource.Cache
+C:\Users\Admin\Desktop\New folder (3)\DBMS-Mid-Term-Project\WindowsFormsApplication23\WindowsFormsApplication23\obj\Debug\WindowsFormsApplication23.Add_Project.resources
+C:\Users\Admin\Desktop\New folder (3)\DBMS-Mid-Term-Project\WindowsFormsApplication23\WindowsFormsApplication23\obj\Debug\WindowsFormsApplication23.Add_Advisor.resources
+C:\Users\Admin\Desktop\New folder (3)\DBMS-Mid-Term-Project\WindowsFormsApplication23\WindowsFormsApplication23\obj\Debug\WindowsFormsApplication23.Assign_Project_To_Advisor.resources

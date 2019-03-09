@@ -72,5 +72,12 @@ namespace WindowsFormsApplication23
            
 
         }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            this.Hide();
+            Assign_Project_To_Advisor FORM = new Assign_Project_To_Advisor();
+            FORM.Show();
+        }
     }
 }
