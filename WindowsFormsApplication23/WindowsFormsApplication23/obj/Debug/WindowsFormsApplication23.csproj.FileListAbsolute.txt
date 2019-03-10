@@ -29,3 +29,4 @@ C:\Users\Admin\Desktop\New folder (3)\DBMS-Mid-Term-Project\WindowsFormsApplicat
 C:\Users\Admin\Desktop\New folder (3)\DBMS-Mid-Term-Project\WindowsFormsApplication23\WindowsFormsApplication23\obj\Debug\WindowsFormsApplication23.Add_Project.resources
 C:\Users\Admin\Desktop\New folder (3)\DBMS-Mid-Term-Project\WindowsFormsApplication23\WindowsFormsApplication23\obj\Debug\WindowsFormsApplication23.Add_Advisor.resources
 C:\Users\Admin\Desktop\New folder (3)\DBMS-Mid-Term-Project\WindowsFormsApplication23\WindowsFormsApplication23\obj\Debug\WindowsFormsApplication23.Assign_Project_To_Advisor.resources
+C:\Users\Admin\Desktop\New folder (3)\DBMS-Mid-Term-Project\WindowsFormsApplication23\WindowsFormsApplication23\obj\Debug\WindowsFormsApplication23.Student_Details.resources
