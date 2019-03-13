@@ -36,15 +36,33 @@ namespace WindowsFormsApplication23
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            panel1.Visible = false;
-            panel2.Visible = true;
-            
+            if(e.ColumnIndex == 0)
+            {
+                panel1.Visible = false;
+                panel2.Visible = true;
+            }
+           
+            else if(e.ColumnIndex == 1)
+            {
+                string o = dataGridView1.CurrentRow.Cells["Id"].FormattedValue.ToString();
+                int u = Convert.ToInt32(o);
+                string s = "Delete from Student where Id = '" + u + "'";
+                string st = "Delete from Person Where Id = '" + u + "'";
+                string hu = "Delete from GroupStudent where StudentId = '" + u + "'";
+                string r = "Delete from ((Select * from Student join Person On Student.Id = '"+u+"')join GroupStudent on StudentId = '"+u+"')";
+                SqlConnection op = new SqlConnection(conURL);
+                op.Open();
+                SqlCommand cmd = new SqlCommand(hu, op);
+                cmd.ExecuteNonQuery();
+                SqlCommand cmd1 = new SqlCommand(s, op);
+                cmd1.ExecuteNonQuery();
+                SqlCommand cmd2 = new SqlCommand(st, op);
+                cmd2.ExecuteNonQuery();
+                op.Close();
+                dataGridView1.Rows.Remove(dataGridView1.Rows[e.RowIndex]);
+            }
 
-            string o = dataGridView1.CurrentRow.Cells["Id"].FormattedValue.ToString();
-            int u = Convert.ToInt32(o);
-            string s = "Delete from Student where Id = '" + u + "'";
-            string st = "Delete from Person Where Id = '" + u + "'";
-            string hu = "Delete from GroupStudent where StudentId = '"+u+"'";
+           
         }
 
         private void textBox2_TextChanged(object sender, EventArgs e)

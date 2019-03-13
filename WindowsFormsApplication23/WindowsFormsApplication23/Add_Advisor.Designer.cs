@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.Btnadd = new System.Windows.Forms.Button();
             this.txtid = new System.Windows.Forms.TextBox();
             this.ID = new System.Windows.Forms.Label();
             this.labelDesignation = new System.Windows.Forms.Label();
@@ -39,27 +39,28 @@
             // 
             // comboBox1
             // 
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Location = new System.Drawing.Point(361, 56);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(215, 21);
             this.comboBox1.TabIndex = 0;
             // 
-            // button1
+            // Btnadd
             // 
-            this.button1.Location = new System.Drawing.Point(373, 167);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(170, 58);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Add";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.Btnadd.Location = new System.Drawing.Point(365, 154);
+            this.Btnadd.Name = "Btnadd";
+            this.Btnadd.Size = new System.Drawing.Size(191, 44);
+            this.Btnadd.TabIndex = 1;
+            this.Btnadd.Text = "Add";
+            this.Btnadd.UseVisualStyleBackColor = true;
+            this.Btnadd.Click += new System.EventHandler(this.button1_Click);
             // 
             // txtid
             // 
             this.txtid.Location = new System.Drawing.Point(360, 20);
             this.txtid.Name = "txtid";
-            this.txtid.Size = new System.Drawing.Size(202, 20);
+            this.txtid.Size = new System.Drawing.Size(216, 20);
             this.txtid.TabIndex = 2;
             // 
             // ID
@@ -91,9 +92,9 @@
             // 
             // txtsalary
             // 
-            this.txtsalary.Location = new System.Drawing.Point(365, 117);
+            this.txtsalary.Location = new System.Drawing.Point(365, 92);
             this.txtsalary.Name = "txtsalary";
-            this.txtsalary.Size = new System.Drawing.Size(196, 20);
+            this.txtsalary.Size = new System.Drawing.Size(211, 20);
             this.txtsalary.TabIndex = 7;
             // 
             // Add_Advisor
@@ -106,7 +107,7 @@
             this.Controls.Add(this.labelDesignation);
             this.Controls.Add(this.ID);
             this.Controls.Add(this.txtid);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.Btnadd);
             this.Controls.Add(this.comboBox1);
             this.Name = "Add_Advisor";
             this.Text = "Add_Advisor";
@@ -118,7 +119,7 @@
         #endregion
 
         private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button Btnadd;
         private System.Windows.Forms.TextBox txtid;
         private System.Windows.Forms.Label ID;
         private System.Windows.Forms.Label labelDesignation;

@@ -37,7 +37,6 @@ C:\Users\Admin\Desktop\New folder (4)\DBMS-Mid-Term-Project\WindowsFormsApplicat
 C:\Users\Admin\Desktop\New folder (4)\DBMS-Mid-Term-Project\WindowsFormsApplication23\WindowsFormsApplication23\bin\Debug\WindowsFormsApplication23.pdb
 C:\Users\Admin\Desktop\New folder (4)\DBMS-Mid-Term-Project\WindowsFormsApplication23\WindowsFormsApplication23\obj\Debug\WindowsFormsApplication23.csprojResolveAssemblyReference.cache
 C:\Users\Admin\Desktop\New folder (4)\DBMS-Mid-Term-Project\WindowsFormsApplication23\WindowsFormsApplication23\obj\Debug\WindowsFormsApplication23.Add_Advisor.resources
-C:\Users\Admin\Desktop\New folder (4)\DBMS-Mid-Term-Project\WindowsFormsApplication23\WindowsFormsApplication23\obj\Debug\WindowsFormsApplication23.Add_Group.resources
 C:\Users\Admin\Desktop\New folder (4)\DBMS-Mid-Term-Project\WindowsFormsApplication23\WindowsFormsApplication23\obj\Debug\WindowsFormsApplication23.Add_Project.resources
 C:\Users\Admin\Desktop\New folder (4)\DBMS-Mid-Term-Project\WindowsFormsApplication23\WindowsFormsApplication23\obj\Debug\WindowsFormsApplication23.Assign_Project_To_Advisor.resources
 C:\Users\Admin\Desktop\New folder (4)\DBMS-Mid-Term-Project\WindowsFormsApplication23\WindowsFormsApplication23\obj\Debug\WindowsFormsApplication23.CreateGroup.resources
@@ -46,3 +45,7 @@ C:\Users\Admin\Desktop\New folder (4)\DBMS-Mid-Term-Project\WindowsFormsApplicat
 C:\Users\Admin\Desktop\New folder (4)\DBMS-Mid-Term-Project\WindowsFormsApplication23\WindowsFormsApplication23\obj\Debug\WindowsFormsApplication23.Student_Details.resources
 C:\Users\Admin\Desktop\New folder (4)\DBMS-Mid-Term-Project\WindowsFormsApplication23\WindowsFormsApplication23\obj\Debug\WindowsFormsApplication23.csproj.GenerateResource.Cache
 C:\Users\Admin\Desktop\New folder (4)\DBMS-Mid-Term-Project\WindowsFormsApplication23\WindowsFormsApplication23\obj\Debug\WindowsFormsApplication23.Evaluation.resources
+C:\Users\Admin\Desktop\New folder (4)\DBMS-Mid-Term-Project\WindowsFormsApplication23\WindowsFormsApplication23\obj\Debug\WindowsFormsApplication23.AllProjects.resources
+C:\Users\Admin\Desktop\New folder (4)\DBMS-Mid-Term-Project\WindowsFormsApplication23\WindowsFormsApplication23\obj\Debug\WindowsFormsApplication23.AllAdvisors.resources
+C:\Users\Admin\Desktop\New folder (4)\DBMS-Mid-Term-Project\WindowsFormsApplication23\WindowsFormsApplication23\obj\Debug\WindowsFormsApplication23.ProjectandAdvisorDetails.resources
+C:\Users\Admin\Desktop\New folder (4)\DBMS-Mid-Term-Project\WindowsFormsApplication23\WindowsFormsApplication23\obj\Debug\WindowsFormsApplication23.AllEvaluations.resources

@@ -52,17 +52,29 @@
     <Compile Include="Add_Advisor.Designer.cs">
       <DependentUpon>Add_Advisor.cs</DependentUpon>
     </Compile>
-    <Compile Include="Add_Group.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Add_Group.Designer.cs">
-      <DependentUpon>Add_Group.cs</DependentUpon>
-    </Compile>
     <Compile Include="Add_Project.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Add_Project.Designer.cs">
       <DependentUpon>Add_Project.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AllAdvisors.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AllAdvisors.Designer.cs">
+      <DependentUpon>AllAdvisors.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AllEvaluations.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AllEvaluations.Designer.cs">
+      <DependentUpon>AllEvaluations.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AllProjects.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AllProjects.Designer.cs">
+      <DependentUpon>AllProjects.cs</DependentUpon>
     </Compile>
     <Compile Include="Assign_Project_To_Advisor.cs">
       <SubType>Form</SubType>
@@ -89,6 +101,12 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
+    <Compile Include="ProjectandAdvisorDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProjectandAdvisorDetails.Designer.cs">
+      <DependentUpon>ProjectandAdvisorDetails.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Student.cs" />
     <Compile Include="Student_Details.cs">
@@ -100,11 +118,17 @@
     <EmbeddedResource Include="Add_Advisor.resx">
       <DependentUpon>Add_Advisor.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Add_Group.resx">
-      <DependentUpon>Add_Group.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Add_Project.resx">
       <DependentUpon>Add_Project.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AllAdvisors.resx">
+      <DependentUpon>AllAdvisors.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AllEvaluations.resx">
+      <DependentUpon>AllEvaluations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AllProjects.resx">
+      <DependentUpon>AllProjects.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Assign_Project_To_Advisor.resx">
       <DependentUpon>Assign_Project_To_Advisor.cs</DependentUpon>
@@ -117,6 +141,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProjectandAdvisorDetails.resx">
+      <DependentUpon>ProjectandAdvisorDetails.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

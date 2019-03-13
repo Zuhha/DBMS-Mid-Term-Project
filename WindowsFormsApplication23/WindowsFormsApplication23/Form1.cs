@@ -86,29 +86,30 @@ namespace WindowsFormsApplication23
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
+
             this.Hide();
-            CreateGroup form = new CreateGroup();
-            form.Show();
+            AllAdvisors frm = new AllAdvisors();
+            frm.Show();
         }
 
         private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             this.Hide();
-            Add_Advisor frm = new Add_Advisor();
+            AllAdvisors frm = new AllAdvisors();
             frm.Show();
         }
 
         private void linkLabel3_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             this.Hide();
-            Add_Project ad = new Add_Project();
+            Add_Advisor ad = new Add_Advisor();
             ad.Show();
         }
 
         private void linkLabel4_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             this.Hide();
-            Assign_Project_To_Advisor ad = new Assign_Project_To_Advisor();
+            Add_Project ad = new Add_Project();
             ad.Show();
         }
 
@@ -117,6 +118,25 @@ namespace WindowsFormsApplication23
             this.Hide();
             Student_Details g = new Student_Details();
             g.Show();
+        }
+
+        private void linkLabel6_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            this.Hide();
+            Assign_Project_To_Advisor ad = new Assign_Project_To_Advisor();
+            ad.Show();
+        }
+
+        private void linkLabel7_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            ProjectandAdvisorDetails d = new ProjectandAdvisorDetails();
+            d.Show();
+        }
+
+        private void linkLabel8_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            AllEvaluations r = new AllEvaluations();
+            r.Show();
         }
     }
 }
