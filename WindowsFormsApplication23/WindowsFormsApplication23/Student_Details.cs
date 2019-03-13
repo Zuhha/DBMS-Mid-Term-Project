@@ -38,6 +38,13 @@ namespace WindowsFormsApplication23
         {
             panel1.Visible = false;
             panel2.Visible = true;
+            
+
+            string o = dataGridView1.CurrentRow.Cells["Id"].FormattedValue.ToString();
+            int u = Convert.ToInt32(o);
+            string s = "Delete from Student where Id = '" + u + "'";
+            string st = "Delete from Person Where Id = '" + u + "'";
+            string hu = "Delete from GroupStudent where StudentId = '"+u+"'";
         }
 
         private void textBox2_TextChanged(object sender, EventArgs e)
@@ -48,17 +55,19 @@ namespace WindowsFormsApplication23
         private void button1_Click(object sender, EventArgs e)
         {
             try
-            { SqlConnection q = new SqlConnection(conURL);
+            {
+
+                SqlConnection q = new SqlConnection(conURL);
                 q.Open();
-                string em = "Select Id from Lookup where Value = '" + comboBox1.Text + "' ";
+                string em = "Select Id from Lookup where Value = '" + cmbgender.Text + "' ";
                 SqlCommand t = new SqlCommand(em, q);
                 int y = (int)t.ExecuteScalar();
                 string o = dataGridView1.CurrentRow.Cells["Id"].FormattedValue.ToString();
                 int u = Convert.ToInt32(o);
-                string s = "Update Person SET FirstName = '" + textBox1.Text + "', LastName = '" + textBox2.Text + "',Contact = '" + textBox3.Text + "',Email = '" + textBox4.Text + "',DateOfBirth = '" + dateTimePicker1.Value + "',Gender = '" + y + "'  where Id = '" + u + "' ";
+                string s = "Update Person SET FirstName = '" + txtfirstName.Text + "', LastName = '" + txtLastName.Text + "',Contact = '" + txtContact.Text + "',Email = '" + txtEmail.Text + "',DateOfBirth = '" + dtpdob.Value + "',Gender = '" + y + "'  where Id = '" + u + "' ";
                 SqlCommand g = new SqlCommand(s, q);
                 g.ExecuteNonQuery();
-                string st = "Update Student SET RegistrationNo = '" + textBox7.Text + "' where Id = '" + u + "' ";
+                string st = "Update Student SET RegistrationNo = '" + txtregno.Text + "' where Id = '" + u + "' ";
                 SqlCommand UO = new SqlCommand(st, q);
                 UO.ExecuteNonQuery();
                 q.Close();

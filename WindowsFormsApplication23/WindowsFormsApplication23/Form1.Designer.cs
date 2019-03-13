@@ -44,39 +44,45 @@
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.linkLabel2 = new System.Windows.Forms.LinkLabel();
+            this.linkLabel3 = new System.Windows.Forms.LinkLabel();
+            this.linkLabel4 = new System.Windows.Forms.LinkLabel();
+            this.linkLabel5 = new System.Windows.Forms.LinkLabel();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtfirstname
             // 
-            this.txtfirstname.Location = new System.Drawing.Point(193, 31);
+            this.txtfirstname.Location = new System.Drawing.Point(310, 42);
             this.txtfirstname.Name = "txtfirstname";
             this.txtfirstname.Size = new System.Drawing.Size(136, 20);
             this.txtfirstname.TabIndex = 0;
             // 
             // txtlastname
             // 
-            this.txtlastname.Location = new System.Drawing.Point(193, 60);
+            this.txtlastname.Location = new System.Drawing.Point(310, 71);
             this.txtlastname.Name = "txtlastname";
             this.txtlastname.Size = new System.Drawing.Size(136, 20);
             this.txtlastname.TabIndex = 1;
             // 
             // txtcontact
             // 
-            this.txtcontact.Location = new System.Drawing.Point(193, 92);
+            this.txtcontact.Location = new System.Drawing.Point(310, 103);
             this.txtcontact.Name = "txtcontact";
             this.txtcontact.Size = new System.Drawing.Size(136, 20);
             this.txtcontact.TabIndex = 2;
             // 
             // txtemail
             // 
-            this.txtemail.Location = new System.Drawing.Point(193, 121);
+            this.txtemail.Location = new System.Drawing.Point(310, 132);
             this.txtemail.Name = "txtemail";
             this.txtemail.Size = new System.Drawing.Size(136, 20);
             this.txtemail.TabIndex = 3;
             // 
             // txtregno
             // 
-            this.txtregno.Location = new System.Drawing.Point(193, 214);
+            this.txtregno.Location = new System.Drawing.Point(310, 225);
             this.txtregno.Name = "txtregno";
             this.txtregno.Size = new System.Drawing.Size(136, 20);
             this.txtregno.TabIndex = 6;
@@ -84,7 +90,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(88, 34);
+            this.label1.Location = new System.Drawing.Point(205, 45);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(60, 13);
             this.label1.TabIndex = 7;
@@ -93,7 +99,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(88, 60);
+            this.label2.Location = new System.Drawing.Point(205, 71);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(27, 13);
             this.label2.TabIndex = 8;
@@ -102,7 +108,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(88, 121);
+            this.label3.Location = new System.Drawing.Point(205, 132);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(32, 13);
             this.label3.TabIndex = 9;
@@ -111,7 +117,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(85, 156);
+            this.label4.Location = new System.Drawing.Point(202, 167);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(30, 13);
             this.label4.TabIndex = 10;
@@ -120,7 +126,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(88, 184);
+            this.label5.Location = new System.Drawing.Point(205, 195);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(42, 13);
             this.label5.TabIndex = 11;
@@ -129,7 +135,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(88, 92);
+            this.label6.Location = new System.Drawing.Point(205, 103);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(44, 13);
             this.label6.TabIndex = 12;
@@ -139,7 +145,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(85, 214);
+            this.label7.Location = new System.Drawing.Point(202, 225);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(44, 13);
             this.label7.TabIndex = 13;
@@ -147,17 +153,17 @@
             // 
             // btninsert
             // 
-            this.btninsert.Location = new System.Drawing.Point(329, 317);
+            this.btninsert.Location = new System.Drawing.Point(389, 358);
             this.btninsert.Name = "btninsert";
             this.btninsert.Size = new System.Drawing.Size(117, 38);
             this.btninsert.TabIndex = 14;
-            this.btninsert.Text = "Insert";
+            this.btninsert.Text = "Add Student";
             this.btninsert.UseVisualStyleBackColor = true;
             this.btninsert.Click += new System.EventHandler(this.button1_Click);
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(193, 156);
+            this.dateTimePicker1.Location = new System.Drawing.Point(310, 167);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
             this.dateTimePicker1.TabIndex = 15;
@@ -169,7 +175,7 @@
             this.comboBox1.Items.AddRange(new object[] {
             "Male",
             "Female"});
-            this.comboBox1.Location = new System.Drawing.Point(193, 184);
+            this.comboBox1.Location = new System.Drawing.Point(310, 195);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(153, 21);
             this.comboBox1.TabIndex = 16;
@@ -177,7 +183,7 @@
             // linkLabel1
             // 
             this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(61, 338);
+            this.linkLabel1.Location = new System.Drawing.Point(36, 171);
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.Size = new System.Drawing.Size(55, 13);
             this.linkLabel1.TabIndex = 17;
@@ -185,12 +191,69 @@
             this.linkLabel1.Text = "linkLabel1";
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
+            // linkLabel2
+            // 
+            this.linkLabel2.AutoSize = true;
+            this.linkLabel2.Location = new System.Drawing.Point(30, 116);
+            this.linkLabel2.Name = "linkLabel2";
+            this.linkLabel2.Size = new System.Drawing.Size(61, 13);
+            this.linkLabel2.TabIndex = 18;
+            this.linkLabel2.TabStop = true;
+            this.linkLabel2.Text = "AddAdvisor";
+            this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel2_LinkClicked);
+            // 
+            // linkLabel3
+            // 
+            this.linkLabel3.AutoSize = true;
+            this.linkLabel3.Location = new System.Drawing.Point(28, 200);
+            this.linkLabel3.Name = "linkLabel3";
+            this.linkLabel3.Size = new System.Drawing.Size(59, 13);
+            this.linkLabel3.TabIndex = 19;
+            this.linkLabel3.TabStop = true;
+            this.linkLabel3.Text = "AddProject";
+            this.linkLabel3.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel3_LinkClicked);
+            // 
+            // linkLabel4
+            // 
+            this.linkLabel4.AutoSize = true;
+            this.linkLabel4.Location = new System.Drawing.Point(23, 75);
+            this.linkLabel4.Name = "linkLabel4";
+            this.linkLabel4.Size = new System.Drawing.Size(86, 13);
+            this.linkLabel4.TabIndex = 20;
+            this.linkLabel4.TabStop = true;
+            this.linkLabel4.Text = "AssignpROJECT";
+            this.linkLabel4.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel4_LinkClicked);
+            // 
+            // linkLabel5
+            // 
+            this.linkLabel5.AutoSize = true;
+            this.linkLabel5.Location = new System.Drawing.Point(30, 46);
+            this.linkLabel5.Name = "linkLabel5";
+            this.linkLabel5.Size = new System.Drawing.Size(63, 13);
+            this.linkLabel5.TabIndex = 21;
+            this.linkLabel5.TabStop = true;
+            this.linkLabel5.Text = "All Students";
+            this.linkLabel5.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel5_LinkClicked);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.linkLabel5);
+            this.groupBox1.Controls.Add(this.linkLabel4);
+            this.groupBox1.Controls.Add(this.linkLabel3);
+            this.groupBox1.Controls.Add(this.linkLabel2);
+            this.groupBox1.Controls.Add(this.linkLabel1);
+            this.groupBox1.Location = new System.Drawing.Point(7, 3);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(147, 401);
+            this.groupBox1.TabIndex = 22;
+            this.groupBox1.TabStop = false;
+            // 
             // Person_Details
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(518, 408);
-            this.Controls.Add(this.linkLabel1);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.btninsert);
@@ -209,6 +272,8 @@
             this.Name = "Person_Details";
             this.Text = "Person_Details";
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -232,6 +297,11 @@
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.LinkLabel linkLabel1;
+        private System.Windows.Forms.LinkLabel linkLabel2;
+        private System.Windows.Forms.LinkLabel linkLabel3;
+        private System.Windows.Forms.LinkLabel linkLabel4;
+        private System.Windows.Forms.LinkLabel linkLabel5;
+        private System.Windows.Forms.GroupBox groupBox1;
     }
 }
 
