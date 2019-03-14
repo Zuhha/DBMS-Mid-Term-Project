@@ -8,21 +8,10 @@ namespace WindowsFormsApplication23
 {
     class Student
     {
-        private string First_Name;
-        private string Last_Name;
-        private int Gender;
-        private int Contact;
-        private string Email;
-        private DateTime DOB;
-
-
-
-
-        bool isvalid(string f, string l, int cont, string e)
+       public bool Allchar(string s)
         {
-            if(f.All(char.IsLetter))
+            if(s.All(Char.IsLetter))
             {
-                setfirstname(f);
                 return true;
             }
             else
@@ -32,11 +21,10 @@ namespace WindowsFormsApplication23
         }
 
 
-        bool lastisvalid(string f, string l, int cont, string e)
+      public  bool Alldigits(string s)
         {
-            if (l.All(char.IsLetter))
+            if(s.All(Char.IsDigit))
             {
-                setfirstname(f);
                 return true;
             }
             else
@@ -46,48 +34,20 @@ namespace WindowsFormsApplication23
         }
 
 
+      public  bool Email(string s)
+        {
+            if(s.Contains("@") && s.Contains(".com"))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
 
-
-        public string getfirstname()
-        {
-            return First_Name;
-        }
-        public void setfirstname(string name)
-        {
-            First_Name = name;
-        }
-        public string getlastname()
-        {
-            return Last_Name;
-        }
-        public void setlastname(string name)
-        {
-            Last_Name = name;
-        }
-        public int getgender()
-        {
-            return Gender;
-        }
-        public void setgender(int s)
-        {
-            Gender = s;
-        }
-        public DateTime getdob()
-        {
-            return DOB;
-        }
-        public void setdob(DateTime s)
-        {
-            DOB = s;
-        }
-        public string getemail()
-        {
-            return Email;
-        }
-        public void setemail(string s)
-        {
-            Email = s;
-        }
+       
+       
 
 
 
