@@ -88,17 +88,23 @@
     <Compile Include="CreateGroup.Designer.cs">
       <DependentUpon>CreateGroup.cs</DependentUpon>
     </Compile>
+    <Compile Include="DetailsOfProject.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DetailsOfProject.Designer.cs">
+      <DependentUpon>DetailsOfProject.cs</DependentUpon>
+    </Compile>
     <Compile Include="Evaluation.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Evaluation.Designer.cs">
       <DependentUpon>Evaluation.cs</DependentUpon>
     </Compile>
-    <Compile Include="Add_Student.cs">
+    <Compile Include="AddStudent.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Add_Student.Designer.cs">
-      <DependentUpon>Add_Student.cs</DependentUpon>
+    <Compile Include="AddStudent.Designer.cs">
+      <DependentUpon>AddStudent.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="ProjectandAdvisorDetails.cs">
@@ -139,8 +145,8 @@
     <EmbeddedResource Include="Evaluation.resx">
       <DependentUpon>Evaluation.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Add_Student.resx">
-      <DependentUpon>Add_Student.cs</DependentUpon>
+    <EmbeddedResource Include="AddStudent.resx">
+      <DependentUpon>AddStudent.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ProjectandAdvisorDetails.resx">
       <DependentUpon>ProjectandAdvisorDetails.cs</DependentUpon>

@@ -29,9 +29,9 @@ namespace WindowsFormsApplication23
             ad.Fill(dt);
 
             dataGridView1.DataSource = dt;
-            textBox1.Text = dataGridView1.CurrentRow.Cells["Name"].Value.ToString();
-            textBox2.Text = dataGridView1.CurrentRow.Cells["TotalMarks"].Value.ToString();
-            textBox3.Text = dataGridView1.CurrentRow.Cells["TotalWeightage"].Value.ToString();
+            txtname.Text = dataGridView1.CurrentRow.Cells["Name"].Value.ToString();
+            txttotalmarks.Text = dataGridView1.CurrentRow.Cells["TotalMarks"].Value.ToString();
+            txttotalwieghtage.Text = dataGridView1.CurrentRow.Cells["TotalWeightage"].Value.ToString();
 
            
 
@@ -74,13 +74,113 @@ namespace WindowsFormsApplication23
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string os = "Update Evaluation SET Name = '" + textBox1.Text + "', TotalMarks = '" + Convert.ToInt32(textBox2.Text) + "',TotalWeightage = '" + Convert.ToInt32(textBox3.Text) + "' where Id = '" + dataGridView1.CurrentRow.Cells["Id"].Value + "'";
-            SqlConnection conU = new SqlConnection(conURL);
-            conU.Open();
-            SqlCommand go = new SqlCommand(os, conU);
-            go.ExecuteNonQuery();
-            conU.Close();
-            MessageBox.Show("Updated");
+
+
+            Student st = new Student();
+            if (st.Allchar(txtname.Text) == false)
+            {
+                MessageBox.Show("Please Enter Valid Name");
+            }
+            else if (st.Alldigits(txttotalmarks.Text) == false)
+            {
+                MessageBox.Show("Please Enter Valid Total Marks");
+            }
+            
+            else if (st.Alldigits(txttotalwieghtage.Text) == false)
+            {
+                MessageBox.Show("Please Enter Valid Wieghtage");
+            }
+            else if (st.Allchar(txtname.Text) == true && st.Alldigits(txttotalmarks.Text) && st.Alldigits(txttotalwieghtage.Text))
+            {
+
+
+                string os = "Update Evaluation SET Name = '" + txtname.Text + "', TotalMarks = '" + Convert.ToInt32(txttotalmarks.Text) + "',TotalWeightage = '" + Convert.ToInt32(txttotalwieghtage.Text) + "' where Id = '" + dataGridView1.CurrentRow.Cells["Id"].Value + "'";
+                SqlConnection conU = new SqlConnection(conURL);
+                conU.Open();
+                SqlCommand go = new SqlCommand(os, conU);
+                go.ExecuteNonQuery();
+                conU.Close();
+                MessageBox.Show("Updated");
+                panel2.Visible = false;
+                panel1.Visible = true;
+            }
+        }
+
+        private void linkLabel9_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Person_Details frm = new Person_Details();
+            this.Hide();
+            frm.Show();
+        }
+
+        private void linkLabel4_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Add_Project frm = new Add_Project();
+            this.Hide();
+            frm.Show();
+        }
+
+        private void linkLabel3_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Add_Advisor frm = new Add_Advisor();
+            this.Hide();
+            frm.Show();
+        }
+
+        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            AllProjects frm = new AllProjects();
+            this.Hide();
+            frm.Show();
+        }
+
+        private void linkLabel5_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Student_Details frm = new Student_Details();
+            this.Hide();
+            frm.Show();
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            AllAdvisors frm = new AllAdvisors();
+            this.Hide();
+            frm.Show();
+        }
+
+        private void linkLabel6_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Assign_Project_To_Advisor frm = new Assign_Project_To_Advisor();
+            this.Hide();
+            frm.Show();
+        }
+
+        private void linkLabel7_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            ProjectandAdvisorDetails frm = new ProjectandAdvisorDetails();
+            this.Hide();
+            frm.Show();
+        }
+
+        private void linkLabel8_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            AllEvaluations frm = new AllEvaluations();
+            this.Hide();
+            frm.Show();
+        }
+
+        private void linkLabel10_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            CreateGroup frm = new CreateGroup();
+            this.Hide();
+            frm.Show();
+        }
+
+        private void linkLabel11_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Evaluation frm = new Evaluation();
+            this.Hide();
+            frm.Show();
         }
     }
 }

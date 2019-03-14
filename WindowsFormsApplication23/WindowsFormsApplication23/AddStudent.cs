@@ -38,8 +38,12 @@ namespace WindowsFormsApplication23
 
            
                 Student st = new Student();
+            if(txtfirstname.Text == ""|| txtlastname.Text == ""|| txtcontact.Text== ""|| txtemail.Text==""||comboBox1.Text == "")
+            {
+                MessageBox.Show("All Fields Are Required");
+            }
                
-                if(st.Allchar(txtfirstname.Text) == false)
+                else if(st.Allchar(txtfirstname.Text) == false)
                 {
                     MessageBox.Show("Enter Valid First Name");
                 }
@@ -164,7 +168,7 @@ namespace WindowsFormsApplication23
         private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             this.Hide();
-            AllAdvisors frm = new AllAdvisors();
+            AllProjects frm = new AllProjects();
             frm.Show();
         }
 
@@ -206,6 +210,25 @@ namespace WindowsFormsApplication23
         {
             AllEvaluations r = new AllEvaluations();
             r.Show();
+        }
+
+        private void linkLabel9_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            this.Show(); 
+        }
+
+        private void linkLabel10_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            CreateGroup g = new CreateGroup();
+            this.Hide();
+            g.Show();
+        }
+
+        private void linkLabel11_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Evaluation er = new Evaluation();
+            this.Hide();
+            er.Show();
         }
     }
 }

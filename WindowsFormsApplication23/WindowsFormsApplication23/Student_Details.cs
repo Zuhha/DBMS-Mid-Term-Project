@@ -79,8 +79,12 @@ namespace WindowsFormsApplication23
         private void button1_Click(object sender, EventArgs e)
         {
             Student st = new Student();
+            if (txtfirstName.Text == "" || txtLastName.Text == "" || txtContact.Text == "" || txtEmail.Text == "" || cmbgender.Text == "")
+            {
+                MessageBox.Show("All Fields Are Required");
+            }
 
-            if (st.Allchar(txtfirstName.Text) == false)
+            else if (st.Allchar(txtfirstName.Text) == false)
             {
                 MessageBox.Show("Enter Valid First Name");
             }
@@ -97,7 +101,7 @@ namespace WindowsFormsApplication23
                 MessageBox.Show("Enter a valid Email");
             }
 
-            if (st.Email(txtEmail.Text) == true && st.Allchar(txtfirstName.Text) == true && st.Allchar(txtLastName.Text) == true && st.Alldigits(txtContact.Text) == true && txtContact.Text.Length == 11)
+           else if (st.Email(txtEmail.Text) == true && st.Allchar(txtfirstName.Text) == true && st.Allchar(txtLastName.Text) == true && st.Alldigits(txtContact.Text) == true && txtContact.Text.Length == 11)
             {
                 SqlConnection con = new SqlConnection(conURL);
                 con.Open();
@@ -147,6 +151,8 @@ namespace WindowsFormsApplication23
                         UO.ExecuteNonQuery();
                         q.Close();
                         MessageBox.Show("Updated");
+                        panel2.Visible = false;
+                        panel1.Visible = true;
                     }
                     catch (Exception et)
                     {
@@ -163,6 +169,83 @@ namespace WindowsFormsApplication23
         private void panel2_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void linkLabel9_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Person_Details frm = new Person_Details();
+            this.Hide();
+            frm.Show();
+        }
+
+        private void linkLabel4_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Add_Project frm = new Add_Project();
+            this.Hide();
+            frm.Show();
+        }
+
+        private void linkLabel3_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Add_Advisor frm = new Add_Advisor();
+            this.Hide();
+            frm.Show();
+        }
+
+        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            AllProjects frm = new AllProjects();
+            this.Hide();
+            frm.Show();
+        }
+
+        private void linkLabel5_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Student_Details frm = new Student_Details();
+            this.Hide();
+            frm.Show();
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            AllAdvisors frm = new AllAdvisors();
+            this.Hide();
+            frm.Show();
+        }
+
+        private void linkLabel6_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Assign_Project_To_Advisor frm = new Assign_Project_To_Advisor();
+            this.Hide();
+            frm.Show();
+        }
+
+        private void linkLabel7_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            ProjectandAdvisorDetails frm = new ProjectandAdvisorDetails();
+            this.Hide();
+            frm.Show();
+        }
+
+        private void linkLabel8_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            AllEvaluations frm = new AllEvaluations();
+            this.Hide();
+            frm.Show();
+        }
+
+        private void linkLabel10_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            CreateGroup frm = new CreateGroup();
+            this.Hide();
+            frm.Show();
+        }
+
+        private void linkLabel11_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Evaluation frm = new Evaluation();
+            this.Hide();
+            frm.Show();
         }
     }
 }
