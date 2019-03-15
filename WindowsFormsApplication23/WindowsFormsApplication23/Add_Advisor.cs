@@ -168,5 +168,12 @@ namespace WindowsFormsApplication23
             this.Hide();
             frm.Show();
         }
+
+        private void linkLabel12_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Group_Details frm = new Group_Details();
+            frm.Show();
+            this.Hide();
+        }
     }
 }

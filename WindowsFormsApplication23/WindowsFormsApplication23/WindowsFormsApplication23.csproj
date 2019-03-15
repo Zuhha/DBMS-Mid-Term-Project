@@ -106,6 +106,12 @@
     <Compile Include="AddStudent.Designer.cs">
       <DependentUpon>AddStudent.cs</DependentUpon>
     </Compile>
+    <Compile Include="Group Details .cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Group Details .Designer.cs">
+      <DependentUpon>Group Details .cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="ProjectandAdvisorDetails.cs">
       <SubType>Form</SubType>
@@ -142,11 +148,17 @@
     <EmbeddedResource Include="CreateGroup.resx">
       <DependentUpon>CreateGroup.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DetailsOfProject.resx">
+      <DependentUpon>DetailsOfProject.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Evaluation.resx">
       <DependentUpon>Evaluation.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AddStudent.resx">
       <DependentUpon>AddStudent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Group Details .resx">
+      <DependentUpon>Group Details .cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ProjectandAdvisorDetails.resx">
       <DependentUpon>ProjectandAdvisorDetails.cs</DependentUpon>
