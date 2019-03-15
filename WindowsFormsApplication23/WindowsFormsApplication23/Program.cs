@@ -16,7 +16,7 @@ namespace WindowsFormsApplication23
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Person_Details());
+            Application.Run(new DetailsOfProject());
         }
     }
 }

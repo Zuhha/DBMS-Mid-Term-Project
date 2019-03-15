@@ -141,5 +141,12 @@ namespace WindowsFormsApplication23
         {
 
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Person_Details frm = new Person_Details();
+            frm.Show();
+            this.Hide();
+        }
     }
 }

@@ -46,12 +46,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Add_Advisor.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Add_Advisor.Designer.cs">
-      <DependentUpon>Add_Advisor.cs</DependentUpon>
-    </Compile>
     <Compile Include="Add_Project.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -100,17 +94,17 @@
     <Compile Include="Evaluation.Designer.cs">
       <DependentUpon>Evaluation.cs</DependentUpon>
     </Compile>
-    <Compile Include="AddStudent.cs">
+    <Compile Include="AddUser.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AddStudent.Designer.cs">
-      <DependentUpon>AddStudent.cs</DependentUpon>
+    <Compile Include="AddUser.Designer.cs">
+      <DependentUpon>AddUser.cs</DependentUpon>
     </Compile>
-    <Compile Include="Group Details .cs">
+    <Compile Include="GroupDetails.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Group Details .Designer.cs">
-      <DependentUpon>Group Details .cs</DependentUpon>
+    <Compile Include="GroupDetails.Designer.cs">
+      <DependentUpon>GroupDetails.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="ProjectandAdvisorDetails.cs">
@@ -127,9 +121,6 @@
     <Compile Include="Student_Details.Designer.cs">
       <DependentUpon>Student_Details.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Add_Advisor.resx">
-      <DependentUpon>Add_Advisor.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Add_Project.resx">
       <DependentUpon>Add_Project.cs</DependentUpon>
     </EmbeddedResource>
@@ -154,11 +145,11 @@
     <EmbeddedResource Include="Evaluation.resx">
       <DependentUpon>Evaluation.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AddStudent.resx">
-      <DependentUpon>AddStudent.cs</DependentUpon>
+    <EmbeddedResource Include="AddUser.resx">
+      <DependentUpon>AddUser.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Group Details .resx">
-      <DependentUpon>Group Details .cs</DependentUpon>
+    <EmbeddedResource Include="GroupDetails.resx">
+      <DependentUpon>GroupDetails.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ProjectandAdvisorDetails.resx">
       <DependentUpon>ProjectandAdvisorDetails.cs</DependentUpon>
@@ -171,6 +162,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="Student_Details.resx">
       <DependentUpon>Student_Details.cs</DependentUpon>
@@ -187,6 +179,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\plush-design-studio-571660-unsplash.jpg" />
+    <Content Include="plush-design-studio-571660-unsplash.jpg" />
+    <None Include="Resources\plush-design-studio-571660-unsplash1.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -102,6 +102,10 @@ namespace WindowsFormsApplication23
             {
                 MessageBox.Show("Enter a valid Email");
             }
+            else if (st.REGNO(txtregno.Text) == false)
+            {
+                MessageBox.Show("Enter a valid Registration Number");
+            }
 
             else if (st.Email(txtEmail.Text) == true && st.Allchar(txtfirstName.Text) == true && st.Allchar(txtLastName.Text) == true && st.Alldigits(txtContact.Text) == true && txtContact.Text.Length == 11)
             {
@@ -192,7 +196,7 @@ namespace WindowsFormsApplication23
 
         private void linkLabel3_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Add_Advisor frm = new Add_Advisor();
+            GroupDetails frm = new GroupDetails();
             this.Hide();
             frm.Show();
         }

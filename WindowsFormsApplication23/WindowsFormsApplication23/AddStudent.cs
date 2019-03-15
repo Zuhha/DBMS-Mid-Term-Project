@@ -256,7 +256,7 @@ namespace WindowsFormsApplication23
         private void linkLabel3_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             this.Hide();
-            Add_Advisor ad = new Add_Advisor();
+            Group_Details ad = new Group_Details();
             ad.Show();
         }
 
