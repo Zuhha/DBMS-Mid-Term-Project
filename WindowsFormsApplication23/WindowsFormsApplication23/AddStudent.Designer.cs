@@ -32,14 +32,13 @@
             this.txtlastname = new System.Windows.Forms.TextBox();
             this.txtcontact = new System.Windows.Forms.TextBox();
             this.txtemail = new System.Windows.Forms.TextBox();
-            this.txtregno = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
             this.btninsert = new System.Windows.Forms.Button();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
@@ -49,12 +48,19 @@
             this.linkLabel4 = new System.Windows.Forms.LinkLabel();
             this.linkLabel5 = new System.Windows.Forms.LinkLabel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.linkLabel11 = new System.Windows.Forms.LinkLabel();
+            this.linkLabel10 = new System.Windows.Forms.LinkLabel();
+            this.linkLabel9 = new System.Windows.Forms.LinkLabel();
             this.linkLabel8 = new System.Windows.Forms.LinkLabel();
             this.linkLabel7 = new System.Windows.Forms.LinkLabel();
             this.linkLabel6 = new System.Windows.Forms.LinkLabel();
-            this.linkLabel9 = new System.Windows.Forms.LinkLabel();
-            this.linkLabel10 = new System.Windows.Forms.LinkLabel();
-            this.linkLabel11 = new System.Windows.Forms.LinkLabel();
+            this.label10 = new System.Windows.Forms.Label();
+            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.txtsalary = new System.Windows.Forms.TextBox();
+            this.txtregno = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -85,13 +91,6 @@
             this.txtemail.Name = "txtemail";
             this.txtemail.Size = new System.Drawing.Size(196, 20);
             this.txtemail.TabIndex = 3;
-            // 
-            // txtregno
-            // 
-            this.txtregno.Location = new System.Drawing.Point(310, 225);
-            this.txtregno.Name = "txtregno";
-            this.txtregno.Size = new System.Drawing.Size(196, 20);
-            this.txtregno.TabIndex = 6;
             // 
             // label1
             // 
@@ -148,14 +147,14 @@
             this.label6.Text = "Contact";
             this.label6.Click += new System.EventHandler(this.label6_Click);
             // 
-            // label7
+            // label11
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(202, 225);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(44, 13);
-            this.label7.TabIndex = 13;
-            this.label7.Text = "Reg.No";
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(200, 268);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(44, 13);
+            this.label11.TabIndex = 13;
+            this.label11.Text = "Reg.No";
             // 
             // btninsert
             // 
@@ -260,6 +259,39 @@
             this.groupBox1.TabIndex = 22;
             this.groupBox1.TabStop = false;
             // 
+            // linkLabel11
+            // 
+            this.linkLabel11.AutoSize = true;
+            this.linkLabel11.Location = new System.Drawing.Point(30, 372);
+            this.linkLabel11.Name = "linkLabel11";
+            this.linkLabel11.Size = new System.Drawing.Size(81, 13);
+            this.linkLabel11.TabIndex = 27;
+            this.linkLabel11.TabStop = true;
+            this.linkLabel11.Text = "Evaluate Group";
+            this.linkLabel11.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel11_LinkClicked);
+            // 
+            // linkLabel10
+            // 
+            this.linkLabel10.AutoSize = true;
+            this.linkLabel10.Location = new System.Drawing.Point(35, 341);
+            this.linkLabel10.Name = "linkLabel10";
+            this.linkLabel10.Size = new System.Drawing.Size(70, 13);
+            this.linkLabel10.TabIndex = 26;
+            this.linkLabel10.TabStop = true;
+            this.linkLabel10.Text = "Create Group";
+            this.linkLabel10.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel10_LinkClicked);
+            // 
+            // linkLabel9
+            // 
+            this.linkLabel9.AutoSize = true;
+            this.linkLabel9.Location = new System.Drawing.Point(31, 33);
+            this.linkLabel9.Name = "linkLabel9";
+            this.linkLabel9.Size = new System.Drawing.Size(66, 13);
+            this.linkLabel9.TabIndex = 25;
+            this.linkLabel9.TabStop = true;
+            this.linkLabel9.Text = "Add Student";
+            this.linkLabel9.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel9_LinkClicked);
+            // 
             // linkLabel8
             // 
             this.linkLabel8.AutoSize = true;
@@ -293,56 +325,92 @@
             this.linkLabel6.Text = "Assign Project";
             this.linkLabel6.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel6_LinkClicked);
             // 
-            // linkLabel9
+            // label10
             // 
-            this.linkLabel9.AutoSize = true;
-            this.linkLabel9.Location = new System.Drawing.Point(31, 33);
-            this.linkLabel9.Name = "linkLabel9";
-            this.linkLabel9.Size = new System.Drawing.Size(66, 13);
-            this.linkLabel9.TabIndex = 25;
-            this.linkLabel9.TabStop = true;
-            this.linkLabel9.Text = "Add Student";
-            this.linkLabel9.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel9_LinkClicked);
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(203, 232);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(30, 13);
+            this.label10.TabIndex = 39;
+            this.label10.Text = "ADD";
             // 
-            // linkLabel10
+            // comboBox3
             // 
-            this.linkLabel10.AutoSize = true;
-            this.linkLabel10.Location = new System.Drawing.Point(35, 341);
-            this.linkLabel10.Name = "linkLabel10";
-            this.linkLabel10.Size = new System.Drawing.Size(70, 13);
-            this.linkLabel10.TabIndex = 26;
-            this.linkLabel10.TabStop = true;
-            this.linkLabel10.Text = "Create Group";
-            this.linkLabel10.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel10_LinkClicked);
+            this.comboBox3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox3.FormattingEnabled = true;
+            this.comboBox3.Items.AddRange(new object[] {
+            "Student",
+            "Advisor"});
+            this.comboBox3.Location = new System.Drawing.Point(307, 224);
+            this.comboBox3.Name = "comboBox3";
+            this.comboBox3.Size = new System.Drawing.Size(199, 21);
+            this.comboBox3.TabIndex = 38;
+            this.comboBox3.SelectedIndexChanged += new System.EventHandler(this.comboBox3_SelectedIndexChanged_1);
             // 
-            // linkLabel11
+            // comboBox2
             // 
-            this.linkLabel11.AutoSize = true;
-            this.linkLabel11.Location = new System.Drawing.Point(30, 372);
-            this.linkLabel11.Name = "linkLabel11";
-            this.linkLabel11.Size = new System.Drawing.Size(81, 13);
-            this.linkLabel11.TabIndex = 27;
-            this.linkLabel11.TabStop = true;
-            this.linkLabel11.Text = "Evaluate Group";
-            this.linkLabel11.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel11_LinkClicked);
+            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Location = new System.Drawing.Point(308, 275);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(196, 21);
+            this.comboBox2.TabIndex = 37;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(200, 309);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(36, 13);
+            this.label9.TabIndex = 36;
+            this.label9.Text = "Salary";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(200, 274);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(63, 13);
+            this.label8.TabIndex = 35;
+            this.label8.Text = "Designation";
+            // 
+            // txtsalary
+            // 
+            this.txtsalary.Location = new System.Drawing.Point(313, 302);
+            this.txtsalary.Name = "txtsalary";
+            this.txtsalary.Size = new System.Drawing.Size(194, 20);
+            this.txtsalary.TabIndex = 34;
+            // 
+            // txtregno
+            // 
+            this.txtregno.Location = new System.Drawing.Point(307, 265);
+            this.txtregno.Name = "txtregno";
+            this.txtregno.Size = new System.Drawing.Size(196, 20);
+            this.txtregno.TabIndex = 40;
             // 
             // Person_Details
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(518, 408);
+            this.Controls.Add(this.txtregno);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.comboBox3);
+            this.Controls.Add(this.comboBox2);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.txtsalary);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.btninsert);
-            this.Controls.Add(this.label7);
+            this.Controls.Add(this.label11);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.txtregno);
             this.Controls.Add(this.txtemail);
             this.Controls.Add(this.txtcontact);
             this.Controls.Add(this.txtlastname);
@@ -363,14 +431,13 @@
         private System.Windows.Forms.TextBox txtlastname;
         private System.Windows.Forms.TextBox txtcontact;
         private System.Windows.Forms.TextBox txtemail;
-        private System.Windows.Forms.TextBox txtregno;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Button btninsert;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.ComboBox comboBox1;
@@ -386,6 +453,13 @@
         private System.Windows.Forms.LinkLabel linkLabel9;
         private System.Windows.Forms.LinkLabel linkLabel10;
         private System.Windows.Forms.LinkLabel linkLabel11;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.ComboBox comboBox3;
+        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox txtsalary;
+        private System.Windows.Forms.TextBox txtregno;
     }
 }
 

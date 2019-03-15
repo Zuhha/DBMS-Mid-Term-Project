@@ -23,24 +23,24 @@ namespace WindowsFormsApplication23
         private void button1_Click(object sender, EventArgs e)
         {
             Student st = new Student();
-            if(txttittle.Text == "" || txtdesc.Text == "")
+            if (txttittle.Text == "" || txtdesc.Text == "")
             {
                 MessageBox.Show("Enter All Fields");
             }
-            else if(st.Allchar(txttittle.Text)== false )
+            else if (st.Allchar(txttittle.Text) == false)
             {
                 MessageBox.Show("Enter a valid Title");
             }
-            else if (st.Allchar(txtdesc.Text) == false )
+            else if (st.Allchar(txtdesc.Text) == false)
             {
                 MessageBox.Show("Enter a valid Description");
             }
-            else if(st.Allchar(txttittle.Text) == true && st.Allchar(txtdesc.Text) == true)
+            else if (st.Allchar(txttittle.Text) == true && st.Allchar(txtdesc.Text) == true)
             {
                 SqlConnection con = new SqlConnection(conURL);
                 con.Open();
                 string k = "Select Count(Id) from Project where Title ='" + txttittle.Text + "' ";
-                
+
                 SqlCommand cg = new SqlCommand(k, con);
                 int yo = (int)cg.ExecuteScalar();
                 bool ry = true;
@@ -48,11 +48,11 @@ namespace WindowsFormsApplication23
                 {
                     ry = false;
                 }
-                if(ry == false)
+                if (ry == false)
                 {
                     MessageBox.Show("Project with this tittle is already a part of our record :)");
                 }
-                else if(ry == true)
+                else if (ry == true)
                 {
                     string cmd = "Insert into Project(Description, Title) values ('" + txtdesc.Text + "','" + txttittle.Text + "')";
                     SqlCommand g = new SqlCommand(cmd, con);
@@ -60,10 +60,10 @@ namespace WindowsFormsApplication23
                     con.Close();
                     MessageBox.Show("Project has been added");
                 }
-               
-                
+
+
             }
-            
+
         }
 
         private void linkLabel9_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

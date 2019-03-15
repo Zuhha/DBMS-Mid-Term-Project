@@ -24,8 +24,8 @@ namespace WindowsFormsApplication23
         {
             SqlConnection c = new SqlConnection(conURL);
             string s = "Select * from Project";
-           
-            SqlDataAdapter ad = new SqlDataAdapter(s,c);
+
+            SqlDataAdapter ad = new SqlDataAdapter(s, c);
             DataTable dt = new DataTable();
             ad.Fill(dt);
 
@@ -34,22 +34,22 @@ namespace WindowsFormsApplication23
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if(e.ColumnIndex == 0)
+            if (e.ColumnIndex == 0)
             {
                 panel2.Visible = true;
                 panel1.Visible = false;
                 txttitle.Text = dataGridView1.CurrentRow.Cells["Title"].Value.ToString();
                 txtdesc.Text = dataGridView1.CurrentRow.Cells["Description"].Value.ToString();
-                
-                
+
+
             }
             else if (e.ColumnIndex == 1)
             {
                 int u = Convert.ToInt32(dataGridView1.CurrentRow.Cells["Id"].Value);
                 string s = "Delete from ProjectAdvisor where ProjectId = '" + u + "'";
-                string st = "Delete from GroupProject where ProjectId = '"+u+"'";
+                string st = "Delete from GroupProject where ProjectId = '" + u + "'";
                 string hu = "Delete from Project where Id = '" + u + "'";
-               
+
                 SqlConnection op = new SqlConnection(conURL);
                 op.Open();
                 SqlCommand cmd = new SqlCommand(s, op);
@@ -89,12 +89,12 @@ namespace WindowsFormsApplication23
             {
                 SqlConnection con = new SqlConnection(conURL);
                 con.Open();
-                string k = "Select Count(Id) from Project where Title ='" + txttitle.Text + "' ";
+                string k = "Select Count(Id) from Project where Title ='" + txttitle.Text + "' and Id != '"+dataGridView1.CurrentRow.Cells["Id"].Value+"' ";
 
                 SqlCommand cg = new SqlCommand(k, con);
                 int yo = (int)cg.ExecuteScalar();
                 bool ry = true;
-                if (yo > 1)
+                if (yo >= 1)
                 {
                     ry = false;
                 }
@@ -113,8 +113,9 @@ namespace WindowsFormsApplication23
                     q.ExecuteNonQuery();
                     c.Close();
                     MessageBox.Show("Updated");
-                    panel2.Visible = false;
-                    panel1.Visible = true;
+                    this.Hide();
+                    AllProjects frm = new AllProjects();
+                    frm.Show();
 
                 }
 

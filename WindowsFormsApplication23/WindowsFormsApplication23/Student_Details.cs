@@ -23,20 +23,21 @@ namespace WindowsFormsApplication23
 
         private void Student_Details_Load(object sender, EventArgs e)
         {
-            string cmd = "Select * from Person join Student on Student.Id = Person.Id";
+            string cmd = "Select Person.Id, Student.RegistrationNo,Person.FirstName,Person.LastName,Person.Contact,Person.Email,Person.Gender,Person.DateOfBirth from Person join Student on Student.Id = Person.Id";
             SqlConnection con = new SqlConnection(conURL);
-            SqlDataAdapter ad = new SqlDataAdapter(cmd,con);
+            SqlDataAdapter ad = new SqlDataAdapter(cmd, con);
             DataTable dt = new DataTable();
             ad.Fill(dt);
 
             dataGridView1.DataSource = dt;
-            
-            
+
+
+
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if(e.ColumnIndex == 0)
+            if (e.ColumnIndex == 0)
             {
                 panel1.Visible = false;
                 panel2.Visible = true;
@@ -46,15 +47,15 @@ namespace WindowsFormsApplication23
                 txtEmail.Text = dataGridView1.CurrentRow.Cells["Email"].Value.ToString();
                 txtContact.Text = dataGridView1.CurrentRow.Cells["Contact"].Value.ToString();
             }
-           
-            else if(e.ColumnIndex == 1)
+
+            else if (e.ColumnIndex == 1)
             {
                 string o = dataGridView1.CurrentRow.Cells["Id"].FormattedValue.ToString();
                 int u = Convert.ToInt32(o);
                 string s = "Delete from Student where Id = '" + u + "'";
                 string st = "Delete from Person Where Id = '" + u + "'";
                 string hu = "Delete from GroupStudent where StudentId = '" + u + "'";
-                string r = "Delete from ((Select * from Student join Person On Student.Id = '"+u+"')join GroupStudent on StudentId = '"+u+"')";
+                string r = "Delete from ((Select * from Student join Person On Student.Id = '" + u + "')join GroupStudent on StudentId = '" + u + "')";
                 SqlConnection op = new SqlConnection(conURL);
                 op.Open();
                 SqlCommand cmd = new SqlCommand(hu, op);
@@ -68,7 +69,8 @@ namespace WindowsFormsApplication23
                 MessageBox.Show("Deleted");
             }
 
-           
+
+
         }
 
         private void textBox2_TextChanged(object sender, EventArgs e)
@@ -101,24 +103,24 @@ namespace WindowsFormsApplication23
                 MessageBox.Show("Enter a valid Email");
             }
 
-           else if (st.Email(txtEmail.Text) == true && st.Allchar(txtfirstName.Text) == true && st.Allchar(txtLastName.Text) == true && st.Alldigits(txtContact.Text) == true && txtContact.Text.Length == 11)
+            else if (st.Email(txtEmail.Text) == true && st.Allchar(txtfirstName.Text) == true && st.Allchar(txtLastName.Text) == true && st.Alldigits(txtContact.Text) == true && txtContact.Text.Length == 11)
             {
                 SqlConnection con = new SqlConnection(conURL);
                 con.Open();
 
-                string k = "Select Count(Id) from Person where FirstName ='" + txtfirstName.Text + "' and LastName = '" + txtLastName.Text + "' and Contact = '" + txtContact.Text + "'";
+                string k = "Select Count(Id) from  Person where FirstName ='" + txtfirstName.Text + "' and LastName = '" + txtLastName.Text + "' and Contact = '" + txtContact.Text + "'and Id != '" + Convert.ToInt32(dataGridView1.CurrentRow.Cells["Id"].Value) + "'";
                 SqlCommand cg = new SqlCommand(k, con);
                 int yo = (int)cg.ExecuteScalar();
                 bool ry = true;
-                if (yo > 1)
+                if (yo >= 1)
                 {
                     ry = false;
                 }
-                string kl = "Select Count(Id) from Student where RegistrationNo ='" + txtregno.Text + "'";
+                string kl = "Select Count(Id) from Student where RegistrationNo ='" + txtregno.Text + "' and Id != '"+Convert.ToInt32(dataGridView1.CurrentRow.Cells["Id"].Value)+"'";
                 SqlCommand cgo = new SqlCommand(kl, con);
                 int yoo = (int)cgo.ExecuteScalar();
                 bool v = true;
-                if (yoo > 1)
+                if (yoo >= 1)
                 {
                     v = false;
                 }
@@ -152,7 +154,10 @@ namespace WindowsFormsApplication23
                         q.Close();
                         MessageBox.Show("Updated");
                         panel2.Visible = false;
-                        panel1.Visible = true;
+                        this.Hide();
+                        Student_Details frm = new Student_Details();
+                        frm.Show();
+
                     }
                     catch (Exception et)
                     {
@@ -163,8 +168,8 @@ namespace WindowsFormsApplication23
                 }
 
             }
-              
-            }
+
+        }
 
         private void panel2_Paint(object sender, PaintEventArgs e)
         {

@@ -66,7 +66,7 @@ namespace WindowsFormsApplication23
             string cmnd = "Select Id from Project where Title = '" + comboBox2.Text + "'";
             SqlCommand k = new SqlCommand(cmnd, con);
             int id = (int)k.ExecuteScalar();
-           
+
 
             string str = "Select Count(AdvisorId) from ProjectAdvisor where ProjectId = '" + id + "' and AdvisorId ='" + Convert.ToInt32(comboBox1.Text) + "'";
             SqlCommand bk = new SqlCommand(str, con);
@@ -114,7 +114,7 @@ namespace WindowsFormsApplication23
             }
             else if (f == false)
             {
-                MessageBox.Show("This Advisor is already serving project "+comboBox2.Text);
+                MessageBox.Show("This Advisor is already serving project " + comboBox2.Text);
             }
             else if (ry == true)
             {
@@ -124,7 +124,7 @@ namespace WindowsFormsApplication23
                     string cmn = "Select Id from Lookup where Value = '" + comboBox3.Text + "'";
                     SqlCommand ko = new SqlCommand(cmn, con);
                     int ide = (int)ko.ExecuteScalar();
-                    MessageBox.Show(ide.ToString());
+
                     string h = "Insert into ProjectAdvisor(AdvisorId, ProjectId,AdvisorRole,AssignmentDate) values ('" + comboBox1.Text + "', '" + id + "','" + ide + "','" + DateTime.Now + "')";
                     SqlCommand g = new SqlCommand(h, con);
                     g.ExecuteNonQuery();

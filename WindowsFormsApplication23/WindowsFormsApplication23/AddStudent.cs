@@ -13,6 +13,7 @@ namespace WindowsFormsApplication23
 {
     public partial class Person_Details : Form
     {
+        string conURL = "Data Source=(local);Initial Catalog=ProjectA;Integrated Security=True";
         public Person_Details()
         {
             InitializeComponent();
@@ -30,43 +31,93 @@ namespace WindowsFormsApplication23
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            btninsert.Visible = false;
+            txtregno.Visible = false;
+            txtsalary.Visible = false;
+            comboBox2.Visible = false;
+            label9.Visible = false;
+            label8.Visible = false;
+            label11.Visible = false;
+            SqlConnection c = new SqlConnection(conURL);
+            c.Open();
+            string cmd = "Select Value from Lookup where Category = 'DESIGNATION' Order by Value";
+            SqlCommand q = new SqlCommand(cmd, c);
+            SqlDataReader rdr = q.ExecuteReader();
 
+            while (rdr.Read())
+            {
+                string h = rdr[0].ToString();
+                comboBox2.Items.Add(h);
+            }
+            c.Close();
+            label11.Visible = false;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
+            Student st = new Student();
 
-           
-                Student st = new Student();
-            if(txtfirstname.Text == ""|| txtlastname.Text == ""|| txtcontact.Text== ""|| txtemail.Text==""||comboBox1.Text == "")
+            if (comboBox3.Text == "Advisor" && (txtsalary.Text == "" || comboBox2.Text == "" || txtfirstname.Text == "" || txtlastname.Text == "" || txtcontact.Text == "" || txtemail.Text == "" || comboBox1.Text == "" || comboBox2.Text == ""))
             {
                 MessageBox.Show("All Fields Are Required");
             }
-               
-                else if(st.Allchar(txtfirstname.Text) == false)
-                {
-                    MessageBox.Show("Enter Valid First Name");
-                }
-               else if (st.Allchar(txtlastname .Text) == false)
-                {
-                    MessageBox.Show("Enter Valid Last Name");
-                }
-               else if (st.Alldigits(txtcontact.Text) == false || txtcontact.Text.Length != 11)
-                {
-                    MessageBox.Show("Enter Valid Contact No.");
-                }
-                else if (st.Email(txtemail.Text) == false)
-                {
-                    MessageBox.Show("Enter a valid Email");
-                }
+            if (comboBox3.Text == "Student" && (txtregno.Text == "" || txtfirstname.Text == "" || txtlastname.Text == "" || txtcontact.Text == "" || txtemail.Text == "" || comboBox1.Text == ""))
+            {
+                MessageBox.Show("All Fields Are Required");
+            }
 
-            if (st.Email(txtemail.Text) == true && st.Allchar(txtfirstname.Text) == true && st.Allchar(txtlastname.Text)== true && st.Alldigits(txtcontact.Text)== true && txtcontact.Text.Length == 11)
+            else if (st.Alldigits(txtsalary.Text) == false)
+            {
+                MessageBox.Show("Enter Valid Salary");
+            }
+
+            else if (st.Allchar(txtfirstname.Text) == false)
+            {
+                MessageBox.Show("Enter Valid First Name");
+            }
+            else if (st.Allchar(txtlastname.Text) == false)
+            {
+                MessageBox.Show("Enter Valid Last Name");
+            }
+            else if (st.Alldigits(txtcontact.Text) == false || txtcontact.Text.Length != 11)
+            {
+                MessageBox.Show("Enter Valid Contact No.");
+            }
+            else if (st.Email(txtemail.Text) == false)
+            {
+                MessageBox.Show("Enter a valid Email");
+            }
+
+
+
+           
+
+         /*   else if (st.Allchar(txtfirstname.Text) == false)
+            {
+                MessageBox.Show("Enter Valid First Name");
+            }
+            else if (st.Allchar(txtlastname.Text) == false)
+            {
+                MessageBox.Show("Enter Valid Last Name");
+            }
+            else if (st.Alldigits(txtcontact.Text) == false || txtcontact.Text.Length != 11)
+            {
+                MessageBox.Show("Enter Valid Contact No.");
+            }
+            else if (st.Email(txtemail.Text) == false)
+            {
+                MessageBox.Show("Enter a valid Email");
+            }
+
+    */
+            if (st.Email(txtemail.Text) == true && st.Allchar(txtfirstname.Text) == true && st.Allchar(txtlastname.Text) == true && st.Alldigits(txtcontact.Text) == true && txtcontact.Text.Length == 11)
+            {
+
+
+
+                try
                 {
 
-                    
-                    try
-                    {
-                    string conURL = "Data Source=(local);Initial Catalog=ProjectA;Integrated Security=True";
                     SqlConnection con = new SqlConnection(conURL);
                     con.Open();
 
@@ -74,28 +125,42 @@ namespace WindowsFormsApplication23
                     SqlCommand cg = new SqlCommand(k, con);
                     int yo = (int)cg.ExecuteScalar();
                     bool ry = true;
-                    if(yo >= 1)
+                    if (yo >= 1)
                     {
-                         ry = false;
+                        ry = false;
                     }
+
+
+
+
                     string kl = "Select Count(Id) from Student where RegistrationNo ='" + txtregno.Text + "'";
                     SqlCommand cgo = new SqlCommand(kl, con);
                     int yoo = (int)cgo.ExecuteScalar();
                     bool v = true;
-                    if(yoo >= 1)
+                    if (yoo >= 1)
                     {
-                         v = false;
+                        v = false;
                     }
-                    if(ry == false)
+
+
+
+                    string stmt = "Select max(Id) from Person ";
+                    SqlCommand b = new SqlCommand(stmt, con);
+                    int y = (int)b.ExecuteScalar();
+
+                    if (ry == false)
                     {
                         MessageBox.Show("This Person has already been added in Record");
                     }
+
+
+
                     else if (v == false)
                     {
-                        MessageBox.Show("This RegistrationNo is already in Record") ;
+                        MessageBox.Show("This RegistrationNo is already in Record");
                     }
 
-                    else if(ry == true && v == true)
+                    else if (ry == true && v == true)
                     {
                         string em = "Select Id from Lookup where Value = '" + comboBox1.Text + "'";
                         SqlCommand nd = new SqlCommand(em, con);
@@ -111,36 +176,52 @@ namespace WindowsFormsApplication23
                         command.ExecuteNonQuery();
 
 
-                        string stmt = "Select max(Id) from Person ";
-                        SqlCommand b = new SqlCommand(stmt, con);
-                        int y = (int)b.ExecuteScalar();
 
-                        string Query = "Insert into Student(Id, RegistrationNo) values ('" + y + "','" + txtregno.Text + "')";
-                        SqlCommand o = new SqlCommand(Query, con);
-                        o.ExecuteNonQuery();
+                        if (comboBox3.Text == "Student")
+                        {
+                            txtregno.Visible = true;
+                            string Query = "Insert into Student(Id, RegistrationNo) values ('" + y + "','" + txtregno.Text + "')";
+                            SqlCommand o = new SqlCommand(Query, con);
+                            o.ExecuteNonQuery();
+                            MessageBox.Show("Student has been added");
+
+                        }
+                        else if (comboBox3.Text == "Advisor" && st.Alldigits(txtsalary.Text) == true)
+                        {
+                            txtsalary.Visible = true;
+
+                            string cmdn = "Select Id from Lookup where Value = '" + comboBox2.Text + "'";
+                            SqlCommand qn = new SqlCommand(cmdn, con);
+                            int yn = (int)qn.ExecuteScalar();
+                            string x = "Insert into Advisor(Id,Designation, Salary) values ('" + y + "','" + yn + "','" + txtsalary.Text + "')";
+                            SqlCommand u = new SqlCommand(x, con);
+                            u.ExecuteNonQuery();
+                            MessageBox.Show("Advisor has been added");
+
+
+                        }
+                        else if (comboBox3.Text == "Advisor" && st.Alldigits(txtsalary.Text) == false)
+                        {
+                            MessageBox.Show("Enter Correct Salary");
+                        }
+
+
                         con.Close();
-                        MessageBox.Show("Person has been added");
+
                     }
-                  else
+                    else
                     {
                         MessageBox.Show("Enter Correct Data");
                     }
 
 
-                     }
+                }
                 catch (Exception et)
                 {
                     throw (et);
                 }
             }
 
-
-
-
-
-
-
-                
 
             }
 
@@ -229,6 +310,37 @@ namespace WindowsFormsApplication23
             Evaluation er = new Evaluation();
             this.Hide();
             er.Show();
+        }
+
+       
+
+        private void comboBox3_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            if (comboBox3.Text == "Student")
+            {
+                txtregno.Visible = true;
+                label11.Visible = true;
+                btninsert.Visible = true;
+                txtsalary.Visible = false;
+                comboBox2.Visible = false;
+                label9.Visible = false;
+                label8.Visible = false;
+                btninsert.Visible = true;
+                btninsert.Text = "Add Student";
+
+            }
+            else
+            {
+                txtregno.Visible = false;
+                label11.Visible = false;
+              
+                btninsert.Text = "Add Advisor";
+                txtsalary.Visible = true;
+                comboBox2.Visible = true;
+                label9.Visible = true;
+                label8.Visible = true;
+                btninsert.Visible = true;
+            }
         }
     }
 }

@@ -54,7 +54,7 @@ namespace WindowsFormsApplication23
             t.Close();
 
             string cmd8 = "Select * from ProjectAdvisor ";
-           
+
             SqlDataAdapter ad = new SqlDataAdapter(cmd8, c);
             DataTable dt = new DataTable();
             ad.Fill(dt);
@@ -74,23 +74,23 @@ namespace WindowsFormsApplication23
             {
                 string o = dataGridView1.CurrentRow.Cells["ProjectId"].FormattedValue.ToString();
                 int u = Convert.ToInt32(o);
-              //  MessageBox.Show(u.ToString());
-                
+                //  MessageBox.Show(u.ToString());
+
                 int uu = Convert.ToInt32(dataGridView1.CurrentRow.Cells["AdvisorId"].FormattedValue.ToString());
                 MessageBox.Show(uu.ToString());
-                string s = "Delete from ProjectAdvisor where ProjectId = '" + u + "'and AdvisorId = '"+uu+"'";
-                
+                string s = "Delete from ProjectAdvisor where ProjectId = '" + u + "'and AdvisorId = '" + uu + "'";
+
                 SqlConnection op = new SqlConnection(conURL);
                 op.Open();
-                
+
                 SqlCommand cmd1 = new SqlCommand(s, op);
                 cmd1.ExecuteNonQuery();
-               
+
                 op.Close();
                 dataGridView1.Rows.Remove(dataGridView1.Rows[e.RowIndex]);
                 MessageBox.Show("Deleted");
             }
-            }
+        }
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -101,19 +101,19 @@ namespace WindowsFormsApplication23
             string g = "Select Id from Project where Title = '" + comboBox2.Text + "'";
             SqlCommand gho = new SqlCommand(g, con);
             int j = (int)gho.ExecuteScalar();
-           
+
 
 
             string str = "Select Count(AdvisorId) from ProjectAdvisor where ProjectId = '" + j + "' and AdvisorId ='" + Convert.ToInt32(comboBox1.Text) + "'";
             SqlCommand bk = new SqlCommand(str, con);
             int count = (int)bk.ExecuteScalar();
-            
+
             bool f = true;
             if (count >= 1)
             {
                 f = false;
             }
-            
+
 
 
 
@@ -121,7 +121,7 @@ namespace WindowsFormsApplication23
             string b = "Select Id from Lookup where Value = '" + comboBox3.Text + "'";
             SqlCommand cgh = new SqlCommand(b, con);
             int o = (int)cgh.ExecuteScalar();
-            string kon = "Select Count(ProjectId) from ProjectAdvisor where AdvisorId ='" + comboBox1.Text + "' and AdvisorRole = '" + o + "' ";
+            string kon = "Select Count(ProjectId) from ProjectAdvisor where AdvisorId ='" + comboBox1.Text + "' and AdvisorRole = '" + o + "' and ProjectId != '"+Convert.ToInt32(dataGridView1.CurrentRow.Cells["ProjectId"].Value)+"' ";
             SqlCommand cg = new SqlCommand(kon, con);
             int yo = (int)cg.ExecuteScalar();
             bool ry = true;
@@ -152,10 +152,10 @@ namespace WindowsFormsApplication23
                 try
                 {
                     string s = "Select Id from Lookup where Value = '" + comboBox3.Text + "'";
-                   
+
                     SqlCommand gh = new SqlCommand(s, con);
                     int i = (int)gh.ExecuteScalar();
-                    
+
 
 
                     string os = "Update ProjectAdvisor SET ProjectId = '" + j + "', AdvisorId = '" + Convert.ToInt32(comboBox1.Text) + "',AdvisorRole = '" + i + "',AssignmentDate = '" + dateTimePicker1.Value + "' where ProjectId = '" + dataGridView1.CurrentRow.Cells["ProjectId"].Value + "'and AdvisorId = '" + dataGridView1.CurrentRow.Cells["AdvisorId"].Value + "'";

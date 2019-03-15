@@ -123,7 +123,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(38, 165);
+            this.label4.Location = new System.Drawing.Point(38, 158);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(88, 13);
             this.label4.TabIndex = 7;
@@ -158,7 +158,7 @@
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(166, 165);
+            this.dateTimePicker1.Location = new System.Drawing.Point(154, 158);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(207, 20);
             this.dateTimePicker1.TabIndex = 3;
@@ -176,7 +176,7 @@
             // 
             this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(154, 66);
+            this.comboBox2.Location = new System.Drawing.Point(154, 74);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(220, 21);
             this.comboBox2.TabIndex = 1;

@@ -52,6 +52,8 @@
             this.linkLabel3 = new System.Windows.Forms.LinkLabel();
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtobtainrd = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -94,6 +96,8 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.label4);
+            this.panel2.Controls.Add(this.txtobtainrd);
             this.panel2.Controls.Add(this.button1);
             this.panel2.Controls.Add(this.label3);
             this.panel2.Controls.Add(this.label2);
@@ -304,6 +308,23 @@
             this.linkLabel1.Text = "All Advisors";
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(17, 163);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(117, 16);
+            this.label4.TabIndex = 10;
+            this.label4.Text = "Obtained Marks";
+            // 
+            // txtobtainrd
+            // 
+            this.txtobtainrd.Location = new System.Drawing.Point(144, 163);
+            this.txtobtainrd.Name = "txtobtainrd";
+            this.txtobtainrd.Size = new System.Drawing.Size(197, 20);
+            this.txtobtainrd.TabIndex = 9;
+            // 
             // AllEvaluations
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -351,5 +372,7 @@
         private System.Windows.Forms.LinkLabel linkLabel3;
         private System.Windows.Forms.LinkLabel linkLabel2;
         private System.Windows.Forms.LinkLabel linkLabel1;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox txtobtainrd;
     }
 }

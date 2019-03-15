@@ -38,11 +38,16 @@ namespace WindowsFormsApplication23
         {
 
             Student st = new Student();
-            if(st.Allchar(txtname.Text) == false)
+
+            if (st.Allchar(txtname.Text) == false)
             {
                 MessageBox.Show("Please Enter Valid Name");
             }
-            else if(st.Alldigits(txttotalmarks.Text) == false)
+            else if (Convert.ToInt32(txttotalmarks.Text) < Convert.ToInt32(txtobtained.Text))
+            {
+                MessageBox.Show("Enter Correct Obtained Marks");
+            }
+            else if (st.Alldigits(txttotalmarks.Text) == false)
             {
                 MessageBox.Show("Please Enter Valid Total Marks");
             }
@@ -54,7 +59,8 @@ namespace WindowsFormsApplication23
             {
                 MessageBox.Show("Please Enter Valid Wieghtage");
             }
-            else if(st.Allchar(txtname.Text) == true && st.Alldigits(txttotalmarks.Text)&& st.Alldigits(txtobtained.Text)&& st.Alldigits(txttotalwieghtage.Text))
+
+            else if (st.Allchar(txtname.Text) == true && st.Alldigits(txttotalmarks.Text) && st.Alldigits(txtobtained.Text) && st.Alldigits(txttotalwieghtage.Text) && Convert.ToInt32(txttotalmarks.Text) >= Convert.ToInt32(txtobtained.Text))
             {
                 string cmd = "Insert into Evaluation (Name, TotalMarks,TotalWeightage) values ('" + txtname.Text + "','" + txttotalmarks.Text + "','" + txttotalwieghtage.Text + "')";
                 SqlConnection q = new SqlConnection(conURL);
