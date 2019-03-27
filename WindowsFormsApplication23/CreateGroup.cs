@@ -35,6 +35,9 @@ namespace WindowsFormsApplication23
 
         private void CreateGroup_Load(object sender, EventArgs e)
         {
+            labelerror.Visible = false;
+            lblerror.Visible = false;
+            button3.Visible = false;
 
             int count = 0;
             foreach (string i in comboBox1.Items)
@@ -120,7 +123,12 @@ namespace WindowsFormsApplication23
                             SqlCommand g = new SqlCommand(cmd, op);
                             int q = (int)g.ExecuteScalar();
 
-                            string final = "Insert into GroupStudent (GroupId, StudentId,Status,AssignmentDate) values ('" + gh + "','" + q + "','" + 4 + "','" + DateTime.Now.Date + "')";
+                            string s = "Select Id from Lookup where Category = 'STATUS' and Value = 'InActive'";
+                           
+                            SqlCommand go = new SqlCommand(s, op);
+                            int qo = (int)go.ExecuteScalar();
+
+                            string final = "Insert into GroupStudent (GroupId, StudentId,Status,AssignmentDate) values ('" + gh + "','" + q + "','" + qo + "','" + DateTime.Now.Date + "')";
                             SqlCommand g2 = new SqlCommand(final, op);
                             g2.ExecuteNonQuery();
 
@@ -139,11 +147,13 @@ namespace WindowsFormsApplication23
             }
             else if (count > 4)
             {
-                MessageBox.Show("Only 4 students are allowed in a group");
+                labelerror.Text = "Only 4 students are allowed in a group";
+                labelerror.Visible = true;
             }
             else
             {
-                MessageBox.Show("Please Select a Title ");
+                lblerror.Text = "Please Select a Title";
+                lblerror.Visible = true;
             }
 
 
@@ -235,6 +245,8 @@ namespace WindowsFormsApplication23
 
         private void button2_Click(object sender, EventArgs e)
         {
+            button3.Visible = true;
+            button1.Visible = false;
             comboBox2.Visible = true;
             string cmd = "Select Title from Project where Id in (Select ProjectId from GroupProject where GroupId in (select GroupId from GroupStudent group by GroupId having count(GroupId) < 4 ) except select Id from Project where Title = '" + comboBox1.Text + "')";
             SqlConnection con = new SqlConnection(conURL);
@@ -283,7 +295,8 @@ namespace WindowsFormsApplication23
                 }
                 if(count == 0)
                 {
-                    MessageBox.Show("Select the student first");
+                    labelerror.Text = "Select the student first";
+                    labelerror.Visible = true;
                 }
 
                 if (ho + count <= 4 && comboBox2.Text != "")
@@ -313,20 +326,27 @@ namespace WindowsFormsApplication23
 
 
                         }
-                        MessageBox.Show("Student has been added");
+                        
                     }
+                    MessageBox.Show("Student has been added");
+                    this.Hide();
+                    CreateGroup frm = new CreateGroup();
+                    frm.Show();
 
 
-                  
+
 
                 }
                 else if (comboBox2.Text == "")
                 {
-                    MessageBox.Show("Select Title for project");
+                    lblerror.Text = "Select Title for project";
+                    lblerror.Visible = true;
+                    
                 }
                 else if (ho + count > 4)
                 {
-                    MessageBox.Show("Only 4 students are allowed in each group");
+                    labelerror.Text = "Only 4 students are allowed in each group";
+                    labelerror.Visible = true;
                 }
 
 
@@ -334,7 +354,8 @@ namespace WindowsFormsApplication23
             }
             else
             {
-                MessageBox.Show("Please Selecta title");
+                lblerror.Text = "Select Title for project";
+                lblerror.Visible = true;
             }
         }
         

@@ -29,6 +29,7 @@ namespace WindowsFormsApplication23
             DataTable dt = new DataTable();
             ada.Fill(dt);
             dataGridView1.DataSource = dt;
+            labelerror.Visible = false;
 
         }
 
@@ -60,7 +61,9 @@ namespace WindowsFormsApplication23
             }
             else if(comboBox1.Text == "")
             {
-                MessageBox.Show("Select Status First");
+
+                labelerror.Text = "Select Status Please";
+                labelerror.Visible = true;
             }
             this.Hide();
             EditStatus ed = new EditStatus();
@@ -70,5 +73,106 @@ namespace WindowsFormsApplication23
             
             
         }
+
+        private void linkLabel13_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            this.Show();
+        }
+
+        private void linkLabel9_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Person_Details frm = new Person_Details();
+            this.Hide();
+            frm.Show();
+        }
+
+        private void linkLabel4_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Add_Project frm = new Add_Project();
+            this.Hide();
+            frm.Show();
+        }
+
+        private void linkLabel3_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Person_Details frm = new Person_Details();
+            this.Hide();
+            frm.Show();
+
+        }
+
+        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            AllProjects frm = new AllProjects();
+            this.Hide();
+            frm.Show();
+        }
+
+        private void linkLabel5_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Student_Details frm = new Student_Details();
+            this.Hide();
+            frm.Show();
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            AllAdvisors frm = new AllAdvisors();
+            this.Hide();
+            frm.Show();
+        }
+
+        private void linkLabel12_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            GroupDetails frm = new GroupDetails();
+            this.Hide();
+            frm.Show();
+        }
+
+        private void linkLabel6_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Assign_Project_To_Advisor frm = new Assign_Project_To_Advisor();
+            this.Hide();
+            frm.Show();
+        }
+
+        private void linkLabel7_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            ProjectandAdvisorDetails frm = new ProjectandAdvisorDetails();
+            this.Hide();
+            frm.Show();
+        }
+
+        private void linkLabel8_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            AllEvaluations frm = new AllEvaluations();
+            this.Hide();
+            frm.Show();
+        }
+
+        private void linkLabel10_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            CreateGroup frm = new CreateGroup();
+            this.Hide();
+            frm.Show();
+        }
+
+        private void linkLabel11_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Evaluation frm = new Evaluation();
+            this.Hide();
+            frm.Show();
+        }
+
+        private void comboBox1_MouseClick(object sender, MouseEventArgs e)
+        {
+            if(comboBox1.Text =="")
+            {
+                labelerror.Text = "Select Status Please";
+                labelerror.Visible = true;
+            }
+            
+        }
     }
+
 }

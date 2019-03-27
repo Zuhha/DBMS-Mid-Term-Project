@@ -48,6 +48,7 @@
             this.linkLabel4 = new System.Windows.Forms.LinkLabel();
             this.linkLabel5 = new System.Windows.Forms.LinkLabel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.linkLabel13 = new System.Windows.Forms.LinkLabel();
             this.linkLabel12 = new System.Windows.Forms.LinkLabel();
             this.linkLabel11 = new System.Windows.Forms.LinkLabel();
             this.linkLabel10 = new System.Windows.Forms.LinkLabel();
@@ -62,7 +63,6 @@
             this.label8 = new System.Windows.Forms.Label();
             this.txtsalary = new System.Windows.Forms.TextBox();
             this.txtregno = new System.Windows.Forms.TextBox();
-            this.linkLabel13 = new System.Windows.Forms.LinkLabel();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -280,6 +280,19 @@
             this.groupBox1.TabIndex = 22;
             this.groupBox1.TabStop = false;
             // 
+            // linkLabel13
+            // 
+            this.linkLabel13.AutoSize = true;
+            this.linkLabel13.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Italic | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.linkLabel13.LinkColor = System.Drawing.Color.Black;
+            this.linkLabel13.Location = new System.Drawing.Point(32, 13);
+            this.linkLabel13.Name = "linkLabel13";
+            this.linkLabel13.Size = new System.Drawing.Size(93, 16);
+            this.linkLabel13.TabIndex = 29;
+            this.linkLabel13.TabStop = true;
+            this.linkLabel13.Text = "Update Status";
+            this.linkLabel13.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel13_LinkClicked);
+            // 
             // linkLabel12
             // 
             this.linkLabel12.AutoSize = true;
@@ -436,17 +449,6 @@
             this.txtregno.Name = "txtregno";
             this.txtregno.Size = new System.Drawing.Size(196, 20);
             this.txtregno.TabIndex = 40;
-            // 
-            // linkLabel13
-            // 
-            this.linkLabel13.AutoSize = true;
-            this.linkLabel13.Location = new System.Drawing.Point(33, 18);
-            this.linkLabel13.Name = "linkLabel13";
-            this.linkLabel13.Size = new System.Drawing.Size(75, 13);
-            this.linkLabel13.TabIndex = 29;
-            this.linkLabel13.TabStop = true;
-            this.linkLabel13.Text = "Update Status";
-            this.linkLabel13.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel13_LinkClicked);
             // 
             // Person_Details
             // 

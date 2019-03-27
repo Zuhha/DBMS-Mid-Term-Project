@@ -67,9 +67,7 @@
     <Compile Include="AllProjects.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AllProjects.Designer.cs">
-      <DependentUpon>AllProjects.cs</DependentUpon>
-    </Compile>
+    <Compile Include="AllProjects.Designer.cs" />
     <Compile Include="Assign_Project_To_Advisor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -111,12 +109,6 @@
     </Compile>
     <Compile Include="GroupDetails.Designer.cs">
       <DependentUpon>GroupDetails.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Groups.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Groups.Designer.cs">
-      <DependentUpon>Groups.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="ProjectandAdvisorDetails.cs">
@@ -165,9 +157,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GroupDetails.resx">
       <DependentUpon>GroupDetails.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Groups.resx">
-      <DependentUpon>Groups.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ProjectandAdvisorDetails.resx">
       <DependentUpon>ProjectandAdvisorDetails.cs</DependentUpon>

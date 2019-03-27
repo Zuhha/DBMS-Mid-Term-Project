@@ -14,6 +14,7 @@ namespace WindowsFormsApplication23
     public partial class Evaluation : Form
     {
         string conURL = "Data Source=(local);Initial Catalog=ProjectA;Integrated Security=True";
+        Student st = new Student();
         public Evaluation()
         {
             InitializeComponent();
@@ -21,6 +22,7 @@ namespace WindowsFormsApplication23
 
         private void Evaluation_Load(object sender, EventArgs e)
         {
+            lblerror.Visible = false;
             SqlConnection con = new SqlConnection(conURL);
             con.Open();
             string cmd = "Select Id from [Group]";
@@ -36,47 +38,33 @@ namespace WindowsFormsApplication23
 
         private void button1_Click(object sender, EventArgs e)
         {
+            
 
-            Student st = new Student();
+            if (lblname.Text == "" && lblobtained.Text=="" && lbltotalmarks.Text ==""&& lblgroupid.Text == "" && lbltotalwieghtage.Text == "")
+                {
+            
+                    string cmd = "Insert into Evaluation (Name, TotalMarks,TotalWeightage) values ('" + txtname.Text + "','" + txttotalmarks.Text + "','" + txttotalwieghtage.Text + "')";
+                    SqlConnection q = new SqlConnection(conURL);
+                    q.Open();
+                    SqlCommand c = new SqlCommand(cmd, q);
+                    c.ExecuteNonQuery();
 
-            if (st.Allchar(txtname.Text) == false)
+
+                    string o = "Select max(Id) from Evaluation";
+                    SqlCommand n = new SqlCommand(o, q);
+                    int id = (int)n.ExecuteScalar();
+                    string cmd1 = "Insert into GroupEvaluation (GroupId, EvaluationId, ObtainedMarks, EvaluationDate) values ('" + comboBox1.Text + "','" + id + "','" + txtobtained.Text + "','" + DateTime.Now + "') ";
+                    SqlCommand fg = new SqlCommand(cmd1, q);
+                    fg.ExecuteNonQuery();
+
+                    MessageBox.Show("Evaluation Has been marked");
+
+
+                }
+                else
             {
-                MessageBox.Show("Please Enter Valid Name");
-            }
-            else if (Convert.ToInt32(txttotalmarks.Text) < Convert.ToInt32(txtobtained.Text))
-            {
-                MessageBox.Show("Enter Correct Obtained Marks");
-            }
-            else if (st.Alldigits(txttotalmarks.Text) == false)
-            {
-                MessageBox.Show("Please Enter Valid Total Marks");
-            }
-            else if (st.Alldigits(txtobtained.Text) == false)
-            {
-                MessageBox.Show("Please Enter Valid Obtained Marks");
-            }
-            else if (st.Alldigits(txttotalwieghtage.Text) == false)
-            {
-                MessageBox.Show("Please Enter Valid Wieghtage");
-            }
-
-            else if (st.Allchar(txtname.Text) == true && st.Alldigits(txttotalmarks.Text) && st.Alldigits(txtobtained.Text) && st.Alldigits(txttotalwieghtage.Text) && Convert.ToInt32(txttotalmarks.Text) >= Convert.ToInt32(txtobtained.Text))
-            {
-                string cmd = "Insert into Evaluation (Name, TotalMarks,TotalWeightage) values ('" + txtname.Text + "','" + txttotalmarks.Text + "','" + txttotalwieghtage.Text + "')";
-                SqlConnection q = new SqlConnection(conURL);
-                q.Open();
-                SqlCommand c = new SqlCommand(cmd, q);
-                c.ExecuteNonQuery();
-
-
-                string o = "Select max(Id) from Evaluation";
-                SqlCommand n = new SqlCommand(o, q);
-                int id = (int)n.ExecuteScalar();
-                string cmd1 = "Insert into GroupEvaluation (GroupId, EvaluationId, ObtainedMarks, EvaluationDate) values ('" + comboBox1.Text + "','" + id + "','" + txtobtained.Text + "','" + DateTime.Now + "') ";
-                SqlCommand fg = new SqlCommand(cmd1, q);
-                fg.ExecuteNonQuery();
-
-
+                lblerror.Text = "Enter Valid Entries !!!";
+                lblerror.Visible = true;
             }
 
 
@@ -165,6 +153,104 @@ namespace WindowsFormsApplication23
             Evaluation frm = new Evaluation();
             this.Hide();
             frm.Show();
+        }
+
+        private void comboBox1_KeyDown(object sender, KeyEventArgs e)
+        {
+            
+        }
+
+        private void comboBox1_MouseDown(object sender, MouseEventArgs e)
+        {
+            
+        }
+
+        private void txtname_KeyDown(object sender, KeyEventArgs e)
+        {
+            
+           
+            
+
+        }
+
+        private void txtname_KeyPress(object sender, KeyPressEventArgs e)
+        {
+           
+        }
+
+        private void txtname_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (st.Allchar(txtname.Text) == true)
+            {
+                lblname.Visible = false;
+                lblname.Text = "";
+            }
+            else
+            {
+                lblname.Visible = true;
+                lblname.Text = "Characters only !!!";
+            }
+        }
+
+        private void txttotalmarks_KeyUp(object sender, KeyEventArgs e)
+        {
+            if(st.Alldigits(txttotalmarks.Text) == true)
+            {
+                lbltotalmarks.Text = "";
+                lbltotalmarks.Visible = false;
+            }
+            else
+            {
+                lbltotalmarks.Text = "Digits Only !!";
+            }
+           
+        }
+
+        private void txtobtained_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (st.Alldigits(txtobtained.Text) == true)
+            {
+                lblobtained.Text = "";
+                lblobtained.Visible = false;
+                if (Convert.ToInt32(txtobtained.Text) > Convert.ToInt32(txttotalmarks.Text))
+                {
+                    lblobtained.Text = "Enter Valid Marks";
+                    lblobtained.Visible = true;
+                }
+            }
+            else
+            {
+                lblobtained.Text = "Digits Only !!";
+            }
+           
+        }
+
+        private void txttotalwieghtage_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (st.Alldigits(txttotalwieghtage.Text) == true)
+            {
+                lbltotalwieghtage.Text = "";
+                lbltotalwieghtage.Visible = false;
+            }
+            else
+            {
+                lbltotalwieghtage.Text = "Digits Only !!";
+            }
+
+        }
+
+        private void comboBox1_MouseEnter(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(comboBox1.Text != "")
+            {
+                lblgroupid.Visible = false;
+                lblgroupid.Text = "";
+            }
         }
     }
 }

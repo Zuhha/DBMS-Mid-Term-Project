@@ -23,7 +23,7 @@ namespace WindowsFormsApplication23
 
       public  bool Alldigits(string s)
         {
-            if(s.All(Char.IsDigit))
+            if(s.All(Char.IsDigit) == true &&  s != "")
             {
                 return true;
             }

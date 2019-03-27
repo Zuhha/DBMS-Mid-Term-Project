@@ -14,6 +14,7 @@ namespace WindowsFormsApplication23
     public partial class Add_Project : Form
     {
         string conURL = "Data Source=(local);Initial Catalog=ProjectA;Integrated Security=True";
+        Student st = new Student();
 
         public Add_Project()
         {
@@ -22,47 +23,57 @@ namespace WindowsFormsApplication23
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Student st = new Student();
-            if (txttittle.Text == "" || txtdesc.Text == "")
-            {
-                MessageBox.Show("Enter All Fields");
-            }
-            else if (st.Allchar(txttittle.Text) == false)
-            {
-                MessageBox.Show("Enter a valid Title");
-            }
-            else if (st.Allchar(txtdesc.Text) == false)
-            {
-                MessageBox.Show("Enter a valid Description");
-            }
-            else if (st.Allchar(txttittle.Text) == true && st.Allchar(txtdesc.Text) == true)
-            {
-                SqlConnection con = new SqlConnection(conURL);
-                con.Open();
-                string k = "Select Count(Id) from Project where Title ='" + txttittle.Text + "' ";
+            /* Student st = new Student();
+             if (txttittle.Text == "" || txtdesc.Text == "")
+             {
+                 MessageBox.Show("Enter All Fields");
+             }
+             else if (st.Allchar(txttittle.Text) == false)
+             {
+                 MessageBox.Show("Enter a valid Title");
+             }
+             else if (st.Allchar(txtdesc.Text) == false)
+             {
+                 MessageBox.Show("Enter a valid Description");
+             }
+             else if (st.Allchar(txttittle.Text) == true && st.Allchar(txtdesc.Text) == true)
+             {
+                 SqlConnection con = new SqlConnection(conURL);
+                 con.Open();
+                 string k = "Select Count(Id) from Project where Title ='" + txttittle.Text + "' ";
 
-                SqlCommand cg = new SqlCommand(k, con);
-                int yo = (int)cg.ExecuteScalar();
-                bool ry = true;
-                if (yo >= 1)
+                 SqlCommand cg = new SqlCommand(k, con);
+                 int yo = (int)cg.ExecuteScalar();
+                 bool ry = true;
+                 if (yo >= 1)
+                 {
+                     ry = false;
+                 }
+                 if (ry == false)
+                 {
+                     MessageBox.Show("Project with this tittle is already a part of our record :)");
+                 }
+                 */
+            // else if (ry == true)
+           
+               if(lbltitle.Text == "" && lbldesc.Text == "")
                 {
-                    ry = false;
-                }
-                if (ry == false)
-                {
-                    MessageBox.Show("Project with this tittle is already a part of our record :)");
-                }
-                else if (ry == true)
-                {
+                     SqlConnection con = new SqlConnection(conURL);
+                con.Open();
                     string cmd = "Insert into Project(Description, Title) values ('" + txtdesc.Text + "','" + txttittle.Text + "')";
                     SqlCommand g = new SqlCommand(cmd, con);
                     g.ExecuteNonQuery();
                     con.Close();
                     MessageBox.Show("Project has been added");
                 }
-
-
+               else
+            {
+                lblerror.Text = "Enter Correct Information";
+                lblerror.Visible = true;
             }
+
+
+            
 
         }
 
@@ -141,6 +152,63 @@ namespace WindowsFormsApplication23
             Evaluation frm = new Evaluation();
             this.Hide();
             frm.Show();
+        }
+
+        private void txttittle_KeyUp(object sender, KeyEventArgs e)
+        {
+            lbltitle.Visible = false;
+
+           
+
+
+
+
+            if (st.Allchar(txttittle.Text) == true)
+            {
+                SqlConnection con = new SqlConnection(conURL);
+                con.Open();
+                string k = "Select Count(Id) from Project where Title ='" + txttittle.Text + "' ";
+
+                SqlCommand cg = new SqlCommand(k, con);
+                int yo = (int)cg.ExecuteScalar();
+                bool ry = true;
+                //MessageBox.Show(yo.ToString());
+                if (yo >= 1)
+                {
+                    ry = false;
+                    lbltitle.Text = "This Project is already a part of our record";
+                    lbltitle.Visible = true;
+                }
+                else
+                {
+                    lbltitle.Text = "";
+                }
+               
+            }
+            else
+            {
+                lbltitle.Text = "Characters Only!!";
+                lbltitle.Visible = true;
+            }
+        }
+
+        private void txtdesc_KeyUp(object sender, KeyEventArgs e)
+        {
+            lbldesc.Visible = false;
+            if(st.Allchar(txtdesc.Text) == true)
+            {
+                lbldesc.Text = "";
+            }
+            else
+            {
+                lbldesc.Text = "Characters only!!";
+                lbldesc.Visible = true;
+            }
+        }
+
+        private void Add_Project_Load(object sender, EventArgs e)
+        {
+            lblerror.Visible = false;
         }
     }
 }
