@@ -90,6 +90,7 @@
             this.txtcontact = new System.Windows.Forms.TextBox();
             this.txtlastname = new System.Windows.Forms.TextBox();
             this.txtfirstname = new System.Windows.Forms.TextBox();
+            this.linkLabel26 = new System.Windows.Forms.LinkLabel();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -184,6 +185,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.linkLabel26);
             this.groupBox2.Controls.Add(this.label7);
             this.groupBox2.Controls.Add(this.label12);
             this.groupBox2.Controls.Add(this.label13);
@@ -847,6 +849,19 @@
             this.txtfirstname.TextChanged += new System.EventHandler(this.txtfirstname_TextChanged);
             this.txtfirstname.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtfirstname_KeyUp);
             // 
+            // linkLabel26
+            // 
+            this.linkLabel26.AutoSize = true;
+            this.linkLabel26.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Italic | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.linkLabel26.LinkColor = System.Drawing.Color.Black;
+            this.linkLabel26.Location = new System.Drawing.Point(38, 245);
+            this.linkLabel26.Name = "linkLabel26";
+            this.linkLabel26.Size = new System.Drawing.Size(108, 16);
+            this.linkLabel26.TabIndex = 48;
+            this.linkLabel26.TabStop = true;
+            this.linkLabel26.Text = "Generate Report";
+            this.linkLabel26.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel26_LinkClicked);
+            // 
             // Person_Details
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -932,6 +947,7 @@
         private System.Windows.Forms.LinkLabel linkLabel23;
         private System.Windows.Forms.LinkLabel linkLabel24;
         private System.Windows.Forms.LinkLabel linkLabel25;
+        private System.Windows.Forms.LinkLabel linkLabel26;
     }
 }
 

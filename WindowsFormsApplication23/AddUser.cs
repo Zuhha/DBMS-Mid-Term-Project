@@ -502,7 +502,12 @@ namespace WindowsFormsApplication23
 
         }
 
-    
+        private void linkLabel26_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            ReportGroup rt = new ReportGroup();
+            this.Hide();
+            rt.Show();
+        }
     }
 }
 
