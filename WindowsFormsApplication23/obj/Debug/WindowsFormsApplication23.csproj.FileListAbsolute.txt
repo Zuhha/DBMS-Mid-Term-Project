@@ -41,3 +41,4 @@ C:\Users\Admin\Desktop\New folder (6)\DBMS-Mid-Term-Project\WindowsFormsApplicat
 C:\Users\Admin\Desktop\New folder (6)\DBMS-Mid-Term-Project\WindowsFormsApplication23\obj\Debug\WindowsFormsApplication23.Properties.Resources.resources
 C:\Users\Admin\Desktop\New folder (6)\DBMS-Mid-Term-Project\WindowsFormsApplication23\obj\Debug\WindowsFormsApplication23.Student_Details.resources
 C:\Users\Admin\Desktop\New folder (6)\DBMS-Mid-Term-Project\WindowsFormsApplication23\obj\Debug\WindowsFormsApplication23.csproj.GenerateResource.Cache
+C:\Users\Admin\Desktop\New folder (6)\DBMS-Mid-Term-Project\WindowsFormsApplication23\obj\Debug\WindowsFormsApplication23.User.resources

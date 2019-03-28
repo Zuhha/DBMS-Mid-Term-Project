@@ -14,6 +14,7 @@ namespace WindowsFormsApplication23
     public partial class Assign_Project_To_Advisor : Form
     {
         string conURL = "Data Source=(local);Initial Catalog=ProjectA;Integrated Security=True";
+        Student st = new Student();
         public Assign_Project_To_Advisor()
         {
             InitializeComponent();
@@ -23,6 +24,7 @@ namespace WindowsFormsApplication23
         {
             SqlConnection c = new SqlConnection(conURL);
             c.Open();
+            label4.Visible = false;
             string query = "Select Id from Advisor";
             SqlCommand q = new SqlCommand(query, c);
             SqlDataReader rdr = q.ExecuteReader();
@@ -61,82 +63,81 @@ namespace WindowsFormsApplication23
         {
             SqlConnection con = new SqlConnection(conURL);
             con.Open();
-            //One Advisor can not play two responsibilities in same group
-
-            string cmnd = "Select Id from Project where Title = '" + comboBox2.Text + "'";
-            SqlCommand k = new SqlCommand(cmnd, con);
-            int id = (int)k.ExecuteScalar();
 
 
-       //     string str = "Select Count(AdvisorId) from ProjectAdvisor where ProjectId = '" + id + "' and AdvisorId ='" + Convert.ToInt32(comboBox1.Text) + "'";
-         //   SqlCommand bk = new SqlCommand(str, con);
-         //   int count = (int)bk.ExecuteScalar();
-          //  bool f = true;
-           // if (count >= 1)
-            //{
-             //   f = false;
-            //}
-
-
-
-
-
-
-            string b = "Select Id from Lookup where Value = '" + comboBox3.Text + "'";
-            SqlCommand cgh = new SqlCommand(b, con);
-            int o = (int)cgh.ExecuteScalar();
-
-
-      //      string kon = "Select Count(ProjectId) from ProjectAdvisor where AdvisorId ='" + comboBox1.Text + "' and AdvisorRole = '" + o + "' ";
-      //      SqlCommand cg = new SqlCommand(kon, con);
-      //      int yo = (int)cg.ExecuteScalar();
-
-      //      bool ry = true;
-      //      if (yo >= 1)
-       //     {
-      //          ry = false;
-      //      }
-
-            //Repeatation Of REcord
-            string on = "Select Title from Project where Id in (Select ProjectId from ProjectAdvisor where AdvisorId ='" + comboBox1.Text + "' and AdvisorRole = '" + o + "' )";
-            SqlCommand yh = new SqlCommand(on, con);
-            SqlDataReader rdr = yh.ExecuteReader();
-            string p = "";
-            while (rdr.Read())
+            if (comboBox1.Text != "")
             {
-                p = rdr["Title"].ToString();
+                lbladvisor.Text = "";
+
             }
-            rdr.Close();
-            string kon = "Select Count(ProjectId) from ProjectAdvisor where AdvisorId ='" + comboBox1.Text + "' and AdvisorRole = '" + o + "' and ProjectId = '"+id+"' ";
-                 SqlCommand cg = new SqlCommand(kon, con);
-                 int yo = (int)cg.ExecuteScalar();
-            if (yo >= 1)
+            else if(comboBox1.Text == "")
             {
-                MessageBox.Show("This Record has already been added");
+                lbladvisor.Text = "Please SElect the Advisor";
+                lbladvisor.Visible = true;
             }
+            if (comboBox2.Text != "")
+            {
+                lbltitle.Text = "";
+            }
+            else if(comboBox2.Text == "")
+            {
+                lbltitle.Text = "Select the Title";
+            }
+            if (comboBox3.Text != "")
+            {
+                lblrole.Text = "";
+
+            }
+            else if(comboBox3.Text == "")
+            {
+                lblrole.Text = "Select the Role of Advisor";
+            }
+         
+             if(lbladvisor.Text == "" && lblrole.Text == "" && lbltitle.Text == "")
+            {
+
+                string cmnd = "Select Id from Project where Title = '" + comboBox2.Text + "'";
+                SqlCommand k = new SqlCommand(cmnd, con);
+                int id = (int)k.ExecuteScalar();
+
+                string b = "Select Id from Lookup where Value = '" + comboBox3.Text + "'";
+                SqlCommand cgh = new SqlCommand(b, con);
+                int o = (int)cgh.ExecuteScalar();
 
 
-            /* if (ry == false)
-             {
-                 MessageBox.Show("We are Sorry This Advisor has already been assigned as " + comboBox3.Text + " to " + p);
-             }
-             else if (f == false)
-             {
-                 MessageBox.Show("This Advisor is already serving project " + comboBox2.Text);
-             }
-             else if (ry == true)
-             {
-                */
-            else
+                string kon = "Select Count(ProjectId) from ProjectAdvisor where ProjectId ='" + id + "' and AdvisorRole = '" + o + "'  ";
+                SqlCommand cg = new SqlCommand(kon, con);
+                int yo = (int)cg.ExecuteScalar();
+
+
+                string query = "Select Count(AdvisorId) from ProjectAdvisor where ProjectId = '" + id + "' and AdvisorId = '" + Convert.ToInt32(comboBox1.Text) + "'";
+                SqlCommand cmd = new SqlCommand(query, con);
+                int count = (int)cmd.ExecuteScalar();
+                bool check = true;
+                bool c = true;
+                if (yo >= 1)
+                {
+                    label4.Text = "'" + comboBox3.Text + "' is already assissigned to this project. If you wanna change then please visit update form. Thanks !";
+                    label4.Visible = true;
+                    check = false;
+
+                }
+                if(count >= 1)
+                {
+                    label4.Text = "This Advisor is already serving project '" + comboBox2.Text + "'";
+                    label4.Visible = true;
+                    c = false;
+                }
+
+
+            else if(check == true && c == true)
             {
                 try
                 {
 
-                    string cmn = "Select Id from Lookup where Value = '" + comboBox3.Text + "'";
-                    SqlCommand ko = new SqlCommand(cmn, con);
-                    int ide = (int)ko.ExecuteScalar();
+                   
 
-                    string h = "Insert into ProjectAdvisor(AdvisorId, ProjectId,AdvisorRole,AssignmentDate) values ('" + comboBox1.Text + "', '" + id + "','" + ide + "','" + DateTime.Now + "')";
+                    string h = "Insert into ProjectAdvisor(AdvisorId, ProjectId,AdvisorRole,AssignmentDate) values ('" + comboBox1.Text + "', '" + id + "','" + o + "','" + DateTime.Now + "')";
                     SqlCommand g = new SqlCommand(h, con);
                     g.ExecuteNonQuery();
                     con.Close();
@@ -147,7 +148,7 @@ namespace WindowsFormsApplication23
                     throw (et);
                 }
 
-                // }
+                 }
             }
 
 
@@ -229,6 +230,64 @@ namespace WindowsFormsApplication23
             CreateGroup frm = new CreateGroup();
             this.Hide();
             frm.Show();
+        }
+
+        private void comboBox1_KeyUp(object sender, KeyEventArgs e)
+        {
+        }
+
+        private void comboBox2_KeyUp(object sender, KeyEventArgs e)
+        {
+           
+        }
+
+        private void comboBox3_KeyUp(object sender, KeyEventArgs e)
+        {
+            
+        }
+
+        private void comboBox1_MouseClick(object sender, MouseEventArgs e)
+        {
+
+            
+        }
+
+        private void comboBox2_MouseClick(object sender, MouseEventArgs e)
+        {
+            
+        }
+
+        private void comboBox3_MouseClick(object sender, MouseEventArgs e)
+        {
+           
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(comboBox1.Text != "")
+            {
+                lbladvisor.Visible = false;
+                label4.Visible = false;
+            }
+            
+        }
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBox2.Text != "")
+            {
+               lbltitle.Visible = false;
+                label4.Visible = false;
+            }
+        }
+
+        private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBox3.Text != "")
+            {
+                lbltitle.Visible = false;
+                label4.Visible = false;
+            }
         }
     }
 }

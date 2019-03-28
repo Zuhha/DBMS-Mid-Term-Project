@@ -14,6 +14,7 @@ namespace WindowsFormsApplication23
     public partial class Person_Details : Form
     {
         string conURL = "Data Source=(local);Initial Catalog=ProjectA;Integrated Security=True";
+        Student st = new Student();
         public Person_Details()
         {
             InitializeComponent();
@@ -31,6 +32,9 @@ namespace WindowsFormsApplication23
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            lblregdesig.Visible = false;
+            lblsalary.Visible = false;
+            lblerror.Visible = false;
             btninsert.Visible = false;
             txtregno.Visible = false;
             txtsalary.Visible = false;
@@ -53,74 +57,20 @@ namespace WindowsFormsApplication23
             label11.Visible = false;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btninsert_Click(object sender, EventArgs e)
         {
-            Student st = new Student();
-
-            if (comboBox3.Text == "Advisor" && (txtsalary.Text == "" || comboBox2.Text == "" || txtfirstname.Text == "" || txtlastname.Text == "" || txtcontact.Text == "" || txtemail.Text == "" || comboBox1.Text == "" || comboBox2.Text == ""))
+            if(comboBox2.Text == "" && comboBox3.Text == "ADVISOR")
             {
-                MessageBox.Show("All Fields Are Required");
+                lblerror.Text = "Select Designation Please";
+                lblerror.Visible = true;
             }
-            if (comboBox3.Text == "Student" && (txtregno.Text == "" || txtfirstname.Text == "" || txtlastname.Text == "" || txtcontact.Text == "" || txtemail.Text == "" || comboBox1.Text == ""))
+            else if(comboBox2.Text != "" && comboBox3.Text == "ADVISOR" || comboBox2.Text == "" && comboBox3.Text == "STUDENT")
             {
-                MessageBox.Show("All Fields Are Required");
+                lblerror.Text = "";
             }
-            else if(txtregno.Text.Length != 11 && comboBox3.Text == "Student")
-            {
-                MessageBox.Show("Enter valid REgNo");
-            }
-            else if(st.REGNO(txtregno.Text) == false && comboBox3.Text == "Student")
-            {
-                MessageBox.Show("Enter a valid Registration Number (XXXX-YY-XXX)");
-            }
-
-            else if (st.Alldigits(txtsalary.Text) == false)
-            {
-                MessageBox.Show("Enter Valid Salary");
-            }
-
-            else if (st.Allchar(txtfirstname.Text) == false)
-            {
-                MessageBox.Show("Enter Valid First Name");
-            }
-            else if (st.Allchar(txtlastname.Text) == false)
-            {
-                MessageBox.Show("Enter Valid Last Name");
-            }
-            else if (st.Alldigits(txtcontact.Text) == false || txtcontact.Text.Length != 11)
-            {
-                MessageBox.Show("Enter Valid Contact No.");
-            }
-            else if (st.Email(txtemail.Text) == false)
-            {
-                MessageBox.Show("Enter a valid Email");
-            }
-
-
-
            
-
-         /*   else if (st.Allchar(txtfirstname.Text) == false)
-            {
-                MessageBox.Show("Enter Valid First Name");
-            }
-            else if (st.Allchar(txtlastname.Text) == false)
-            {
-                MessageBox.Show("Enter Valid Last Name");
-            }
-            else if (st.Alldigits(txtcontact.Text) == false || txtcontact.Text.Length != 11)
-            {
-                MessageBox.Show("Enter Valid Contact No.");
-            }
-            else if (st.Email(txtemail.Text) == false)
-            {
-                MessageBox.Show("Enter a valid Email");
-            }
-
-    */
-            if (st.Email(txtemail.Text) == true && st.Allchar(txtfirstname.Text) == true && st.Allchar(txtlastname.Text) == true && st.Alldigits(txtcontact.Text) == true && txtcontact.Text.Length == 11 )
-            {
-
+           if(lbllastname.Text == "" && lblFirstname.Text == "" && lblcontact.Text == ""&&  lblemail.Text == "" && lblerror.Text == "")
+            { 
 
 
                 try
@@ -158,19 +108,23 @@ namespace WindowsFormsApplication23
 
                     if (ry == false)
                     {
-                        MessageBox.Show("This Person has already been added in Record");
+                        lblerror.Visible = true;
+                        lblerror.Text = "This Person has already been added in Record";
+                        //MessageBox.Show("This Person has already been added in Record");
                     }
 
 
 
                     else if (v == false)
                     {
-                        MessageBox.Show("This RegistrationNo is already in Record");
+                        lblerror.Visible = true;
+                        lblerror.Text = "This RegistrationNo is already in Record";
+                       // MessageBox.Show("This RegistrationNo is already in Record");
                     }
 
                     else if (ry == true && v == true)
                     {
-                        string em = "Select Id from Lookup where Value = '" + comboBox1.Text + "'";
+                        string em = "Select Id from Lookup where Value = '" + cmbgender.Text + "'";
                         SqlCommand nd = new SqlCommand(em, con);
                         SqlDataReader r = nd.ExecuteReader();
                         int id = 0;
@@ -185,7 +139,7 @@ namespace WindowsFormsApplication23
 
 
 
-                        if (comboBox3.Text == "Student"&& txtregno.Text.Length == 11 && st.REGNO(txtregno.Text) == true)
+                        if (comboBox3.Text == "STUDENT"&& txtregno.Text.Length == 11 && st.REGNO(txtregno.Text) == true)
                         {
                             txtregno.Visible = true;
                             string Query = "Insert into Student(Id, RegistrationNo) values ('" + y + "','" + txtregno.Text + "')";
@@ -194,7 +148,7 @@ namespace WindowsFormsApplication23
                             MessageBox.Show("Student has been added");
 
                         }
-                        else if (comboBox3.Text == "Advisor" && st.Alldigits(txtsalary.Text) == true)
+                        else if (comboBox3.Text == "ADVISOR" && st.Alldigits(txtsalary.Text) == true)
                         {
                             txtsalary.Visible = true;
 
@@ -208,10 +162,7 @@ namespace WindowsFormsApplication23
 
 
                         }
-                        else if (comboBox3.Text == "Advisor" && st.Alldigits(txtsalary.Text) == false)
-                        {
-                            MessageBox.Show("Enter Correct Salary");
-                        }
+                    
 
 
                         con.Close();
@@ -228,6 +179,11 @@ namespace WindowsFormsApplication23
                 {
                     throw (et);
                 }
+            }
+           else
+            {
+                lblerror.Text="Enter Correct Data";
+                lblerror.Visible = true;
             }
 
 
@@ -324,7 +280,20 @@ namespace WindowsFormsApplication23
 
         private void comboBox3_SelectedIndexChanged_1(object sender, EventArgs e)
         {
-            if (comboBox3.Text == "Student")
+            txtregno.Text = "";
+            txtsalary.Text = "";
+            comboBox2.Text = "";
+            if(cmbgender.Text == "")
+            {
+                lblgender.Text = "Select Gender Please";
+                lblgender.Visible = true;
+            }
+            else if(cmbgender.Text != "")
+            {
+                lblgender.Text = "";
+                lblgender.Visible = true;
+            }
+            if (comboBox3.Text == "STUDENT")
             {
                 txtregno.Visible = true;
                 label11.Visible = true;
@@ -364,6 +333,176 @@ namespace WindowsFormsApplication23
             this.Hide();
             ed.Show();
         }
+
+        private void txtfirstname_KeyUp(object sender, KeyEventArgs e)
+        {
+            lblerror.Text = "";
+            if (st.Allchar(txtfirstname.Text) == false)
+            {
+                lblFirstname.Text = "Characters Only!!!";
+                
+            }
+            else
+            {
+                lblFirstname.Text = "";
+            }
+        }
+
+        private void txtlastname_KeyUp(object sender, KeyEventArgs e)
+        {
+            lblerror.Text = "";
+            if (st.Allchar(txtlastname.Text) == false)
+            {
+                lbllastname.Text = "Characters Only!!!";
+               
+            }
+            else
+            {
+                lbllastname.Text = "";
+            }
+        }
+
+        private void txtcontact_KeyUp(object sender, KeyEventArgs e)
+        {
+            lblerror.Text = "";
+            if (st.Alldigits(txtcontact.Text) == false)
+            {
+                lblcontact.Text = "Digits Only!!!";
+                
+            }
+            
+            else
+            {
+                lblcontact.Text = "";
+            }
+        }
+
+        private void txtemail_KeyUp(object sender, KeyEventArgs e)
+        {
+            lblerror.Text = "";
+            if (st.Email(txtemail.Text) == false)
+            {
+                lblemail.Text = "Characters Only!!!";
+                lblerror.Text = "";
+            }
+            else
+            {
+                lblemail.Text = "";
+            }
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void txtregno_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtregno_KeyUp(object sender, KeyEventArgs e)
+        {
+            lblerror.Text = "";
+            if ((comboBox3.Text == "STUDENT" && st.REGNO(txtregno.Text) == true) || comboBox3.Text == "ADVISOR" && txtregno.Text == "")
+            {
+                lblregdesig.Text = "";
+                lblregdesig.Visible = true;
+            }
+            else if(comboBox3.Text == "STUDENT" && st.REGNO(txtregno.Text) != true)
+            {
+                lblregdesig.Text = "Enter Correct Registration Number of format YYYY-DD-NNN";
+                lblregdesig.Visible = true;
+            }
+        }
+
+        private void txtsalary_KeyUp(object sender, KeyEventArgs e)
+        {
+            lblerror.Text = "";
+            if (st.Alldigits(txtsalary.Text) == false)
+            {
+                lblsalary.Text = "Digits Only!!!";
+                lblsalary.Visible = true;
+            }
+          
+            else if(comboBox3.Text == "ADVISOR" && st.Alldigits(txtsalary.Text) != false || comboBox3.Text == "STUDENT" && txtsalary.Text == "")
+            {
+                lblsalary.Text = "";
+                lblsalary.Visible = true;
+            }
+        }
+
+        private void txtemail_TextChanged(object sender, EventArgs e)
+        {
+            lblerror.Text = "";
+            if (txtcontact.Text.Length != 11)
+            {
+                lblcontact.Text = "Enter Correct Contact Number";
+            }
+            else if(txtcontact.Text.Length == 11)
+            {
+                lblcontact.Text = "";
+            }
+        }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+            lbldob.Text = "";
+            lblerror.Text = "";
+        }
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            lblregdesig.Text = "";
+            lblerror.Text = "";
+        }
+
+        private void txtsalary_TextChanged(object sender, EventArgs e)
+        {
+            lblsalary.Text = "";
+            lblerror.Text = "";
+        }
+
+      
+
+        
+
+       
+
+      
+
+        private void txtfirstname_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmbgender_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            lbldob.Text = "";
+            lblerror.Text = "";
+            lblgender.Visible = false;
+            if (dateTimePicker1.Value >= DateTime.Now)
+            {
+                lbldob.Text = "Enter correct Dob";
+            }
+            else
+            {
+                lbldob.Text = "";
+            }
+            if (comboBox2.Text != "" && comboBox3.Text == "")
+            {
+                lblerror.Text = "Select User You wanna Add";
+                lblerror.Visible = true;
+            }
+            else if (comboBox2.Text != "" && comboBox3.Text != "")
+            {
+                lblerror.Text = "";
+                lblerror.Visible = true;
+            }
+
+        }
+
+    
     }
 }
 

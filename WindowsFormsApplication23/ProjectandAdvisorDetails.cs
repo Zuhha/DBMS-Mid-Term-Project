@@ -21,6 +21,7 @@ namespace WindowsFormsApplication23
         private void ProjectandAdvisorDetails_Load(object sender, EventArgs e)
         {
             panel2.Visible = false;
+            label4.Visible = false;
             SqlConnection c = new SqlConnection(conURL);
             c.Open();
             string query = "Select Id from Advisor";
@@ -53,13 +54,34 @@ namespace WindowsFormsApplication23
             }
             t.Close();
 
-            string cmd8 = "Select * from ProjectAdvisor ";
+            string cmd8 = "select AdvisorId,FirstName+' '+LastName as Name ,ProjectId,AdvisorRole , Title, AssignmentDate from ProjectAdvisor join Project on ProjectAdvisor.ProjectId = Project.Id join Person on ProjectAdvisor.AdvisorId = Person.Id order by Title ";
 
             SqlDataAdapter ad = new SqlDataAdapter(cmd8, c);
             DataTable dt = new DataTable();
             ad.Fill(dt);
 
             dataGridView1.DataSource = dt;
+
+            int rows = Convert.ToInt32(dataGridView1.RowCount.ToString());
+            for (int i = 0; i < rows; i++)
+            {
+                int s = Convert.ToInt32(dataGridView1.Rows[i].Cells["AdvisorRole"].Value);
+
+                if (s == 11)
+                {
+                    dataGridView1.Rows[i].Cells["Role"].Value = "Main Avisor";
+
+                }
+                if (s == 12)
+                {
+                    dataGridView1.Rows[i].Cells["Role"].Value = "Co Advisor";
+                }
+                if (s == 14)
+                {
+                    dataGridView1.Rows[i].Cells["Role"].Value = "Industry Advisor";
+                }
+            }
+            dataGridView1.Columns["AdvisorRole"].Visible = false;
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -74,10 +96,10 @@ namespace WindowsFormsApplication23
             {
                 string o = dataGridView1.CurrentRow.Cells["ProjectId"].FormattedValue.ToString();
                 int u = Convert.ToInt32(o);
-                //  MessageBox.Show(u.ToString());
+               
 
                 int uu = Convert.ToInt32(dataGridView1.CurrentRow.Cells["AdvisorId"].FormattedValue.ToString());
-                MessageBox.Show(uu.ToString());
+               
                 string s = "Delete from ProjectAdvisor where ProjectId = '" + u + "'and AdvisorId = '" + uu + "'";
 
                 SqlConnection op = new SqlConnection(conURL);
@@ -98,81 +120,101 @@ namespace WindowsFormsApplication23
             con.Open();
 
 
-            string g = "Select Id from Project where Title = '" + comboBox2.Text + "'";
-            SqlCommand gho = new SqlCommand(g, con);
-            int j = (int)gho.ExecuteScalar();
-
-
-
-            string str = "Select Count(AdvisorId) from ProjectAdvisor where ProjectId = '" + j + "' and AdvisorId ='" + Convert.ToInt32(comboBox1.Text) + "'";
-            SqlCommand bk = new SqlCommand(str, con);
-            int count = (int)bk.ExecuteScalar();
-
-            bool f = true;
-            if (count >= 1)
+            if (comboBox1.Text != "")
             {
-                f = false;
+                lbladvisor.Text = "";
+
+            }
+            else if (comboBox1.Text == "")
+            {
+                lbladvisor.Text = "Please SElect the Advisor";
+                lbladvisor.Visible = true;
+            }
+            if (comboBox2.Text != "")
+            {
+                lbltitle.Text = "";
+            }
+            else if (comboBox2.Text == "")
+            {
+                lbltitle.Text = "Select the Title";
+            }
+            if (comboBox3.Text != "")
+            {
+                lblrole.Text = "";
+
+            }
+            else if (comboBox3.Text == "")
+            {
+                lblrole.Text = "Select the Role of Advisor";
+            }
+            if(dateTimePicker1.Value > DateTime.Now)
+            {
+                label4.Text = "Enter correct Assignment Date";
+                label4.Visible = true;
+            }
+            else if(dateTimePicker1.Value <= DateTime.Now)
+            {
+                label4.Text = "";
             }
 
+            if (lbladvisor.Text == "" && lblrole.Text == "" && lbltitle.Text == "" && label4.Text == "")
+            {
+
+                string cmnd = "Select Id from Project where Title = '" + comboBox2.Text + "'";
+                SqlCommand k = new SqlCommand(cmnd, con);
+                int id = (int)k.ExecuteScalar();
+
+                string b = "Select Id from Lookup where Value = '" + comboBox3.Text + "'";
+                SqlCommand cgh = new SqlCommand(b, con);
+                int o = (int)cgh.ExecuteScalar();
 
 
 
 
-            string b = "Select Id from Lookup where Value = '" + comboBox3.Text + "'";
-            SqlCommand cgh = new SqlCommand(b, con);
-            int o = (int)cgh.ExecuteScalar();
-            string kon = "Select Count(ProjectId) from ProjectAdvisor where AdvisorId ='" + comboBox1.Text + "' and AdvisorRole = '" + o + "' and ProjectId != '"+Convert.ToInt32(dataGridView1.CurrentRow.Cells["ProjectId"].Value)+"' ";
-            SqlCommand cg = new SqlCommand(kon, con);
-            int yo = (int)cg.ExecuteScalar();
-            bool ry = true;
-            if (yo >= 1)
-            {
-                ry = false;
-            }
-            string on = "Select Title from Project where Id = (Select ProjectId from ProjectAdvisor where AdvisorId ='" + comboBox1.Text + "' and AdvisorRole = '" + o + "' )";
-            SqlCommand yh = new SqlCommand(on, con);
-            SqlDataReader rdr = yh.ExecuteReader();
-            string p = "";
-            while (rdr.Read())
-            {
-                p = rdr["Title"].ToString();
-            }
-            rdr.Close();
-
-            if (ry == false)
-            {
-                MessageBox.Show("We are Sorry This Advisor has already been assigned as " + comboBox3.Text + " to " + p);
-            }
-            else if (f == false)
-            {
-                MessageBox.Show("This Advisor is already serving project " + comboBox2.Text);
-            }
-            else if (ry == true)
-            {
-                try
+                string query = "Select Count(AdvisorId) from ProjectAdvisor where ProjectId = '" + id + "' and AdvisorId = '" + Convert.ToInt32(comboBox1.Text) + "'";
+                SqlCommand cmd = new SqlCommand(query, con);
+                int count = (int)cmd.ExecuteScalar();
+               
+                bool c = true;
+                
+                if (count >= 1)
                 {
-                    string s = "Select Id from Lookup where Value = '" + comboBox3.Text + "'";
-
-                    SqlCommand gh = new SqlCommand(s, con);
-                    int i = (int)gh.ExecuteScalar();
-
-
-
-                    string os = "Update ProjectAdvisor SET ProjectId = '" + j + "', AdvisorId = '" + Convert.ToInt32(comboBox1.Text) + "',AdvisorRole = '" + i + "',AssignmentDate = '" + dateTimePicker1.Value + "' where ProjectId = '" + dataGridView1.CurrentRow.Cells["ProjectId"].Value + "'and AdvisorId = '" + dataGridView1.CurrentRow.Cells["AdvisorId"].Value + "'";
-                    SqlCommand go = new SqlCommand(os, con);
-                    go.ExecuteNonQuery();
-                    MessageBox.Show("Updated");
-                }
-                catch (Exception et)
-                {
-                    throw (et);
+                    label4.Text = "This Advisor is already serving project '" + comboBox2.Text + "'";
+                    label4.Visible = true;
+                    c = false;
                 }
 
 
+                else if ( c == true)
+                {
+
+                    try
+                    {
+                        string s = "Select Id from Lookup where Value = '" + comboBox3.Text + "'";
+
+                        SqlCommand gh = new SqlCommand(s, con);
+                        int i = (int)gh.ExecuteScalar();
+
+
+
+                        string os = "Update ProjectAdvisor SET ProjectId = '" + id + "', AdvisorId = '" + Convert.ToInt32(comboBox1.Text) + "',AdvisorRole = '" + i + "',AssignmentDate = '" + dateTimePicker1.Value + "' where ProjectId = '" + dataGridView1.CurrentRow.Cells["ProjectId"].Value + "'and AdvisorId = '" + dataGridView1.CurrentRow.Cells["AdvisorId"].Value + "'";
+                        SqlCommand go = new SqlCommand(os, con);
+                        go.ExecuteNonQuery();
+                        MessageBox.Show("Updated");
+                        this.Hide();
+                        ProjectandAdvisorDetails frm = new ProjectandAdvisorDetails();
+                        frm.Show();
+                    }
+                    catch (Exception et)
+                    {
+                        throw (et);
+                    }
 
 
 
 
+
+                }
 
             }
         }
@@ -251,6 +293,45 @@ namespace WindowsFormsApplication23
         {
             Evaluation frm = new Evaluation();
             this.Hide();
+            frm.Show();
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBox1.Text != "")
+            {
+                lbladvisor.Visible = false;
+                label4.Visible = false;
+            }
+        }
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBox2.Text != "")
+            {
+                lbltitle.Visible = false;
+                label4.Visible = false;
+            }
+        }
+
+        private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBox3.Text != "")
+            {
+                lblrole.Visible = false;
+                label4.Visible = false;
+            }
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            ProjectandAdvisorDetails frm = new ProjectandAdvisorDetails();
             frm.Show();
         }
     }

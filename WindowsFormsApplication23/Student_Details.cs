@@ -14,6 +14,7 @@ namespace WindowsFormsApplication23
     public partial class Student_Details : Form
     {
         string conURL = "Data Source=(local);Initial Catalog=ProjectA;Integrated Security=True";
+        Student st = new Student();
         public Student_Details()
         {
             InitializeComponent();
@@ -41,11 +42,11 @@ namespace WindowsFormsApplication23
             {
                 panel1.Visible = false;
                 panel2.Visible = true;
-                txtfirstName.Text = dataGridView1.CurrentRow.Cells["FirstName"].Value.ToString();
-                txtLastName.Text = dataGridView1.CurrentRow.Cells["LastName"].Value.ToString();
+                txtfirstname.Text = dataGridView1.CurrentRow.Cells["FirstName"].Value.ToString();
+                txtlastname.Text = dataGridView1.CurrentRow.Cells["LastName"].Value.ToString();
                 txtregno.Text = dataGridView1.CurrentRow.Cells["RegistrationNo"].Value.ToString();
-                txtEmail.Text = dataGridView1.CurrentRow.Cells["Email"].Value.ToString();
-                txtContact.Text = dataGridView1.CurrentRow.Cells["Contact"].Value.ToString();
+                txtemail.Text = dataGridView1.CurrentRow.Cells["Email"].Value.ToString();
+                txtcontact.Text = dataGridView1.CurrentRow.Cells["Contact"].Value.ToString();
             }
 
             else if (e.ColumnIndex == 1)
@@ -80,39 +81,12 @@ namespace WindowsFormsApplication23
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Student st = new Student();
-            if (txtfirstName.Text == "" || txtLastName.Text == "" || txtContact.Text == "" || txtEmail.Text == "" || cmbgender.Text == "")
-            {
-                MessageBox.Show("All Fields Are Required");
-            }
-
-            else if (st.Allchar(txtfirstName.Text) == false)
-            {
-                MessageBox.Show("Enter Valid First Name");
-            }
-            else if (st.Allchar(txtLastName.Text) == false)
-            {
-                MessageBox.Show("Enter Valid Last Name");
-            }
-            else if (st.Alldigits(txtContact.Text) == false || txtContact.Text.Length != 11)
-            {
-                MessageBox.Show("Enter Valid Contact No.");
-            }
-            else if (st.Email(txtEmail.Text) == false)
-            {
-                MessageBox.Show("Enter a valid Email");
-            }
-            else if (st.REGNO(txtregno.Text) == false)
-            {
-                MessageBox.Show("Enter a valid Registration Number");
-            }
-
-            else if (st.Email(txtEmail.Text) == true && st.Allchar(txtfirstName.Text) == true && st.Allchar(txtLastName.Text) == true && st.Alldigits(txtContact.Text) == true && txtContact.Text.Length == 11)
+            if (lbllastname.Text == "" && lblFirstname.Text == "" && lblcontact.Text == "" && lblemail.Text == "" && lblerror.Text == "" && lblregdesig.Text == "")
             {
                 SqlConnection con = new SqlConnection(conURL);
                 con.Open();
 
-                string k = "Select Count(Id) from  Person where FirstName ='" + txtfirstName.Text + "' and LastName = '" + txtLastName.Text + "' and Contact = '" + txtContact.Text + "'and Id != '" + Convert.ToInt32(dataGridView1.CurrentRow.Cells["Id"].Value) + "'";
+                string k = "Select Count(Id) from  Person where FirstName ='" + txtfirstname.Text + "' and LastName = '" + txtlastname.Text + "' and Contact = '" + txtcontact.Text + "'and Id != '" + Convert.ToInt32(dataGridView1.CurrentRow.Cells["Id"].Value) + "'";
                 SqlCommand cg = new SqlCommand(k, con);
                 int yo = (int)cg.ExecuteScalar();
                 bool ry = true;
@@ -130,11 +104,13 @@ namespace WindowsFormsApplication23
                 }
                 if (ry == false)
                 {
-                    MessageBox.Show("This Person has already been added in Record");
+                    lblerror.Text = "This Person has already been added in Record";
+                   // MessageBox.Show("This Person has already been added in Record");
                 }
                 else if (v == false)
                 {
-                    MessageBox.Show("This RegistrationNo is already in Record");
+                    lblerror.Text = "This RegistrationNo is already in Record";
+                    //MessageBox.Show("This RegistrationNo is already in Record");
                 }
 
                 else if (ry == true && v == true)
@@ -149,7 +125,7 @@ namespace WindowsFormsApplication23
                         int y = (int)t.ExecuteScalar();
                         string o = dataGridView1.CurrentRow.Cells["Id"].FormattedValue.ToString();
                         int u = Convert.ToInt32(o);
-                        string s = "Update Person SET FirstName = '" + txtfirstName.Text + "', LastName = '" + txtLastName.Text + "',Contact = '" + txtContact.Text + "',Email = '" + txtEmail.Text + "',DateOfBirth = '" + dtpdob.Value + "',Gender = '" + y + "'  where Id = '" + u + "' ";
+                        string s = "Update Person SET FirstName = '" + txtfirstname.Text + "', LastName = '" + txtlastname.Text + "',Contact = '" + txtcontact.Text + "',Email = '" + txtemail.Text + "',DateOfBirth = '" + dtpdob.Value + "',Gender = '" + y + "'  where Id = '" + u + "' ";
                         SqlCommand g = new SqlCommand(s, q);
                         g.ExecuteNonQuery();
                         string stU = "Update Student SET RegistrationNo = '" + txtregno.Text + "' where Id = '" + u + "' ";
@@ -255,6 +231,101 @@ namespace WindowsFormsApplication23
             Evaluation frm = new Evaluation();
             this.Hide();
             frm.Show();
+        }
+
+        private void txtfirstName_KeyUp(object sender, KeyEventArgs e)
+        {
+            lblerror.Text = "";
+            if (st.Allchar(txtfirstname.Text) == false)
+            {
+                lblFirstname.Text = "Characters Only!!!";
+
+            }
+            else
+            {
+                lblFirstname.Text = "";
+            }
+        }
+
+        private void txtLastName_KeyUp(object sender, KeyEventArgs e)
+        {
+            lblerror.Text = "";
+            if (st.Allchar(txtlastname.Text) == false)
+            {
+                lbllastname.Text = "Characters Only!!!";
+
+            }
+            else
+            {
+                lbllastname.Text = "";
+            }
+        }
+
+        private void txtContact_KeyUp(object sender, KeyEventArgs e)
+        {
+            lblerror.Text = "";
+            if (st.Alldigits(txtcontact.Text) == false)
+            {
+                lblcontact.Text = "Digits Only!!!";
+
+            }
+
+            else
+            {
+                lblcontact.Text = "";
+            }
+        }
+
+        private void txtEmail_KeyUp(object sender, KeyEventArgs e)
+        {
+            lblerror.Text = "";
+            if (st.Email(txtemail.Text) == false)
+            {
+                lblemail.Text = "Characters Only!!!";
+                lblerror.Text = "";
+            }
+            else
+            {
+                lblemail.Text = "";
+            }
+        }
+
+        private void txtregno_KeyUp(object sender, KeyEventArgs e)
+        {
+            lblerror.Text = "";
+            if ( st.REGNO(txtregno.Text) == true) 
+            {
+                lblregdesig.Text = "";
+                lblregdesig.Visible = true;
+            }
+            else if (st.REGNO(txtregno.Text) != true)
+            {
+                lblregdesig.Text = "Enter Correct Registration Number of format YYYY-DD-NNN";
+                lblregdesig.Visible = true;
+            }
+        }
+
+        private void txtregno_TextChanged(object sender, EventArgs e)
+        {
+            if(cmbgender.Text != "")
+            {
+                lblgender.Text = "";
+            }
+            else
+            {
+                lblgender.Text = "Please Select Gender";
+                lblgender.Visible = true;
+            }
+        }
+
+        private void cmbgender_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            lblgender.Visible = false;
+        }
+
+        private void linkLabel13_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+
         }
     }
 }

@@ -32,6 +32,14 @@
             this.Edit = new System.Windows.Forms.DataGridViewButtonColumn();
             this.Delete = new System.Windows.Forms.DataGridViewButtonColumn();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.lblerror = new System.Windows.Forms.Label();
+            this.lblregdesig = new System.Windows.Forms.Label();
+            this.lblgender = new System.Windows.Forms.Label();
+            this.lbldob = new System.Windows.Forms.Label();
+            this.lblemail = new System.Windows.Forms.Label();
+            this.lblcontact = new System.Windows.Forms.Label();
+            this.lbllastname = new System.Windows.Forms.Label();
+            this.lblFirstname = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.dtpdob = new System.Windows.Forms.DateTimePicker();
             this.label6 = new System.Windows.Forms.Label();
@@ -43,13 +51,14 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.cmbgender = new System.Windows.Forms.ComboBox();
-            this.txtEmail = new System.Windows.Forms.TextBox();
-            this.txtContact = new System.Windows.Forms.TextBox();
-            this.txtLastName = new System.Windows.Forms.TextBox();
-            this.txtfirstName = new System.Windows.Forms.TextBox();
+            this.txtemail = new System.Windows.Forms.TextBox();
+            this.txtcontact = new System.Windows.Forms.TextBox();
+            this.txtlastname = new System.Windows.Forms.TextBox();
+            this.txtfirstname = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.linkLabel13 = new System.Windows.Forms.LinkLabel();
             this.linkLabel11 = new System.Windows.Forms.LinkLabel();
             this.linkLabel10 = new System.Windows.Forms.LinkLabel();
             this.linkLabel9 = new System.Windows.Forms.LinkLabel();
@@ -61,7 +70,9 @@
             this.linkLabel3 = new System.Windows.Forms.LinkLabel();
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
-            this.linkLabel13 = new System.Windows.Forms.LinkLabel();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -74,9 +85,9 @@
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Edit,
             this.Delete});
-            this.dataGridView1.Location = new System.Drawing.Point(20, 36);
+            this.dataGridView1.Location = new System.Drawing.Point(22, 16);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(821, 283);
+            this.dataGridView1.Size = new System.Drawing.Size(816, 324);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
@@ -96,6 +107,14 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.lblerror);
+            this.panel2.Controls.Add(this.lblregdesig);
+            this.panel2.Controls.Add(this.lblgender);
+            this.panel2.Controls.Add(this.lbldob);
+            this.panel2.Controls.Add(this.lblemail);
+            this.panel2.Controls.Add(this.lblcontact);
+            this.panel2.Controls.Add(this.lbllastname);
+            this.panel2.Controls.Add(this.lblFirstname);
             this.panel2.Controls.Add(this.label8);
             this.panel2.Controls.Add(this.dtpdob);
             this.panel2.Controls.Add(this.label6);
@@ -107,20 +126,100 @@
             this.panel2.Controls.Add(this.label2);
             this.panel2.Controls.Add(this.label1);
             this.panel2.Controls.Add(this.cmbgender);
-            this.panel2.Controls.Add(this.txtEmail);
-            this.panel2.Controls.Add(this.txtContact);
-            this.panel2.Controls.Add(this.txtLastName);
-            this.panel2.Controls.Add(this.txtfirstName);
+            this.panel2.Controls.Add(this.txtemail);
+            this.panel2.Controls.Add(this.txtcontact);
+            this.panel2.Controls.Add(this.txtlastname);
+            this.panel2.Controls.Add(this.txtfirstname);
             this.panel2.Location = new System.Drawing.Point(354, 34);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(636, 380);
             this.panel2.TabIndex = 1;
             this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
+            // lblerror
+            // 
+            this.lblerror.AutoSize = true;
+            this.lblerror.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblerror.ForeColor = System.Drawing.Color.Red;
+            this.lblerror.Location = new System.Drawing.Point(191, 19);
+            this.lblerror.Name = "lblerror";
+            this.lblerror.Size = new System.Drawing.Size(0, 15);
+            this.lblerror.TabIndex = 84;
+            // 
+            // lblregdesig
+            // 
+            this.lblregdesig.AutoSize = true;
+            this.lblregdesig.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblregdesig.ForeColor = System.Drawing.Color.Red;
+            this.lblregdesig.Location = new System.Drawing.Point(480, 284);
+            this.lblregdesig.Name = "lblregdesig";
+            this.lblregdesig.Size = new System.Drawing.Size(0, 15);
+            this.lblregdesig.TabIndex = 83;
+            // 
+            // lblgender
+            // 
+            this.lblgender.AutoSize = true;
+            this.lblgender.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblgender.ForeColor = System.Drawing.Color.Red;
+            this.lblgender.Location = new System.Drawing.Point(480, 240);
+            this.lblgender.Name = "lblgender";
+            this.lblgender.Size = new System.Drawing.Size(0, 15);
+            this.lblgender.TabIndex = 82;
+            // 
+            // lbldob
+            // 
+            this.lbldob.AutoSize = true;
+            this.lbldob.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbldob.ForeColor = System.Drawing.Color.Red;
+            this.lbldob.Location = new System.Drawing.Point(476, 203);
+            this.lbldob.Name = "lbldob";
+            this.lbldob.Size = new System.Drawing.Size(0, 15);
+            this.lbldob.TabIndex = 81;
+            // 
+            // lblemail
+            // 
+            this.lblemail.AutoSize = true;
+            this.lblemail.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblemail.ForeColor = System.Drawing.Color.Red;
+            this.lblemail.Location = new System.Drawing.Point(477, 157);
+            this.lblemail.Name = "lblemail";
+            this.lblemail.Size = new System.Drawing.Size(0, 15);
+            this.lblemail.TabIndex = 80;
+            // 
+            // lblcontact
+            // 
+            this.lblcontact.AutoSize = true;
+            this.lblcontact.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblcontact.ForeColor = System.Drawing.Color.Red;
+            this.lblcontact.Location = new System.Drawing.Point(475, 121);
+            this.lblcontact.Name = "lblcontact";
+            this.lblcontact.Size = new System.Drawing.Size(0, 15);
+            this.lblcontact.TabIndex = 79;
+            // 
+            // lbllastname
+            // 
+            this.lbllastname.AutoSize = true;
+            this.lbllastname.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbllastname.ForeColor = System.Drawing.Color.Red;
+            this.lbllastname.Location = new System.Drawing.Point(475, 92);
+            this.lbllastname.Name = "lbllastname";
+            this.lbllastname.Size = new System.Drawing.Size(0, 15);
+            this.lbllastname.TabIndex = 78;
+            // 
+            // lblFirstname
+            // 
+            this.lblFirstname.AutoSize = true;
+            this.lblFirstname.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFirstname.ForeColor = System.Drawing.Color.Red;
+            this.lblFirstname.Location = new System.Drawing.Point(475, 57);
+            this.lblFirstname.Name = "lblFirstname";
+            this.lblFirstname.Size = new System.Drawing.Size(0, 15);
+            this.lblFirstname.TabIndex = 77;
+            // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(136, 248);
+            this.label8.Location = new System.Drawing.Point(136, 283);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(77, 13);
             this.label8.TabIndex = 15;
@@ -128,7 +227,7 @@
             // 
             // dtpdob
             // 
-            this.dtpdob.Location = new System.Drawing.Point(268, 161);
+            this.dtpdob.Location = new System.Drawing.Point(268, 196);
             this.dtpdob.Name = "dtpdob";
             this.dtpdob.Size = new System.Drawing.Size(191, 20);
             this.dtpdob.TabIndex = 14;
@@ -136,7 +235,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(129, 200);
+            this.label6.Location = new System.Drawing.Point(129, 235);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(42, 13);
             this.label6.TabIndex = 13;
@@ -144,15 +243,17 @@
             // 
             // txtregno
             // 
-            this.txtregno.Location = new System.Drawing.Point(267, 241);
+            this.txtregno.Location = new System.Drawing.Point(267, 276);
             this.txtregno.Name = "txtregno";
             this.txtregno.Size = new System.Drawing.Size(191, 20);
             this.txtregno.TabIndex = 6;
+            this.txtregno.TextChanged += new System.EventHandler(this.txtregno_TextChanged);
+            this.txtregno.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtregno_KeyUp);
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(129, 168);
+            this.label5.Location = new System.Drawing.Point(129, 203);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(62, 13);
             this.label5.TabIndex = 12;
@@ -171,7 +272,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(138, 122);
+            this.label4.Location = new System.Drawing.Point(138, 157);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(32, 13);
             this.label4.TabIndex = 11;
@@ -180,7 +281,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(136, 88);
+            this.label3.Location = new System.Drawing.Point(136, 123);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(44, 13);
             this.label3.TabIndex = 10;
@@ -189,7 +290,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(136, 59);
+            this.label2.Location = new System.Drawing.Point(136, 94);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(55, 13);
             this.label2.TabIndex = 9;
@@ -198,7 +299,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(136, 20);
+            this.label1.Location = new System.Drawing.Point(136, 55);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(54, 13);
             this.label1.TabIndex = 8;
@@ -211,39 +312,44 @@
             this.cmbgender.Items.AddRange(new object[] {
             "Male",
             "Female"});
-            this.cmbgender.Location = new System.Drawing.Point(267, 200);
+            this.cmbgender.Location = new System.Drawing.Point(267, 235);
             this.cmbgender.Name = "cmbgender";
             this.cmbgender.Size = new System.Drawing.Size(193, 21);
             this.cmbgender.TabIndex = 7;
+            this.cmbgender.SelectedIndexChanged += new System.EventHandler(this.cmbgender_SelectedIndexChanged);
             // 
-            // txtEmail
+            // txtemail
             // 
-            this.txtEmail.Location = new System.Drawing.Point(267, 122);
-            this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(193, 20);
-            this.txtEmail.TabIndex = 3;
+            this.txtemail.Location = new System.Drawing.Point(267, 157);
+            this.txtemail.Name = "txtemail";
+            this.txtemail.Size = new System.Drawing.Size(193, 20);
+            this.txtemail.TabIndex = 3;
+            this.txtemail.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtEmail_KeyUp);
             // 
-            // txtContact
+            // txtcontact
             // 
-            this.txtContact.Location = new System.Drawing.Point(266, 85);
-            this.txtContact.Name = "txtContact";
-            this.txtContact.Size = new System.Drawing.Size(193, 20);
-            this.txtContact.TabIndex = 2;
+            this.txtcontact.Location = new System.Drawing.Point(266, 120);
+            this.txtcontact.Name = "txtcontact";
+            this.txtcontact.Size = new System.Drawing.Size(193, 20);
+            this.txtcontact.TabIndex = 2;
+            this.txtcontact.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtContact_KeyUp);
             // 
-            // txtLastName
+            // txtlastname
             // 
-            this.txtLastName.Location = new System.Drawing.Point(267, 52);
-            this.txtLastName.Name = "txtLastName";
-            this.txtLastName.Size = new System.Drawing.Size(193, 20);
-            this.txtLastName.TabIndex = 1;
-            this.txtLastName.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
+            this.txtlastname.Location = new System.Drawing.Point(267, 87);
+            this.txtlastname.Name = "txtlastname";
+            this.txtlastname.Size = new System.Drawing.Size(193, 20);
+            this.txtlastname.TabIndex = 1;
+            this.txtlastname.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
+            this.txtlastname.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtLastName_KeyUp);
             // 
-            // txtfirstName
+            // txtfirstname
             // 
-            this.txtfirstName.Location = new System.Drawing.Point(267, 17);
-            this.txtfirstName.Name = "txtfirstName";
-            this.txtfirstName.Size = new System.Drawing.Size(193, 20);
-            this.txtfirstName.TabIndex = 0;
+            this.txtfirstname.Location = new System.Drawing.Point(267, 52);
+            this.txtfirstname.Name = "txtfirstname";
+            this.txtfirstname.Size = new System.Drawing.Size(193, 20);
+            this.txtfirstname.TabIndex = 0;
+            this.txtfirstname.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtfirstName_KeyUp);
             // 
             // label7
             // 
@@ -257,13 +363,16 @@
             // panel1
             // 
             this.panel1.Controls.Add(this.dataGridView1);
-            this.panel1.Location = new System.Drawing.Point(332, 70);
+            this.panel1.Location = new System.Drawing.Point(211, 72);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(792, 339);
             this.panel1.TabIndex = 15;
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label12);
+            this.groupBox1.Controls.Add(this.label13);
+            this.groupBox1.Controls.Add(this.label14);
             this.groupBox1.Controls.Add(this.linkLabel13);
             this.groupBox1.Controls.Add(this.linkLabel11);
             this.groupBox1.Controls.Add(this.linkLabel10);
@@ -282,12 +391,25 @@
             this.groupBox1.TabIndex = 25;
             this.groupBox1.TabStop = false;
             // 
+            // linkLabel13
+            // 
+            this.linkLabel13.AutoSize = true;
+            this.linkLabel13.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Italic | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.linkLabel13.LinkColor = System.Drawing.Color.Black;
+            this.linkLabel13.Location = new System.Drawing.Point(43, 320);
+            this.linkLabel13.Name = "linkLabel13";
+            this.linkLabel13.Size = new System.Drawing.Size(93, 16);
+            this.linkLabel13.TabIndex = 31;
+            this.linkLabel13.TabStop = true;
+            this.linkLabel13.Text = "Update Status";
+            this.linkLabel13.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel13_LinkClicked);
+            // 
             // linkLabel11
             // 
             this.linkLabel11.AutoSize = true;
             this.linkLabel11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Italic | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.linkLabel11.LinkColor = System.Drawing.Color.Black;
-            this.linkLabel11.Location = new System.Drawing.Point(30, 372);
+            this.linkLabel11.Location = new System.Drawing.Point(35, 358);
             this.linkLabel11.Name = "linkLabel11";
             this.linkLabel11.Size = new System.Drawing.Size(101, 16);
             this.linkLabel11.TabIndex = 27;
@@ -300,7 +422,7 @@
             this.linkLabel10.AutoSize = true;
             this.linkLabel10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Italic | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.linkLabel10.LinkColor = System.Drawing.Color.Black;
-            this.linkLabel10.Location = new System.Drawing.Point(35, 341);
+            this.linkLabel10.Location = new System.Drawing.Point(43, 339);
             this.linkLabel10.Name = "linkLabel10";
             this.linkLabel10.Size = new System.Drawing.Size(88, 16);
             this.linkLabel10.TabIndex = 26;
@@ -313,7 +435,7 @@
             this.linkLabel9.AutoSize = true;
             this.linkLabel9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Italic | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.linkLabel9.LinkColor = System.Drawing.Color.Black;
-            this.linkLabel9.Location = new System.Drawing.Point(31, 33);
+            this.linkLabel9.Location = new System.Drawing.Point(23, 98);
             this.linkLabel9.Name = "linkLabel9";
             this.linkLabel9.Size = new System.Drawing.Size(131, 16);
             this.linkLabel9.TabIndex = 25;
@@ -326,7 +448,7 @@
             this.linkLabel8.AutoSize = true;
             this.linkLabel8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Italic | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.linkLabel8.LinkColor = System.Drawing.Color.Black;
-            this.linkLabel8.Location = new System.Drawing.Point(21, 302);
+            this.linkLabel8.Location = new System.Drawing.Point(15, 377);
             this.linkLabel8.Name = "linkLabel8";
             this.linkLabel8.Size = new System.Drawing.Size(137, 16);
             this.linkLabel8.TabIndex = 24;
@@ -339,7 +461,7 @@
             this.linkLabel7.AutoSize = true;
             this.linkLabel7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Italic | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.linkLabel7.LinkColor = System.Drawing.Color.Black;
-            this.linkLabel7.Location = new System.Drawing.Point(23, 262);
+            this.linkLabel7.Location = new System.Drawing.Point(21, 229);
             this.linkLabel7.Name = "linkLabel7";
             this.linkLabel7.Size = new System.Drawing.Size(138, 16);
             this.linkLabel7.TabIndex = 23;
@@ -352,7 +474,7 @@
             this.linkLabel6.AutoSize = true;
             this.linkLabel6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Italic | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.linkLabel6.LinkColor = System.Drawing.Color.Black;
-            this.linkLabel6.Location = new System.Drawing.Point(25, 229);
+            this.linkLabel6.Location = new System.Drawing.Point(34, 210);
             this.linkLabel6.Name = "linkLabel6";
             this.linkLabel6.Size = new System.Drawing.Size(94, 16);
             this.linkLabel6.TabIndex = 22;
@@ -365,7 +487,7 @@
             this.linkLabel5.AutoSize = true;
             this.linkLabel5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Italic | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.linkLabel5.LinkColor = System.Drawing.Color.Black;
-            this.linkLabel5.Location = new System.Drawing.Point(36, 150);
+            this.linkLabel5.Location = new System.Drawing.Point(35, 82);
             this.linkLabel5.Name = "linkLabel5";
             this.linkLabel5.Size = new System.Drawing.Size(78, 16);
             this.linkLabel5.TabIndex = 21;
@@ -378,7 +500,7 @@
             this.linkLabel4.AutoSize = true;
             this.linkLabel4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Italic | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.linkLabel4.LinkColor = System.Drawing.Color.Black;
-            this.linkLabel4.Location = new System.Drawing.Point(30, 68);
+            this.linkLabel4.Location = new System.Drawing.Point(50, 194);
             this.linkLabel4.Name = "linkLabel4";
             this.linkLabel4.Size = new System.Drawing.Size(78, 16);
             this.linkLabel4.TabIndex = 20;
@@ -391,7 +513,7 @@
             this.linkLabel3.AutoSize = true;
             this.linkLabel3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Italic | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.linkLabel3.LinkColor = System.Drawing.Color.Black;
-            this.linkLabel3.Location = new System.Drawing.Point(30, 96);
+            this.linkLabel3.Location = new System.Drawing.Point(46, 304);
             this.linkLabel3.Name = "linkLabel3";
             this.linkLabel3.Size = new System.Drawing.Size(90, 16);
             this.linkLabel3.TabIndex = 19;
@@ -404,7 +526,7 @@
             this.linkLabel2.AutoSize = true;
             this.linkLabel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Italic | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.linkLabel2.LinkColor = System.Drawing.Color.Black;
-            this.linkLabel2.Location = new System.Drawing.Point(40, 129);
+            this.linkLabel2.Location = new System.Drawing.Point(57, 176);
             this.linkLabel2.Name = "linkLabel2";
             this.linkLabel2.Size = new System.Drawing.Size(75, 16);
             this.linkLabel2.TabIndex = 18;
@@ -417,7 +539,7 @@
             this.linkLabel1.AutoSize = true;
             this.linkLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Italic | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.linkLabel1.LinkColor = System.Drawing.Color.Black;
-            this.linkLabel1.Location = new System.Drawing.Point(36, 181);
+            this.linkLabel1.Location = new System.Drawing.Point(41, 65);
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.Size = new System.Drawing.Size(79, 16);
             this.linkLabel1.TabIndex = 17;
@@ -425,17 +547,35 @@
             this.linkLabel1.Text = "All Advisors";
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
-            // linkLabel13
+            // label12
             // 
-            this.linkLabel13.AutoSize = true;
-            this.linkLabel13.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Italic | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.linkLabel13.LinkColor = System.Drawing.Color.Black;
-            this.linkLabel13.Location = new System.Drawing.Point(35, 205);
-            this.linkLabel13.Name = "linkLabel13";
-            this.linkLabel13.Size = new System.Drawing.Size(93, 16);
-            this.linkLabel13.TabIndex = 31;
-            this.linkLabel13.TabStop = true;
-            this.linkLabel13.Text = "Update Status";
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(19, 266);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(66, 16);
+            this.label12.TabIndex = 50;
+            this.label12.Text = "GROUP:";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(8, 35);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(64, 16);
+            this.label13.TabIndex = 48;
+            this.label13.Text = "USERS:";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(13, 138);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(82, 16);
+            this.label14.TabIndex = 49;
+            this.label14.Text = "PROJECT:";
             // 
             // Student_Details
             // 
@@ -466,10 +606,10 @@
 
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.TextBox txtEmail;
-        private System.Windows.Forms.TextBox txtContact;
-        private System.Windows.Forms.TextBox txtLastName;
-        private System.Windows.Forms.TextBox txtfirstName;
+        private System.Windows.Forms.TextBox txtemail;
+        private System.Windows.Forms.TextBox txtcontact;
+        private System.Windows.Forms.TextBox txtlastname;
+        private System.Windows.Forms.TextBox txtfirstname;
         private System.Windows.Forms.TextBox txtregno;
         private System.Windows.Forms.ComboBox cmbgender;
         private System.Windows.Forms.Button btnaddstudent;
@@ -498,5 +638,16 @@
         private System.Windows.Forms.LinkLabel linkLabel2;
         private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.LinkLabel linkLabel13;
+        private System.Windows.Forms.Label lblgender;
+        private System.Windows.Forms.Label lbldob;
+        private System.Windows.Forms.Label lblemail;
+        private System.Windows.Forms.Label lblcontact;
+        private System.Windows.Forms.Label lbllastname;
+        private System.Windows.Forms.Label lblFirstname;
+        private System.Windows.Forms.Label lblregdesig;
+        private System.Windows.Forms.Label lblerror;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label14;
     }
 }

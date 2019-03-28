@@ -14,6 +14,7 @@ namespace WindowsFormsApplication23
     public partial class AllAdvisors : Form
     {
         string c = "Data Source = (local); Initial Catalog = ProjectA; Integrated Security = True";
+        Student st = new Student();
 
         public AllAdvisors()
         {
@@ -57,11 +58,11 @@ namespace WindowsFormsApplication23
                 panel1.Visible = false;
                
                 txtsalary.Text = dataGridView1.CurrentRow.Cells["Salary"].Value.ToString();
-                txtLastName.Text = dataGridView1.CurrentRow.Cells["LastName"].Value.ToString();
-                txtFirstName.Text = dataGridView1.CurrentRow.Cells["FirstName"].Value.ToString();
+                txtlastname.Text = dataGridView1.CurrentRow.Cells["LastName"].Value.ToString();
+                txtfirstname.Text = dataGridView1.CurrentRow.Cells["FirstName"].Value.ToString();
                 comboBox2.Text = dataGridView1.CurrentRow.Cells["Gender"].Value.ToString();
-                txtContact.Text = dataGridView1.CurrentRow.Cells["Contact"].Value.ToString();
-                txtEmail.Text = dataGridView1.CurrentRow.Cells["Email"].Value.ToString();
+                txtcontact.Text = dataGridView1.CurrentRow.Cells["Contact"].Value.ToString();
+                txtemail.Text = dataGridView1.CurrentRow.Cells["Email"].Value.ToString();
                 comboBox1.Text = dataGridView1.CurrentRow.Cells["Designation"].Value.ToString();
 
 
@@ -89,25 +90,25 @@ namespace WindowsFormsApplication23
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Student st = new Student();
-            if (txtFirstName.Text == "" || txtLastName.Text == "" || txtContact.Text == "" || txtEmail.Text == "" || comboBox2.Text == "")
+           
+           /* if (txtfirstname.Text == "" || txtlastname.Text == "" || txtcontact.Text == "" || txtemail.Text == "" || comboBox2.Text == "")
             {
                 MessageBox.Show("All Fields Are Required");
             }
 
-            else if (st.Allchar(txtFirstName.Text) == false)
+            else if (st.Allchar(txtfirstname.Text) == false)
             {
                 MessageBox.Show("Enter Valid First Name");
             }
-            else if (st.Allchar(txtLastName.Text) == false)
+            else if (st.Allchar(txtlastname.Text) == false)
             {
                 MessageBox.Show("Enter Valid Last Name");
             }
-            else if (st.Alldigits(txtContact.Text) == false || txtContact.Text.Length != 11)
+            else if (st.Alldigits(txtcontact.Text) == false || txtcontact.Text.Length != 11)
             {
                 MessageBox.Show("Enter Valid Contact No.");
             }
-            else if (st.Email(txtEmail.Text) == false)
+            else if (st.Email(txtemail.Text) == false)
             {
                 MessageBox.Show("Enter a valid Email");
             }
@@ -118,14 +119,15 @@ namespace WindowsFormsApplication23
                 MessageBox.Show("Enter Valid Salary");
             }
 
-            else if (st.Email(txtEmail.Text) == true && st.Allchar(txtFirstName.Text) == true && st.Allchar(txtLastName.Text) == true && st.Alldigits(txtContact.Text) == true && txtContact.Text.Length == 11 && st.Alldigits(txtsalary.Text))
-            {
+            else if (st.Email(txtemail.Text) == true && st.Allchar(txtfirstname.Text) == true && st.Allchar(txtlastname.Text) == true && st.Alldigits(txtcontact.Text) == true && txtcontact.Text.Length == 11 && st.Alldigits(txtsalary.Text))
+            {*/
+            if(lblsalary.Text == "" && lbllastname.Text == "" && lblerror.Text == "" && lblFirstname.Text == "" && lblemail.Text == "" && lbldob.Text == "" && lblcontact.Text == "" && lblgender.Text == "")
                 try
                 {
                     SqlConnection co = new SqlConnection(c);
                     co.Open();
 
-                    string k = "Select Count(Id) from  Person where FirstName ='" + txtFirstName.Text + "' and LastName = '" + txtLastName.Text + "' and Contact = '" + txtContact.Text + "'and Id != '" + Convert.ToInt32(dataGridView1.CurrentRow.Cells["Id"].Value) + "'";
+                    string k = "Select Count(Id) from  Person where FirstName ='" + txtfirstname.Text + "' and LastName = '" + txtlastname.Text + "' and Contact = '" + txtcontact.Text + "'and Id != '" + Convert.ToInt32(dataGridView1.CurrentRow.Cells["Id"].Value) + "'";
                     SqlCommand cg = new SqlCommand(k, co);
                     int yo = (int)cg.ExecuteScalar();
                     bool ry = true;
@@ -135,7 +137,8 @@ namespace WindowsFormsApplication23
                     }
                     if (ry == false)
                     {
-                        MessageBox.Show("This Person has already been added in Record");
+                        lblerror.Text ="This Person has already been added in Record";
+                        lblerror.Visible = true;
                     }
                     else if(ry == true)
                     {
@@ -156,7 +159,7 @@ namespace WindowsFormsApplication23
                         q.ExecuteNonQuery();
 
 
-                        string ss = "Update Person SET FirstName = '" + txtFirstName.Text + "', LastName = '" + txtLastName.Text + "',Contact = '" + txtContact.Text + "',Email = '" + txtEmail.Text + "',DateOfBirth = '" + dateTimePicker1.Value + "',Gender = '" + yy + "'  where Id = '" + id + "' ";
+                        string ss = "Update Person SET FirstName = '" + txtfirstname.Text + "', LastName = '" + txtlastname.Text + "',Contact = '" + txtcontact.Text + "',Email = '" + txtemail.Text + "',DateOfBirth = '" + dateTimePicker1.Value + "',Gender = '" + yy + "'  where Id = '" + id + "' ";
                         SqlCommand g = new SqlCommand(ss, co);
                         g.ExecuteNonQuery();
 
@@ -178,7 +181,7 @@ namespace WindowsFormsApplication23
                 }
             }
 
-        }
+       // }
 
         private void linkLabel9_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
@@ -265,6 +268,120 @@ namespace WindowsFormsApplication23
         private void label5_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void lblcontact_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtFirstName_KeyUp(object sender, KeyEventArgs e)
+        {
+            lblerror.Text = "";
+            if (st.Allchar(txtfirstname.Text) == false)
+            {
+                lblFirstname.Text = "Characters Only!!!";
+
+            }
+            else
+            {
+                lblFirstname.Text = "";
+            }
+        }
+
+        private void txtLastName_KeyUp(object sender, KeyEventArgs e)
+        {
+            lblerror.Text = "";
+            if (st.Allchar(txtlastname.Text) == false)
+            {
+                lbllastname.Text = "Characters Only!!!";
+
+            }
+            else
+            {
+                lbllastname.Text = "";
+            }
+        }
+
+        private void txtContact_KeyUp(object sender, KeyEventArgs e)
+        {
+            lblerror.Text = "";
+            if (st.Alldigits(txtcontact.Text) == false)
+            {
+                lblcontact.Text = "Digits Only!!!";
+
+            }
+
+            else
+            {
+                lblcontact.Text = "";
+            }
+        }
+
+        private void txtEmail_KeyUp(object sender, KeyEventArgs e)
+        {
+            lblerror.Text = "";
+            if (st.Email(txtemail.Text) == false)
+            {
+                lblemail.Text = "Characters Only!!!";
+                lblerror.Text = "";
+            }
+            else
+            {
+                lblemail.Text = "";
+            }
+        }
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            lblerror.Text = "";
+            if (dateTimePicker1.Value > DateTime.Now)
+            {
+                lbldob.Text = "Enter correct Date Of Birth";
+                
+            }
+            else
+            {
+                lbldob.Text = "";
+            }
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            lblerror.Text = "";
+            if(comboBox1.Text == "")
+            {
+                lblgender.Text = "Enter Gender";
+            }
+            else
+            {
+                lblgender.Text = "";
+            }
+        }
+
+        private void txtsalary_TextChanged(object sender, EventArgs e)
+        {
+            lblerror.Text = "";
+            if(comboBox2.Text == "")
+            {
+                lblerror.Text = "Select Designation";
+            }
+            else
+            {
+                lblerror.Text = "";
+            }
+        }
+
+        private void txtsalary_KeyUp(object sender, KeyEventArgs e)
+        {
+            if(st.Alldigits(txtsalary.Text) != true)
+            {
+                lblsalary.Text = "Digits Only";
+            }
+            else
+            {
+                lblsalary.Text = "";
+            }
         }
     }
 }
