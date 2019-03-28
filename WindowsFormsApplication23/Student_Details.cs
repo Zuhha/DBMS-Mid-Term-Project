@@ -24,13 +24,30 @@ namespace WindowsFormsApplication23
 
         private void Student_Details_Load(object sender, EventArgs e)
         {
-            string cmd = "Select Person.Id, Student.RegistrationNo,Person.FirstName,Person.LastName,Person.Contact,Person.Email,Person.Gender,Person.DateOfBirth from Person join Student on Student.Id = Person.Id";
+            string cmd = "Select Person.Id, Student.RegistrationNo,Person.FirstName,Person.LastName,Person.Contact,Person.Email,Person.Gender as g,Person.DateOfBirth from Person join Student on Student.Id = Person.Id";
             SqlConnection con = new SqlConnection(conURL);
             SqlDataAdapter ad = new SqlDataAdapter(cmd, con);
             DataTable dt = new DataTable();
             ad.Fill(dt);
 
             dataGridView1.DataSource = dt;
+            int rows = Convert.ToInt32(dataGridView1.RowCount.ToString());
+            for (int i = 0; i < rows; i++)
+            {
+                int s = Convert.ToInt32(dataGridView1.Rows[i].Cells["g"].Value);
+
+                if (s == 1)
+                {
+                    dataGridView1.Rows[i].Cells["Gender"].Value = "Male";
+
+                }
+                if (s == 2)
+                {
+                    dataGridView1.Rows[i].Cells["Gender"].Value = "Female";
+                }
+            }
+
+            dataGridView1.Columns["g"].Visible = false;
 
 
 

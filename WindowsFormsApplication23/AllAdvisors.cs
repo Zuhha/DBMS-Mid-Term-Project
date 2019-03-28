@@ -25,13 +25,31 @@ namespace WindowsFormsApplication23
         {
             panel2.Visible = false;
             SqlConnection con = new SqlConnection(c);
-            string s = "Select a.Id, p.Gender, p.FirstName,p.LastName,p.Contact,p.Email,a.Salary,a.Designation,p.DateOfBirth from Advisor as a join Person as p on p.Id = a.Id ";
+            string s = "Select a.Id, p.Gender as g, p.FirstName,p.LastName,p.Contact,p.Email,a.Salary,a.Designation,p.DateOfBirth from Advisor as a join Person as p on p.Id = a.Id ";
             SqlDataAdapter ad = new SqlDataAdapter(s, con);
             DataTable st = new DataTable();
             ad.Fill(st);
             dataGridView1.DataSource = st;
 
-          
+            int rows = Convert.ToInt32(dataGridView1.RowCount.ToString());
+            for (int i = 0; i < rows; i++)
+            {
+                int so = Convert.ToInt32(dataGridView1.Rows[i].Cells["g"].Value);
+
+                if (so == 1)
+                {
+                    dataGridView1.Rows[i].Cells["Gender"].Value = "Male";
+
+                }
+                if (so == 2)
+                {
+                    dataGridView1.Rows[i].Cells["Gender"].Value = "Female";
+                }
+            }
+
+            dataGridView1.Columns["g"].Visible = false;
+
+
 
 
 
@@ -344,12 +362,20 @@ namespace WindowsFormsApplication23
             {
                 lbldob.Text = "";
             }
+            if(comboBox2.Text == "")
+            {
+                lblgender.Text = "Enter Gender";
+            }
+            else
+            {
+                lblgender.Text = "";
+            }
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             lblerror.Text = "";
-            if(comboBox1.Text == "")
+            if(comboBox2.Text == "")
             {
                 lblgender.Text = "Enter Gender";
             }
@@ -362,7 +388,7 @@ namespace WindowsFormsApplication23
         private void txtsalary_TextChanged(object sender, EventArgs e)
         {
             lblerror.Text = "";
-            if(comboBox2.Text == "")
+            if(comboBox1.Text == "")
             {
                 lblerror.Text = "Select Designation";
             }
@@ -382,6 +408,11 @@ namespace WindowsFormsApplication23
             {
                 lblsalary.Text = "";
             }
+        }
+
+        private void panel2_BackgroundImageLayoutChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
