@@ -283,11 +283,15 @@ namespace WindowsFormsApplication23 {
             
             private global::System.Data.DataColumn columnStudentId;
             
-            private global::System.Data.DataColumn columnRole;
-            
             private global::System.Data.DataColumn columnAdvisorId;
             
             private global::System.Data.DataColumn columnAdvisorName;
+            
+            private global::System.Data.DataColumn columnGroup;
+            
+            private global::System.Data.DataColumn columnRegistration_Number;
+            
+            private global::System.Data.DataColumn columnAdvisory_Board;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -340,14 +344,6 @@ namespace WindowsFormsApplication23 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn RoleColumn {
-                get {
-                    return this.columnRole;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public global::System.Data.DataColumn AdvisorIdColumn {
                 get {
                     return this.columnAdvisorId;
@@ -359,6 +355,30 @@ namespace WindowsFormsApplication23 {
             public global::System.Data.DataColumn AdvisorNameColumn {
                 get {
                     return this.columnAdvisorName;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn GroupColumn {
+                get {
+                    return this.columnGroup;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn Registration_NumberColumn {
+                get {
+                    return this.columnRegistration_Number;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn Advisory_BoardColumn {
+                get {
+                    return this.columnAdvisory_Board;
                 }
             }
             
@@ -399,14 +419,16 @@ namespace WindowsFormsApplication23 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public DataTable1Row AddDataTable1Row(string Title, int StudentId, string Role, int AdvisorId, string AdvisorName) {
+            public DataTable1Row AddDataTable1Row(string Title, int StudentId, int AdvisorId, string AdvisorName, int Group, string Registration_Number, string Advisory_Board) {
                 DataTable1Row rowDataTable1Row = ((DataTable1Row)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         Title,
                         StudentId,
-                        Role,
                         AdvisorId,
-                        AdvisorName};
+                        AdvisorName,
+                        Group,
+                        Registration_Number,
+                        Advisory_Board};
                 rowDataTable1Row.ItemArray = columnValuesArray;
                 this.Rows.Add(rowDataTable1Row);
                 return rowDataTable1Row;
@@ -431,9 +453,11 @@ namespace WindowsFormsApplication23 {
             internal void InitVars() {
                 this.columnTitle = base.Columns["Title"];
                 this.columnStudentId = base.Columns["StudentId"];
-                this.columnRole = base.Columns["Role"];
                 this.columnAdvisorId = base.Columns["AdvisorId"];
                 this.columnAdvisorName = base.Columns["AdvisorName"];
+                this.columnGroup = base.Columns["Group"];
+                this.columnRegistration_Number = base.Columns["Registration_Number"];
+                this.columnAdvisory_Board = base.Columns["Advisory_Board"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -443,20 +467,27 @@ namespace WindowsFormsApplication23 {
                 base.Columns.Add(this.columnTitle);
                 this.columnStudentId = new global::System.Data.DataColumn("StudentId", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnStudentId);
-                this.columnRole = new global::System.Data.DataColumn("Role", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnRole);
                 this.columnAdvisorId = new global::System.Data.DataColumn("AdvisorId", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnAdvisorId);
                 this.columnAdvisorName = new global::System.Data.DataColumn("AdvisorName", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnAdvisorName);
+                this.columnGroup = new global::System.Data.DataColumn("Group", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnGroup);
+                this.columnRegistration_Number = new global::System.Data.DataColumn("Registration_Number", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRegistration_Number);
+                this.columnAdvisory_Board = new global::System.Data.DataColumn("Advisory_Board", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnAdvisory_Board);
                 this.columnTitle.AllowDBNull = false;
                 this.columnTitle.MaxLength = 50;
                 this.columnStudentId.AllowDBNull = false;
-                this.columnRole.AllowDBNull = false;
-                this.columnRole.MaxLength = 100;
                 this.columnAdvisorId.AllowDBNull = false;
                 this.columnAdvisorName.ReadOnly = true;
                 this.columnAdvisorName.MaxLength = 201;
+                this.columnGroup.AllowDBNull = false;
+                this.columnRegistration_Number.AllowDBNull = false;
+                this.columnRegistration_Number.MaxLength = 20;
+                this.columnAdvisory_Board.AllowDBNull = false;
+                this.columnAdvisory_Board.MaxLength = 100;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -621,17 +652,6 @@ namespace WindowsFormsApplication23 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string Role {
-                get {
-                    return ((string)(this[this.tableDataTable1.RoleColumn]));
-                }
-                set {
-                    this[this.tableDataTable1.RoleColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public int AdvisorId {
                 get {
                     return ((int)(this[this.tableDataTable1.AdvisorIdColumn]));
@@ -654,6 +674,39 @@ namespace WindowsFormsApplication23 {
                 }
                 set {
                     this[this.tableDataTable1.AdvisorNameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int Group {
+                get {
+                    return ((int)(this[this.tableDataTable1.GroupColumn]));
+                }
+                set {
+                    this[this.tableDataTable1.GroupColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Registration_Number {
+                get {
+                    return ((string)(this[this.tableDataTable1.Registration_NumberColumn]));
+                }
+                set {
+                    this[this.tableDataTable1.Registration_NumberColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Advisory_Board {
+                get {
+                    return ((string)(this[this.tableDataTable1.Advisory_BoardColumn]));
+                }
+                set {
+                    this[this.tableDataTable1.Advisory_BoardColumn] = value;
                 }
             }
             
@@ -831,9 +884,11 @@ namespace WindowsFormsApplication23.DataSet1TableAdapters {
             tableMapping.DataSetTable = "DataTable1";
             tableMapping.ColumnMappings.Add("Title", "Title");
             tableMapping.ColumnMappings.Add("StudentId", "StudentId");
-            tableMapping.ColumnMappings.Add("Role", "Role");
             tableMapping.ColumnMappings.Add("AdvisorId", "AdvisorId");
             tableMapping.ColumnMappings.Add("AdvisorName", "AdvisorName");
+            tableMapping.ColumnMappings.Add("Group", "Group");
+            tableMapping.ColumnMappings.Add("Registration_Number", "Registration_Number");
+            tableMapping.ColumnMappings.Add("Advisory_Board", "Advisory_Board");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -850,13 +905,14 @@ namespace WindowsFormsApplication23.DataSet1TableAdapters {
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = @"SELECT        N.Title, GS.StudentId, Lookup.Value AS Role, N.AdvisorId, Person.FirstName + ' ' + Person.LastName AS AdvisorName
-FROM            (SELECT        u.Title, PA.AdvisorRole, u.GroupId, PA.AdvisorId
+            this._commandCollection[0].CommandText = @"SELECT        N.[Group], N.Title, GS.StudentId, S.RegistrationNo AS [Registration_Number], Lookup.Value AS [Advisory_Board], N.AdvisorId, Person.FirstName + ' ' + Person.LastName AS AdvisorName
+FROM            (SELECT        u.Title, PA.AdvisorRole, u.GroupId AS [Group], PA.AdvisorId
                           FROM            (SELECT        P.Id, P.Description, P.Title, GP.ProjectId, GP.GroupId, GP.AssignmentDate
                                                     FROM            Project AS P INNER JOIN
                                                                               GroupProject AS GP ON P.Id = GP.ProjectId) AS u INNER JOIN
                                                     ProjectAdvisor AS PA ON u.ProjectId = PA.ProjectId) AS N INNER JOIN
-                         GroupStudent AS GS ON N.GroupId = GS.GroupId INNER JOIN
+                         GroupStudent AS GS ON N.[Group] = GS.GroupId INNER JOIN
+                         Student AS S ON S.Id = GS.StudentId INNER JOIN
                          Lookup ON Lookup.Id = N.AdvisorRole INNER JOIN
                          Person ON Person.Id = N.AdvisorId
 ORDER BY N.Title";

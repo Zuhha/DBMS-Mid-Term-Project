@@ -414,5 +414,12 @@ namespace WindowsFormsApplication23
         {
 
         }
+
+        private void label10_Click(object sender, EventArgs e)
+        {
+            ViewReports frm = new ViewReports();
+            this.Hide();
+            frm.Show();
+        }
     }
 }

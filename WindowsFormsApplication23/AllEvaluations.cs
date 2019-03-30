@@ -252,5 +252,12 @@ namespace WindowsFormsApplication23
             frm.Show();
 
         }
+
+        private void label13_Click(object sender, EventArgs e)
+        {
+            ViewReports frm = new ViewReports();
+            this.Hide();
+            frm.Show();
+        }
     }
 }

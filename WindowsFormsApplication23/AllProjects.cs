@@ -17,6 +17,14 @@ namespace WindowsFormsApplication23
         public AllProjects()
         {
             InitializeComponent();
+            this.SuspendLayout();
+            // 
+            // AllProjects
+            // 
+            this.ClientSize = new System.Drawing.Size(284, 261);
+            this.Font = new System.Drawing.Font("Segoe Print", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Name = "AllProjects";
+            this.ResumeLayout(false);
             panel2.Visible = false;
         }
 
@@ -203,8 +211,9 @@ namespace WindowsFormsApplication23
             frm.Show();
         }
 
+     
+
        
 
-      
     }
 }

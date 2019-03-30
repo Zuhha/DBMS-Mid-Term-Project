@@ -358,7 +358,13 @@ namespace WindowsFormsApplication23
                 lblerror.Visible = true;
             }
         }
-        
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+            ViewReports frm = new ViewReports();
+            this.Hide();
+            frm.Show();
+        }
     }
    
 }

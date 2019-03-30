@@ -252,5 +252,12 @@ namespace WindowsFormsApplication23
                 lblgroupid.Text = "";
             }
         }
+
+        private void label9_Click(object sender, EventArgs e)
+        {
+            ViewReports frm = new ViewReports();
+            this.Hide();
+            frm.Show();
+        }
     }
 }

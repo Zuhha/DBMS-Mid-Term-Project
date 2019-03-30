@@ -504,9 +504,27 @@ namespace WindowsFormsApplication23
 
         private void linkLabel26_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            ReportGroup rt = new ReportGroup();
+           FYPReport rt = new FYPReport();
             this.Hide();
             rt.Show();
+        }
+
+        private void linkLabel27_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            DetailStudent st = new DetailStudent();
+            st.Show();
+        }
+
+        private void linkLabel28_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            DetailsOfGroup st = new DetailsOfGroup();
+            st.Show();
+        }
+
+        private void linkLabel29_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            ViewReports frm = new ViewReports();
+            frm.Show();
         }
     }
 }

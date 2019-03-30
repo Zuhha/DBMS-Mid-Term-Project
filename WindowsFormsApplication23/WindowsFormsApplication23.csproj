@@ -83,16 +83,56 @@
     <Compile Include="CreateGroup.Designer.cs">
       <DependentUpon>CreateGroup.cs</DependentUpon>
     </Compile>
+    <Compile Include="DataSet1.cs">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </Compile>
     <Compile Include="DataSet1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataSet2.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSet2.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataSet3.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSet3.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataSet4.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSet4.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataSet5.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSet5.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataSet6.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSet6.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DetailsOfGroup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DetailsOfGroup.Designer.cs">
+      <DependentUpon>DetailsOfGroup.cs</DependentUpon>
     </Compile>
     <Compile Include="DetailsOfProject.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="DetailsOfProject.Designer.cs">
       <DependentUpon>DetailsOfProject.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DetailStudent.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DetailStudent.Designer.cs">
+      <DependentUpon>DetailStudent.cs</DependentUpon>
     </Compile>
     <Compile Include="EditStatus.cs">
       <SubType>Form</SubType>
@@ -112,6 +152,18 @@
     <Compile Include="AddUser.Designer.cs">
       <DependentUpon>AddUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="EvaluationDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EvaluationDetails.Designer.cs">
+      <DependentUpon>EvaluationDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FYPReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FYPReport.Designer.cs">
+      <DependentUpon>FYPReport.cs</DependentUpon>
+    </Compile>
     <Compile Include="GroupDetails.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -119,6 +171,12 @@
       <DependentUpon>GroupDetails.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
+    <Compile Include="ProjectAdvisors.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProjectAdvisors.Designer.cs">
+      <DependentUpon>ProjectAdvisors.cs</DependentUpon>
+    </Compile>
     <Compile Include="ProjectandAdvisorDetails.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -139,11 +197,11 @@
     <Compile Include="Student_Details.Designer.cs">
       <DependentUpon>Student_Details.cs</DependentUpon>
     </Compile>
-    <Compile Include="User.cs">
+    <Compile Include="ViewReports.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="User.Designer.cs">
-      <DependentUpon>User.cs</DependentUpon>
+    <Compile Include="ViewReports.Designer.cs">
+      <DependentUpon>ViewReports.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Add_Project.resx">
       <DependentUpon>Add_Project.cs</DependentUpon>
@@ -163,8 +221,14 @@
     <EmbeddedResource Include="CreateGroup.resx">
       <DependentUpon>CreateGroup.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DetailsOfGroup.resx">
+      <DependentUpon>DetailsOfGroup.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DetailsOfProject.resx">
       <DependentUpon>DetailsOfProject.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DetailStudent.resx">
+      <DependentUpon>DetailStudent.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EditStatus.resx">
       <DependentUpon>EditStatus.cs</DependentUpon>
@@ -175,8 +239,17 @@
     <EmbeddedResource Include="AddUser.resx">
       <DependentUpon>AddUser.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="EvaluationDetails.resx">
+      <DependentUpon>EvaluationDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FYPReport.resx">
+      <DependentUpon>FYPReport.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GroupDetails.resx">
       <DependentUpon>GroupDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProjectAdvisors.resx">
+      <DependentUpon>ProjectAdvisors.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ProjectandAdvisorDetails.resx">
       <DependentUpon>ProjectandAdvisorDetails.cs</DependentUpon>
@@ -192,14 +265,19 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="Report1.rdlc" />
+    <EmbeddedResource Include="Report2.rdlc" />
+    <EmbeddedResource Include="Report3.rdlc" />
+    <EmbeddedResource Include="Report4.rdlc" />
+    <EmbeddedResource Include="Report5.rdlc" />
+    <EmbeddedResource Include="Report6.rdlc" />
     <EmbeddedResource Include="ReportGroup.resx">
       <DependentUpon>ReportGroup.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Student_Details.resx">
       <DependentUpon>Student_Details.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="User.resx">
-      <DependentUpon>User.cs</DependentUpon>
+    <EmbeddedResource Include="ViewReports.resx">
+      <DependentUpon>ViewReports.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="DataSet1.xsc">
       <DependentUpon>DataSet1.xsd</DependentUpon>
@@ -211,6 +289,61 @@
     </None>
     <None Include="DataSet1.xss">
       <DependentUpon>DataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="DataSet2.xsc">
+      <DependentUpon>DataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="DataSet2.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSet2.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DataSet2.xss">
+      <DependentUpon>DataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="DataSet3.xsc">
+      <DependentUpon>DataSet3.xsd</DependentUpon>
+    </None>
+    <None Include="DataSet3.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSet3.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DataSet3.xss">
+      <DependentUpon>DataSet3.xsd</DependentUpon>
+    </None>
+    <None Include="DataSet4.xsc">
+      <DependentUpon>DataSet4.xsd</DependentUpon>
+    </None>
+    <None Include="DataSet4.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSet4.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DataSet4.xss">
+      <DependentUpon>DataSet4.xsd</DependentUpon>
+    </None>
+    <None Include="DataSet5.xsc">
+      <DependentUpon>DataSet5.xsd</DependentUpon>
+    </None>
+    <None Include="DataSet5.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSet5.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DataSet5.xss">
+      <DependentUpon>DataSet5.xsd</DependentUpon>
+    </None>
+    <None Include="DataSet6.xsc">
+      <DependentUpon>DataSet6.xsd</DependentUpon>
+    </None>
+    <None Include="DataSet6.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSet6.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DataSet6.xss">
+      <DependentUpon>DataSet6.xsd</DependentUpon>
     </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

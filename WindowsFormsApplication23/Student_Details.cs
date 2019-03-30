@@ -344,5 +344,12 @@ namespace WindowsFormsApplication23
         {
 
         }
+
+        private void linkLabel29_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            ViewReports frm = new ViewReports();
+            this.Hide();
+            frm.Show();
+        }
     }
 }
