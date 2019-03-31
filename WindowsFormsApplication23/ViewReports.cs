@@ -63,5 +63,11 @@ namespace WindowsFormsApplication23
             this.Hide();
             frm.Show();
         }
+
+        private void linkLabel8_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            ActiveStatus frm = new ActiveStatus();
+            frm.Show();
+        }
     }
 }

@@ -8,12 +8,22 @@ namespace WindowsFormsApplication23
 {
     class Student:Person
     {
+        /// <summary>
+        /// List of all the students
+        /// </summary>
      
         public static List<Student> Students = new List<Student>();
+        /// <summary>
+        /// Registration No of student
+        /// </summary>
         public string Regno { get; set; }
 
 
-
+        /// <summary>
+        /// Checks validity of registration Number
+        /// </summary>
+        /// <param name="Reg_No">string which is to be checked</param>
+        /// <returns>true if format is correct else false</returns>
 
         public bool REGNO(string Reg_No)
         {
@@ -51,6 +61,16 @@ namespace WindowsFormsApplication23
 
 
         }
+        /// <summary>
+        /// Adds student is list
+        /// </summary>
+        /// <param name="firstname">firstname</param>
+        /// <param name="lastname">lastname</param>
+        /// <param name="contact">contact</param>
+        /// <param name="email">email</param>
+        /// <param name="gender">gender</param>
+        /// <param name="dob">dob</param>
+        /// <param name="regno">Registration Number</param>
         public void AddStudent(string firstname, string lastname, string contact, string email, string gender, DateTime dob, string regno)
         {
             
@@ -68,6 +88,10 @@ namespace WindowsFormsApplication23
 
 
         }
+        /// <summary>
+        /// Adds Student data in Database
+        /// </summary>
+        /// <param name="regno">Registration Number</param>
 
         public void addstindb(string regno)
         {
@@ -76,7 +100,12 @@ namespace WindowsFormsApplication23
         }
 
     
-
+/// <summary>
+/// Prohibits duplication of reg no
+/// </summary>
+/// <param name="regno"></param>
+/// <param name="cmd"></param>
+/// <returns>true if regno is unique else false</returns>
 
         public bool uniqueregno(string regno,string cmd)
         {

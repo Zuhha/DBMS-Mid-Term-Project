@@ -23,7 +23,7 @@ namespace WindowsFormsApplication23
 
 
 
-
+        // Checks all input letters are digits or not
 
         public bool Alldigits(string s)
         {
@@ -36,7 +36,7 @@ namespace WindowsFormsApplication23
                 return false;
             }
         }
-
+        // Fills comboBox according to given Query
         public void load(string cmd, ComboBox v)
 
         {
@@ -47,12 +47,20 @@ namespace WindowsFormsApplication23
                 v.Items.Add(h);
             }
         }
-
+       /// <summary>
+       /// Gives Maximum EvaluationId
+       /// </summary>
+       /// <returns>Returns maximum evaluationId</returns>
         public int maxid()
         {
             int y = dbConnection.getInstance().getScalerData("Select max(Id) from Evaluation");
             return y;
         }
+        /// <summary>
+        /// Checks that all inputs are character or not.
+        /// </summary>
+        /// <param name="s">takes a string which is to be checked</param>
+        /// <returns></returns>
         public bool Allchar(string s)
         {
             if (s.All(Char.IsLetter))
@@ -64,7 +72,14 @@ namespace WindowsFormsApplication23
                 return false;
             }
         }
-
+        /// <summary>
+        /// Loads data on Updation form according to cell clicked 
+        /// </summary>
+        /// <param name="txtname">Textbox having name</param>
+        /// <param name="txttotalmarks">textbox having totalmarks</param>
+        /// <param name="txttotalwieghtage">textbox having total weightage</param>
+        /// <param name="txtobtained">textbox having obtained marks</param>
+        /// <param name="dataGridView1">Grid From which value has been extracted</param>
         public void loaddata(TextBox txtname, TextBox txttotalmarks, TextBox txttotalwieghtage, TextBox txtobtained, DataGridView dataGridView1)
         
         {
@@ -74,6 +89,12 @@ namespace WindowsFormsApplication23
             txttotalwieghtage.Text = dataGridView1.CurrentRow.Cells["TotalWeightage"].Value.ToString();
 
         }
+        /// <summary>
+        /// Prohibits insertion of duplicate data
+        /// </summary>
+        /// <param name="txtname">textbox habing name of evaluation</param>
+        /// <param name="comboBox1">combo Box having GroupIds</param>
+        /// <returns></returns>
 
         public bool uniqueevaluation(TextBox txtname, ComboBox comboBox1)
         {

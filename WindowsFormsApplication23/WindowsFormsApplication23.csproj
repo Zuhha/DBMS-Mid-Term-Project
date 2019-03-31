@@ -49,6 +49,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActiveStatus.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ActiveStatus.Designer.cs">
+      <DependentUpon>ActiveStatus.cs</DependentUpon>
+    </Compile>
     <Compile Include="Add_Project.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -116,6 +122,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DataSet6.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataSet7.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSet7.xsd</DependentUpon>
     </Compile>
     <Compile Include="dbConnection.cs" />
     <Compile Include="DetailsOfGroup.cs">
@@ -212,6 +223,9 @@
     <Compile Include="ViewReports.Designer.cs">
       <DependentUpon>ViewReports.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="ActiveStatus.resx">
+      <DependentUpon>ActiveStatus.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Add_Project.resx">
       <DependentUpon>Add_Project.cs</DependentUpon>
     </EmbeddedResource>
@@ -279,6 +293,7 @@
     <EmbeddedResource Include="Report4.rdlc" />
     <EmbeddedResource Include="Report5.rdlc" />
     <EmbeddedResource Include="Report6.rdlc" />
+    <EmbeddedResource Include="Report7.rdlc" />
     <EmbeddedResource Include="ReportGroup.resx">
       <DependentUpon>ReportGroup.cs</DependentUpon>
     </EmbeddedResource>
@@ -353,6 +368,17 @@
     </None>
     <None Include="DataSet6.xss">
       <DependentUpon>DataSet6.xsd</DependentUpon>
+    </None>
+    <None Include="DataSet7.xsc">
+      <DependentUpon>DataSet7.xsd</DependentUpon>
+    </None>
+    <None Include="DataSet7.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSet7.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DataSet7.xss">
+      <DependentUpon>DataSet7.xsd</DependentUpon>
     </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

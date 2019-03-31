@@ -9,13 +9,19 @@ namespace WindowsFormsApplication23
     class Project
     {
         public static List<Project> Projects = new List<Project>();
+        /// <summary>
+        /// Title of project
+        /// </summary>
         public string Title { get; set; }
+        /// <summary>
+        /// Description of Project.
+        /// </summary>
         public string Description { get; set; }
 /// <summary>
 /// Checks the uniquness of Project. Title should not be repeated
 /// </summary>
-/// <param name="cmd"></param>
-/// <returns></returns>
+/// <param name="cmd">command that will be executed in order to check the uniquness</param>
+/// <returns>true if project is unique else false</returns>
         public bool uniqueproject(string cmd)
         {
             int yo = dbConnection.getInstance().getScalerData(cmd);
