@@ -13,7 +13,7 @@ namespace WindowsFormsApplication23
 {
     public partial class Student_Details : Form
     {
-        string conURL = "Data Source=(local);Initial Catalog=ProjectA;Integrated Security=True";
+      
         Student st = new Student();
         public Student_Details()
         {
@@ -25,32 +25,10 @@ namespace WindowsFormsApplication23
         private void Student_Details_Load(object sender, EventArgs e)
         {
             string cmd = "Select Person.Id, Student.RegistrationNo,Person.FirstName,Person.LastName,Person.Contact,Person.Email,Person.Gender as g,Person.DateOfBirth from Person join Student on Student.Id = Person.Id";
-            SqlConnection con = new SqlConnection(conURL);
-            SqlDataAdapter ad = new SqlDataAdapter(cmd, con);
-            DataTable dt = new DataTable();
-            ad.Fill(dt);
-
-            dataGridView1.DataSource = dt;
-            int rows = Convert.ToInt32(dataGridView1.RowCount.ToString());
-            for (int i = 0; i < rows; i++)
-            {
-                int s = Convert.ToInt32(dataGridView1.Rows[i].Cells["g"].Value);
-
-                if (s == 1)
-                {
-                    dataGridView1.Rows[i].Cells["Gender"].Value = "Male";
-
-                }
-                if (s == 2)
-                {
-                    dataGridView1.Rows[i].Cells["Gender"].Value = "Female";
-                }
-            }
-
-            dataGridView1.Columns["g"].Visible = false;
-
-
-
+            dbConnection.getInstance().fill(cmd, dataGridView1);
+            Advisor ad = new Advisor();
+            ad.fillgender(dataGridView1);
+            
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -74,15 +52,10 @@ namespace WindowsFormsApplication23
                 string st = "Delete from Person Where Id = '" + u + "'";
                 string hu = "Delete from GroupStudent where StudentId = '" + u + "'";
                 string r = "Delete from ((Select * from Student join Person On Student.Id = '" + u + "')join GroupStudent on StudentId = '" + u + "')";
-                SqlConnection op = new SqlConnection(conURL);
-                op.Open();
-                SqlCommand cmd = new SqlCommand(hu, op);
-                cmd.ExecuteNonQuery();
-                SqlCommand cmd1 = new SqlCommand(s, op);
-                cmd1.ExecuteNonQuery();
-                SqlCommand cmd2 = new SqlCommand(st, op);
-                cmd2.ExecuteNonQuery();
-                op.Close();
+              
+                dbConnection.getInstance().exectuteQuery(hu);
+                dbConnection.getInstance().exectuteQuery(s);
+                dbConnection.getInstance().exectuteQuery(st);
                 dataGridView1.Rows.Remove(dataGridView1.Rows[e.RowIndex]);
                 MessageBox.Show("Deleted");
             }
@@ -100,55 +73,39 @@ namespace WindowsFormsApplication23
         {
             if (lbllastname.Text == "" && lblFirstname.Text == "" && lblcontact.Text == "" && lblemail.Text == "" && lblerror.Text == "" && lblregdesig.Text == "")
             {
-                SqlConnection con = new SqlConnection(conURL);
-                con.Open();
-
                 string k = "Select Count(Id) from  Person where FirstName ='" + txtfirstname.Text + "' and LastName = '" + txtlastname.Text + "' and Contact = '" + txtcontact.Text + "'and Id != '" + Convert.ToInt32(dataGridView1.CurrentRow.Cells["Id"].Value) + "'";
-                SqlCommand cg = new SqlCommand(k, con);
-                int yo = (int)cg.ExecuteScalar();
-                bool ry = true;
-                if (yo >= 1)
-                {
-                    ry = false;
-                }
+
+                Student st = new Student();
+                bool ry = st.uniqueperson(txtfirstname.Text, txtlastname.Text, txtcontact.Text, k);
+                
                 string kl = "Select Count(Id) from Student where RegistrationNo ='" + txtregno.Text + "' and Id != '"+Convert.ToInt32(dataGridView1.CurrentRow.Cells["Id"].Value)+"'";
-                SqlCommand cgo = new SqlCommand(kl, con);
-                int yoo = (int)cgo.ExecuteScalar();
-                bool v = true;
-                if (yoo >= 1)
-                {
-                    v = false;
-                }
+
+                bool v = st.uniqueregno(txtregno.Text, kl);
+                
                 if (ry == false)
                 {
                     lblerror.Text = "This Person has already been added in Record";
-                   // MessageBox.Show("This Person has already been added in Record");
+                   
                 }
                 else if (v == false)
                 {
                     lblerror.Text = "This RegistrationNo is already in Record";
-                    //MessageBox.Show("This RegistrationNo is already in Record");
+                   
                 }
 
                 else if (ry == true && v == true)
                 {
                     try
                     {
-
-                        SqlConnection q = new SqlConnection(conURL);
-                        q.Open();
                         string em = "Select Id from Lookup where Value = '" + cmbgender.Text + "' ";
-                        SqlCommand t = new SqlCommand(em, q);
-                        int y = (int)t.ExecuteScalar();
+                        
+                        int y = dbConnection.getInstance().getScalerData(em);
                         string o = dataGridView1.CurrentRow.Cells["Id"].FormattedValue.ToString();
                         int u = Convert.ToInt32(o);
                         string s = "Update Person SET FirstName = '" + txtfirstname.Text + "', LastName = '" + txtlastname.Text + "',Contact = '" + txtcontact.Text + "',Email = '" + txtemail.Text + "',DateOfBirth = '" + dtpdob.Value + "',Gender = '" + y + "'  where Id = '" + u + "' ";
-                        SqlCommand g = new SqlCommand(s, q);
-                        g.ExecuteNonQuery();
+                        dbConnection.getInstance().exectuteQuery(s);
                         string stU = "Update Student SET RegistrationNo = '" + txtregno.Text + "' where Id = '" + u + "' ";
-                        SqlCommand UO = new SqlCommand(stU, q);
-                        UO.ExecuteNonQuery();
-                        q.Close();
+                        dbConnection.getInstance().exectuteQuery(stU);
                         MessageBox.Show("Updated");
                         panel2.Visible = false;
                         this.Hide();
@@ -296,7 +253,7 @@ namespace WindowsFormsApplication23
         private void txtEmail_KeyUp(object sender, KeyEventArgs e)
         {
             lblerror.Text = "";
-            if (st.Email(txtemail.Text) == false)
+            if (st.Emails(txtemail.Text) == false)
             {
                 lblemail.Text = "Characters Only!!!";
                 lblerror.Text = "";

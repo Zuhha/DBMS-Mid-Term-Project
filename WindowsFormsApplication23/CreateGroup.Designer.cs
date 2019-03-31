@@ -33,7 +33,9 @@
             this.button1 = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.linkLabel13 = new System.Windows.Forms.LinkLabel();
+            this.label8 = new System.Windows.Forms.Label();
             this.linkLabel11 = new System.Windows.Forms.LinkLabel();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -53,21 +55,22 @@
             this.button3 = new System.Windows.Forms.Button();
             this.lblerror = new System.Windows.Forms.Label();
             this.labelerror = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ADD});
-            this.dataGridView1.Location = new System.Drawing.Point(405, 318);
+            this.dataGridView1.Location = new System.Drawing.Point(234, 260);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(959, 414);
+            this.dataGridView1.Size = new System.Drawing.Size(682, 414);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
@@ -79,10 +82,10 @@
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Segoe Print", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(771, 23);
+            this.button1.Location = new System.Drawing.Point(234, 5);
             this.button1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(300, 67);
+            this.button1.Size = new System.Drawing.Size(273, 45);
             this.button1.TabIndex = 1;
             this.button1.Text = "Create Group";
             this.button1.UseVisualStyleBackColor = true;
@@ -93,14 +96,17 @@
             this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox1.Font = new System.Drawing.Font("Segoe Print", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(720, 165);
+            this.comboBox1.Location = new System.Drawing.Point(234, 181);
             this.comboBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(309, 31);
             this.comboBox1.TabIndex = 2;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // groupBox1
             // 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.linkLabel13);
             this.groupBox1.Controls.Add(this.label8);
@@ -127,6 +133,19 @@
             this.groupBox1.TabIndex = 24;
             this.groupBox1.TabStop = false;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe Print", 12F, ((System.Drawing.FontStyle)(((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic) 
+                | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(13, 23);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(92, 28);
+            this.label2.TabIndex = 38;
+            this.label2.Text = "REPORTS";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
+            // 
             // linkLabel13
             // 
             this.linkLabel13.AutoSize = true;
@@ -139,6 +158,18 @@
             this.linkLabel13.TabIndex = 30;
             this.linkLabel13.TabStop = true;
             this.linkLabel13.Text = "Update Status";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Segoe Print", 12F, ((System.Drawing.FontStyle)(((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic) 
+                | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(8, 423);
+            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(77, 28);
+            this.label8.TabIndex = 37;
+            this.label8.Text = "GROUP:";
             // 
             // linkLabel11
             // 
@@ -322,7 +353,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe Print", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(412, 165);
+            this.label1.Location = new System.Drawing.Point(4, 153);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(189, 23);
@@ -332,10 +363,10 @@
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("Segoe Print", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(973, 817);
+            this.button2.Location = new System.Drawing.Point(234, 736);
             this.button2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(273, 44);
+            this.button2.Size = new System.Drawing.Size(273, 37);
             this.button2.TabIndex = 26;
             this.button2.Text = "Add Student in Existing group";
             this.button2.UseVisualStyleBackColor = true;
@@ -346,19 +377,20 @@
             this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox2.Font = new System.Drawing.Font("Segoe Print", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(722, 165);
+            this.comboBox2.Location = new System.Drawing.Point(234, 158);
             this.comboBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(312, 31);
             this.comboBox2.TabIndex = 27;
+            this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
             // 
             // button3
             // 
             this.button3.Font = new System.Drawing.Font("Segoe Print", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Location = new System.Drawing.Point(788, 36);
+            this.button3.Location = new System.Drawing.Point(234, 65);
             this.button3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(273, 44);
+            this.button3.Size = new System.Drawing.Size(273, 37);
             this.button3.TabIndex = 28;
             this.button3.Text = "Add";
             this.button3.UseVisualStyleBackColor = true;
@@ -369,7 +401,7 @@
             this.lblerror.AutoSize = true;
             this.lblerror.Font = new System.Drawing.Font("Segoe Print", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblerror.ForeColor = System.Drawing.Color.Red;
-            this.lblerror.Location = new System.Drawing.Point(803, 216);
+            this.lblerror.Location = new System.Drawing.Point(234, 218);
             this.lblerror.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblerror.Name = "lblerror";
             this.lblerror.Size = new System.Drawing.Size(51, 23);
@@ -381,37 +413,43 @@
             this.labelerror.AutoSize = true;
             this.labelerror.Font = new System.Drawing.Font("Segoe Print", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelerror.ForeColor = System.Drawing.Color.Red;
-            this.labelerror.Location = new System.Drawing.Point(493, 67);
+            this.labelerror.Location = new System.Drawing.Point(4, 110);
             this.labelerror.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelerror.Name = "labelerror";
             this.labelerror.Size = new System.Drawing.Size(51, 23);
             this.labelerror.TabIndex = 34;
             this.labelerror.Text = "label6";
             // 
-            // label8
+            // tableLayoutPanel1
             // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Segoe Print", 12F, ((System.Drawing.FontStyle)(((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic) 
-                | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(8, 423);
-            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(77, 28);
-            this.label8.TabIndex = 37;
-            this.label8.Text = "GROUP:";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe Print", 12F, ((System.Drawing.FontStyle)(((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic) 
-                | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(13, 23);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(92, 28);
-            this.label2.TabIndex = 38;
-            this.label2.Text = "REPORTS";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
+            this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel1.BackgroundImage = global::WindowsFormsApplication23.Properties.Resources.plush_design_studio_571660_unsplash;
+            this.tableLayoutPanel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.tableLayoutPanel1.ColumnCount = 2;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 75F));
+            this.tableLayoutPanel1.Controls.Add(this.button3, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.button2, 1, 7);
+            this.tableLayoutPanel1.Controls.Add(this.labelerror, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.comboBox2, 1, 3);
+            this.tableLayoutPanel1.Controls.Add(this.dataGridView1, 1, 6);
+            this.tableLayoutPanel1.Controls.Add(this.comboBox1, 1, 4);
+            this.tableLayoutPanel1.Controls.Add(this.button1, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.label1, 0, 3);
+            this.tableLayoutPanel1.Controls.Add(this.lblerror, 1, 5);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(326, 52);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 8;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 54.09836F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 45.90164F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 43F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 23F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 42F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 476F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 46F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(920, 778);
+            this.tableLayoutPanel1.TabIndex = 35;
             // 
             // CreateGroup
             // 
@@ -420,16 +458,8 @@
             this.BackgroundImage = global::WindowsFormsApplication23.Properties.Resources.plush_design_studio_571660_unsplash;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1399, 863);
-            this.Controls.Add(this.labelerror);
-            this.Controls.Add(this.lblerror);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.comboBox2);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.dataGridView1);
             this.Font = new System.Drawing.Font("Segoe Print", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "CreateGroup";
@@ -438,8 +468,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -472,5 +503,6 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
     }
 }

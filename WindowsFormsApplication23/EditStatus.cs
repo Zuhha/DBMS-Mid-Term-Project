@@ -13,7 +13,7 @@ namespace WindowsFormsApplication23
 {
     public partial class EditStatus : Form
     {
-        string conURL = "Data Source=(local);Initial Catalog=ProjectA;Integrated Security=True";
+        
         public EditStatus()
         {
             InitializeComponent();
@@ -22,14 +22,12 @@ namespace WindowsFormsApplication23
 
         private void EditStatus_Load(object sender, EventArgs e)
         {
-            string cmd = "Select FirstName+' '+LastName as Name,RegistrationNo,Status,GroupId,StudentId from Person join Student on Person.Id = Student.Id join GroupStudent on StudentId = Person.Id ";
-            SqlConnection con = new SqlConnection(conURL);
-            con.Open();
-            SqlDataAdapter ada = new SqlDataAdapter(cmd, con);
-            DataTable dt = new DataTable();
-            ada.Fill(dt);
-            dataGridView1.DataSource = dt;
+            string cmd = "Select FirstName+' '+LastName as Name,RegistrationNo,Status as u,GP.GroupId as GroupId,StudentId as StudentId, Title from Person join Student on Person.Id = Student.Id join GroupStudent on StudentId = Person.Id join GroupProject AS GP on  GP.GroupId = GroupStudent.GroupId join Project on Project.Id = GP.ProjectId";
+            dbConnection.getInstance().fill(cmd, dataGridView1);
             labelerror.Visible = false;
+            Group g = new Group();
+            g.Addstatus(dataGridView1);
+            
 
         }
 
@@ -45,19 +43,15 @@ namespace WindowsFormsApplication23
         private void button1_Click(object sender, EventArgs e)
         {
             int id = Convert.ToInt32(dataGridView1.CurrentRow.Cells["StudentId"].Value);
-            SqlConnection conU = new SqlConnection(conURL);
-            conU.Open();
-            if (comboBox1.Text == "ACTIVE")
+          if (comboBox1.Text == "ACTIVE")
             {
                 string oss = "Update GroupStudent SET Status = '" + 3 + "' where StudentId = '" + id + "'";
-                SqlCommand go = new SqlCommand(oss, conU);
-                go.ExecuteNonQuery();
+                dbConnection.getInstance().exectuteQuery(oss);
             }
             else if(comboBox1.Text == "INACTIVE")
             {
                 string oss = "Update GroupStudent SET Status = '" + 4 + "' where StudentId = '" + id + "'";
-                SqlCommand go = new SqlCommand(oss, conU);
-                go.ExecuteNonQuery();
+                dbConnection.getInstance().exectuteQuery(oss);
             }
             else if(comboBox1.Text == "")
             {
@@ -177,6 +171,21 @@ namespace WindowsFormsApplication23
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            label6.Text = "";
+            label6.Visible = false;
+            labelerror.Visible = false;
+            
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            EditStatus frm = new EditStatus();
+            frm.Show();
         }
     }
 

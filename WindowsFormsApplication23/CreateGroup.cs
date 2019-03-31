@@ -14,102 +14,59 @@ namespace WindowsFormsApplication23
 {
     public partial class CreateGroup : Form
     {
-        string conURL = "Data Source=(local);Initial Catalog=ProjectA;Integrated Security=True";
+      
         public CreateGroup()
         {
             InitializeComponent();
-            comboBox2.Visible = false;
-            comboBox1.Visible = false;
-            string cmd4 = "Select Title from Project where Id not in (Select ProjectId from GroupProject) ";
-            SqlConnection op = new SqlConnection(conURL);
-            op.Open();
-            SqlCommand er = new SqlCommand(cmd4, op);
-            SqlDataReader rd = er.ExecuteReader();
-            while (rd.Read())
-            {
-                string s = rd["Title"].ToString();
-                comboBox1.Items.Add(s);
-            }
-            op.Close();
+            
+           
+            
         }
 
         private void CreateGroup_Load(object sender, EventArgs e)
         {
+            comboBox2.Visible = false;
+            label1.Visible = true;
+            comboBox1.Visible = true;
+
+            string cmd4 = "Select Title from Project where Id not in (Select ProjectId from GroupProject) ";
+            Person p = new Person();
+            p.load(cmd4, comboBox1);
             labelerror.Visible = false;
             lblerror.Visible = false;
             button3.Visible = false;
-
-            int count = 0;
-            foreach (string i in comboBox1.Items)
-            {
-                count++;
-
-
-            }
-            if (count == 0)
-            {
-                MessageBox.Show("All Projects have been assigned, There is no project left in Unassigned :) ");
-            }
-            else
-            {
-                label1.Visible = false;
-                string cmd = "Select RegistrationNo,Id from Student where Id in (Select Id from Student except Select StudentId from GroupStudent);";
-                SqlConnection q = new SqlConnection(conURL);
-                q.Open();
-
-                SqlDataAdapter ad = new SqlDataAdapter(cmd, q);
-                DataTable dt = new DataTable();
-                ad.Fill(dt);
-                dataGridView1.DataSource = dt;
-            }
+            Group g = new Group();
+            g.exists(comboBox1, label1, dataGridView1);
+            
 
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            bool iss = false;
-            int count = 0;
-            foreach (DataGridViewRow r in dataGridView1.Rows)
-            {
-                if (Convert.ToBoolean(r.Cells["ADD"].Value) == true)
-                {
-                    count++;
-                    iss = true;
-                    //    break;
-                }
-            }
+            Group g = new Group();
+            bool iss = g.checkboxchech(dataGridView1);
+            int count = g.NoOfSt(dataGridView1);
             if (iss == true && comboBox1.Text != "" && count <= 4)
             {
-                List<int> indexes = new List<int>();
-                SqlConnection op = new SqlConnection(conURL);
-                op.Open();
+                List<int> indexess = new List<int>();
+               
                 string cmd2 = "Insert into [Group] (Created_On) Values ('" + DateTime.Now.Date + "')";
-                SqlCommand g1 = new SqlCommand(cmd2, op);
-                g1.ExecuteNonQuery();
+                dbConnection.getInstance().exectuteQuery(cmd2);
                 string cmd3 = "Select max(Id) from [Group]";
-                SqlCommand rt = new SqlCommand(cmd3, op);
-                int gh = (int)rt.ExecuteScalar();
+
+                int gh = dbConnection.getInstance().getScalerData(cmd3);
 
 
 
                 string cmdt = "Select Id from Project where Title = '" + comboBox1.Text + "'";
-                SqlCommand bn = new SqlCommand(cmdt, op);
-                int yu = (int)bn.ExecuteScalar();
+               
+                int yu = dbConnection.getInstance().getScalerData(cmdt);
 
 
                 string vb = "Insert into GroupProject (ProjectId,GroupId,AssignmentDate) values ('" + yu + "','" + gh + "','" + DateTime.Now + "')";
-                SqlCommand kl = new SqlCommand(vb, op);
-                kl.ExecuteNonQuery();
-
-                foreach (DataGridViewRow row in dataGridView1.Rows)
-                {
-                    if (Convert.ToBoolean(row.Cells["ADD"].Value) == true)
-                    {
-                        int c = row.Index;
-                        indexes.Add(c);
-
-                    }
-                }
+                dbConnection.getInstance().exectuteQuery(vb);
+                //List of those row indexes having add checkbox checked
+                List<int> indexes = g.ListOfindexes(indexess, dataGridView1);
                 foreach (int i in indexes)
                 {
                     foreach (DataGridViewRow row in dataGridView1.Rows)
@@ -120,17 +77,16 @@ namespace WindowsFormsApplication23
 
                             string Reg = row.Cells["RegistrationNo"].Value.ToString();
                             string cmd = "Select Id from Student where RegistrationNo ='" + Reg + "'";
-                            SqlCommand g = new SqlCommand(cmd, op);
-                            int q = (int)g.ExecuteScalar();
+
+                            int q = dbConnection.getInstance().getScalerData(cmd);
 
                             string s = "Select Id from Lookup where Category = 'STATUS' and Value = 'InActive'";
                            
-                            SqlCommand go = new SqlCommand(s, op);
-                            int qo = (int)go.ExecuteScalar();
+                           
+                            int qo = dbConnection.getInstance().getScalerData(s);
 
                             string final = "Insert into GroupStudent (GroupId, StudentId,Status,AssignmentDate) values ('" + gh + "','" + q + "','" + qo + "','" + DateTime.Now.Date + "')";
-                            SqlCommand g2 = new SqlCommand(final, op);
-                            g2.ExecuteNonQuery();
+                            dbConnection.getInstance().exectuteQuery(final);
 
 
                         }
@@ -150,10 +106,16 @@ namespace WindowsFormsApplication23
                 labelerror.Text = "Only 4 students are allowed in a group";
                 labelerror.Visible = true;
             }
-            else
+            else if(comboBox1.Text == "")
             {
                 lblerror.Text = "Please Select a Title";
                 lblerror.Visible = true;
+            }
+            else if(iss == false)
+            {
+                lblerror.Text = "Select Student First";
+                lblerror.Visible = true;
+
             }
 
 
@@ -161,8 +123,8 @@ namespace WindowsFormsApplication23
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            comboBox1.Visible = true;
-            label1.Visible = true;
+            labelerror.Text = "";
+            lblerror.Text = "";
         }
 
         private void linkLabel9_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -248,16 +210,11 @@ namespace WindowsFormsApplication23
             button3.Visible = true;
             button1.Visible = false;
             comboBox2.Visible = true;
+            comboBox1.Visible = false;
+            comboBox1.Text = "";
             string cmd = "Select Title from Project where Id in (Select ProjectId from GroupProject where GroupId in (select GroupId from GroupStudent group by GroupId having count(GroupId) < 4 ) except select Id from Project where Title = '" + comboBox1.Text + "')";
-            SqlConnection con = new SqlConnection(conURL);
-            con.Open();
-            SqlCommand c = new SqlCommand(cmd, con);
-            SqlDataReader rdr = c.ExecuteReader();
-            while (rdr.Read())
-            {
-                string s = rdr["Title"].ToString();
-                comboBox2.Items.Add(s);
-            }
+            Person p = new Person();
+            p.load(cmd, comboBox2);
             button1.Visible = false;
             button2.Visible = false;
             comboBox1.Visible = false;
@@ -267,103 +224,28 @@ namespace WindowsFormsApplication23
 
         private void button3_Click(object sender, EventArgs e)
         {
-            if (comboBox2.Text != "")
-            {
-                string cmd = "select GroupId from GroupProject where ProjectId = (Select Id from Project where Title = '" + comboBox2.Text + "')";
-                SqlConnection c = new SqlConnection(conURL);
-                c.Open();
-                SqlCommand con = new SqlCommand(cmd, c);
-                int h = (int)con.ExecuteScalar();
-                
-
-                string co = "Select count(StudentId) from GroupStudent where GroupId = '" + h + "'";
-                SqlCommand conn = new SqlCommand(co, c);
-                int ho = (int)conn.ExecuteScalar();
-
-                bool iss = false;
-                int count = 0;
-                List<int> indexes = new List<int>();
-                foreach (DataGridViewRow r in dataGridView1.Rows)
-                {
-                    if (Convert.ToBoolean(r.Cells["ADD"].Value) == true)
-                    {
-                        count++;
-                        iss = true;
-                        int com = r.Index;
-                        indexes.Add(com);
-                    }
-                }
-                if(count == 0)
-                {
-                    labelerror.Text = "Select the student first";
-                    labelerror.Visible = true;
-                }
-
-                if (ho + count <= 4 && comboBox2.Text != "")
-                {
-
-                    foreach (int i in indexes)
-                    {
-                        foreach (DataGridViewRow row in dataGridView1.Rows)
-
-                        {
-                            if (row.Index == i)
-                            {
-
-                                string Reg = row.Cells["RegistrationNo"].Value.ToString();
-                                string cd = "Select Id from Student where RegistrationNo ='" + Reg + "'";
-                                SqlCommand g = new SqlCommand(cd, c);
-                                int q = (int)g.ExecuteScalar();
-                                
-
-                                string final = "Insert into GroupStudent (GroupId, StudentId,Status,AssignmentDate) values ('" + h + "','" + q + "','" + 4 + "','" + DateTime.Now.Date + "')";
-                                SqlCommand g2 = new SqlCommand(final, c);
-                                g2.ExecuteNonQuery();
-
-
-                            }
-
-
-
-                        }
-                        
-                    }
-                    MessageBox.Show("Student has been added");
-                    this.Hide();
-                    CreateGroup frm = new CreateGroup();
-                    frm.Show();
-
-
-
-
-                }
-                else if (comboBox2.Text == "")
-                {
-                    lblerror.Text = "Select Title for project";
-                    lblerror.Visible = true;
-                    
-                }
-                else if (ho + count > 4)
-                {
-                    labelerror.Text = "Only 4 students are allowed in each group";
-                    labelerror.Visible = true;
-                }
-
-
-
+            Group g = new Group();
+            g.Addstudentinexistinggroup(comboBox2, dataGridView1, labelerror, lblerror);
+        
             }
-            else
-            {
-                lblerror.Text = "Select Title for project";
-                lblerror.Visible = true;
-            }
-        }
 
         private void label2_Click(object sender, EventArgs e)
         {
             ViewReports frm = new ViewReports();
             this.Hide();
             frm.Show();
+        }
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            lblerror.Text = "";
+            labelerror.Text = "";
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            lblerror.Text = "";
+            labelerror.Text = "";
         }
     }
    

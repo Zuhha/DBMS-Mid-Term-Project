@@ -13,59 +13,31 @@ namespace WindowsFormsApplication23
 {
     public partial class AllAdvisors : Form
     {
-        string c = "Data Source = (local); Initial Catalog = ProjectA; Integrated Security = True";
+       
         Student st = new Student();
 
         public AllAdvisors()
         {
             InitializeComponent();
+            
         }
+        
 
         private void AllAdvisors_Load(object sender, EventArgs e)
         {
+            tableLayoutPanel1.Visible = false;
             panel2.Visible = false;
-            SqlConnection con = new SqlConnection(c);
-            string s = "Select a.Id, p.Gender as g, p.FirstName,p.LastName,p.Contact,p.Email,a.Salary,a.Designation,p.DateOfBirth from Advisor as a join Person as p on p.Id = a.Id ";
-            SqlDataAdapter ad = new SqlDataAdapter(s, con);
-            DataTable st = new DataTable();
-            ad.Fill(st);
-            dataGridView1.DataSource = st;
+            
+             string s = "Select a.Id, p.Gender as g, p.FirstName,p.LastName,p.Contact,p.Email,a.Salary,a.Designation,p.DateOfBirth from Advisor as a join Person as p on p.Id = a.Id ";
+          
+            dbConnection.getInstance().fill(s, dataGridView1);
 
-            int rows = Convert.ToInt32(dataGridView1.RowCount.ToString());
-            for (int i = 0; i < rows; i++)
-            {
-                int so = Convert.ToInt32(dataGridView1.Rows[i].Cells["g"].Value);
+            Advisor ad = new Advisor();
+            ad.fillgender(dataGridView1);
 
-                if (so == 1)
-                {
-                    dataGridView1.Rows[i].Cells["Gender"].Value = "Male";
-
-                }
-                if (so == 2)
-                {
-                    dataGridView1.Rows[i].Cells["Gender"].Value = "Female";
-                }
-            }
-
-            dataGridView1.Columns["g"].Visible = false;
-
-
-
-
-
-
-
-            con.Open();
             string f = "Select Value from Lookup where Category = 'DESIGNATION'";
-            SqlCommand g = new SqlCommand(f, con);
-            SqlDataReader rdr = g.ExecuteReader();
-            while (rdr.Read())
-            {
-                string c = rdr["Value"].ToString();
-                comboBox1.Items.Add(c);
-            }
-            rdr.Close();
-            con.Close();
+            ad.load(f,comboBox1);
+           
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -73,6 +45,7 @@ namespace WindowsFormsApplication23
             if (e.ColumnIndex == 0)
             {
                 panel2.Visible = true;
+                tableLayoutPanel1.Visible = true;
                 panel1.Visible = false;
                
                 txtsalary.Text = dataGridView1.CurrentRow.Cells["Salary"].Value.ToString();
@@ -92,97 +65,40 @@ namespace WindowsFormsApplication23
                 string s = "Delete from ProjectAdvisor where AdvisorId = '" + u + "'";
 
                 string hu = "Delete from Advisor where Id = '" + u + "'";
+                dbConnection.getInstance().exectuteQuery(s);
+                dbConnection.getInstance().exectuteQuery(hu);
 
-                SqlConnection op = new SqlConnection(c);
-                op.Open();
-                SqlCommand cmd = new SqlCommand(s, op);
-                cmd.ExecuteNonQuery();
-
-                SqlCommand cmd2 = new SqlCommand(hu, op);
-                cmd2.ExecuteNonQuery();
-                op.Close();
                 dataGridView1.Rows.Remove(dataGridView1.Rows[e.RowIndex]);
                 MessageBox.Show("Removed Successfully");
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void button1_Click_1(object sender, EventArgs e)
         {
            
-           /* if (txtfirstname.Text == "" || txtlastname.Text == "" || txtcontact.Text == "" || txtemail.Text == "" || comboBox2.Text == "")
+             if(comboBox1.Text == "")
             {
-                MessageBox.Show("All Fields Are Required");
+                lblerror.Text = "Select Designation";
+                lblerror.Show();
             }
-
-            else if (st.Allchar(txtfirstname.Text) == false)
-            {
-                MessageBox.Show("Enter Valid First Name");
-            }
-            else if (st.Allchar(txtlastname.Text) == false)
-            {
-                MessageBox.Show("Enter Valid Last Name");
-            }
-            else if (st.Alldigits(txtcontact.Text) == false || txtcontact.Text.Length != 11)
-            {
-                MessageBox.Show("Enter Valid Contact No.");
-            }
-            else if (st.Email(txtemail.Text) == false)
-            {
-                MessageBox.Show("Enter a valid Email");
-            }
-
-
-            else if (st.Alldigits(txtsalary.Text) == false)
-            {
-                MessageBox.Show("Enter Valid Salary");
-            }
-
-            else if (st.Email(txtemail.Text) == true && st.Allchar(txtfirstname.Text) == true && st.Allchar(txtlastname.Text) == true && st.Alldigits(txtcontact.Text) == true && txtcontact.Text.Length == 11 && st.Alldigits(txtsalary.Text))
-            {*/
             if(lblsalary.Text == "" && lbllastname.Text == "" && lblerror.Text == "" && lblFirstname.Text == "" && lblemail.Text == "" && lbldob.Text == "" && lblcontact.Text == "" && lblgender.Text == "")
                 try
                 {
-                    SqlConnection co = new SqlConnection(c);
-                    co.Open();
-
                     string k = "Select Count(Id) from  Person where FirstName ='" + txtfirstname.Text + "' and LastName = '" + txtlastname.Text + "' and Contact = '" + txtcontact.Text + "'and Id != '" + Convert.ToInt32(dataGridView1.CurrentRow.Cells["Id"].Value) + "'";
-                    SqlCommand cg = new SqlCommand(k, co);
-                    int yo = (int)cg.ExecuteScalar();
-                    bool ry = true;
-                    if (yo >= 1)
-                    {
-                        ry = false;
-                    }
-                    if (ry == false)
+                    Advisor ad = new Advisor();
+                    bool ry = ad.uniqueperson(txtfirstname.Text, txtlastname.Text, txtcontact.Text, k);
+                   if (ry == false)
                     {
                         lblerror.Text ="This Person has already been added in Record";
                         lblerror.Visible = true;
                     }
                     else if(ry == true)
                     {
-                        int id = Convert.ToInt32(dataGridView1.CurrentRow.Cells["Id"].Value);
-                        string r = "Select Id from Lookup where Value = '" + comboBox1.Text + "'";
-                        SqlCommand v = new SqlCommand(r, co);
-                        int y = (int)v.ExecuteScalar();
-
-                        string ro = "Select Id from Lookup where Value = '" + comboBox2.Text + "'";
-                        SqlCommand vo = new SqlCommand(ro, co);
-                        int yy = (int)vo.ExecuteScalar();
-
-
-                        string s = "Update Advisor SET Designation = '" + y + "', Salary = '" + txtsalary.Text + "'  where Id = '" + id + "' ";
-
-
-                        SqlCommand q = new SqlCommand(s, co);
-                        q.ExecuteNonQuery();
-
-
-                        string ss = "Update Person SET FirstName = '" + txtfirstname.Text + "', LastName = '" + txtlastname.Text + "',Contact = '" + txtcontact.Text + "',Email = '" + txtemail.Text + "',DateOfBirth = '" + dateTimePicker1.Value + "',Gender = '" + yy + "'  where Id = '" + id + "' ";
-                        SqlCommand g = new SqlCommand(ss, co);
-                        g.ExecuteNonQuery();
-
-
-                        co.Close();
+                          int id = Convert.ToInt32(dataGridView1.CurrentRow.Cells["Id"].Value);
+                         int y = dbConnection.getInstance().getScalerData("Select Id from Lookup where Value = '" + comboBox1.Text + "'");
+                        int yy = dbConnection.getInstance().getScalerData("Select Id from Lookup where Value = '" + comboBox2.Text + "'");
+                       dbConnection.getInstance().exectuteQuery("Update Advisor SET Designation = '" + y + "', Salary = '" + txtsalary.Text + "'  where Id = '" + id + "' ");
+                       dbConnection.getInstance().exectuteQuery("Update Person SET FirstName = '" + txtfirstname.Text + "', LastName = '" + txtlastname.Text + "',Contact = '" + txtcontact.Text + "',Email = '" + txtemail.Text + "',DateOfBirth = '" + dateTimePicker1.Value + "',Gender = '" + yy + "'  where Id = '" + id + "' ");
                         MessageBox.Show("Updated");
                         this.Hide();
                         AllAdvisors frm = new AllAdvisors();
@@ -293,7 +209,7 @@ namespace WindowsFormsApplication23
 
         }
 
-        private void txtFirstName_KeyUp(object sender, KeyEventArgs e)
+        private void txtFirstName_KeyUp_1(object sender, KeyEventArgs e)
         {
             lblerror.Text = "";
             if (st.Allchar(txtfirstname.Text) == false)
@@ -307,7 +223,7 @@ namespace WindowsFormsApplication23
             }
         }
 
-        private void txtLastName_KeyUp(object sender, KeyEventArgs e)
+        private void txtLastName_KeyUp_1(object sender, KeyEventArgs e)
         {
             lblerror.Text = "";
             if (st.Allchar(txtlastname.Text) == false)
@@ -321,7 +237,7 @@ namespace WindowsFormsApplication23
             }
         }
 
-        private void txtContact_KeyUp(object sender, KeyEventArgs e)
+        private void txtcontact_KeyUp_1(object sender, KeyEventArgs e)
         {
             lblerror.Text = "";
             if (st.Alldigits(txtcontact.Text) == false)
@@ -339,7 +255,7 @@ namespace WindowsFormsApplication23
         private void txtEmail_KeyUp(object sender, KeyEventArgs e)
         {
             lblerror.Text = "";
-            if (st.Email(txtemail.Text) == false)
+            if (st.Emails(txtemail.Text) == false)
             {
                 lblemail.Text = "Characters Only!!!";
                 lblerror.Text = "";
@@ -350,7 +266,7 @@ namespace WindowsFormsApplication23
             }
         }
 
-        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        private void comboBox2_SelectedIndexChanged_1(object sender, EventArgs e)
         {
             lblerror.Text = "";
             if (dateTimePicker1.Value > DateTime.Now)
@@ -372,7 +288,7 @@ namespace WindowsFormsApplication23
             }
         }
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void comboBox1_SelectedIndexChanged_1(object sender, EventArgs e)
         {
             lblerror.Text = "";
             if(comboBox2.Text == "")
@@ -391,6 +307,7 @@ namespace WindowsFormsApplication23
             if(comboBox1.Text == "")
             {
                 lblerror.Text = "Select Designation";
+                lblerror.Visible = true;
             }
             else
             {
@@ -398,7 +315,7 @@ namespace WindowsFormsApplication23
             }
         }
 
-        private void txtsalary_KeyUp(object sender, KeyEventArgs e)
+        private void txtsalary_KeyUp_1(object sender, KeyEventArgs e)
         {
             if(st.Alldigits(txtsalary.Text) != true)
             {
@@ -421,5 +338,41 @@ namespace WindowsFormsApplication23
             this.Hide();
             frm.Show();
         }
+
+        private void txtfirstname_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void txtemail_KeyUp(object sender, KeyEventArgs e)
+        {
+            lblerror.Text = "";
+            if (st.Emails(txtemail.Text) == false)
+            {
+                lblemail.Text = "Characters Only!!!";
+                lblerror.Text = "";
+            }
+            else
+            {
+                lblemail.Text = "";
+            }
+        }
+
+        private void txtcontact_KeyUp(object sender, KeyEventArgs e)
+        {
+
+        }
+
+     
     }
 }

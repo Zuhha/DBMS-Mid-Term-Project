@@ -63,6 +63,26 @@ namespace WindowsFormsApplication23.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap images {
+            get {
+                object obj = ResourceManager.GetObject("images", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap o {
+            get {
+                object obj = ResourceManager.GetObject("o", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap plush_design_studio_571660_unsplash {
             get {
                 object obj = ResourceManager.GetObject("plush-design-studio-571660-unsplash", resourceCulture);

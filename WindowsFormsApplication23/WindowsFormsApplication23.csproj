@@ -55,6 +55,7 @@
     <Compile Include="Add_Project.Designer.cs">
       <DependentUpon>Add_Project.cs</DependentUpon>
     </Compile>
+    <Compile Include="Advisor.cs" />
     <Compile Include="AllAdvisors.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -116,6 +117,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataSet6.xsd</DependentUpon>
     </Compile>
+    <Compile Include="dbConnection.cs" />
     <Compile Include="DetailsOfGroup.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -158,19 +160,26 @@
     <Compile Include="EvaluationDetails.Designer.cs">
       <DependentUpon>EvaluationDetails.cs</DependentUpon>
     </Compile>
+    <Compile Include="Evaluations.cs" />
     <Compile Include="FYPReport.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FYPReport.Designer.cs">
       <DependentUpon>FYPReport.cs</DependentUpon>
     </Compile>
+    <Compile Include="Group.cs" />
     <Compile Include="GroupDetails.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="GroupDetails.Designer.cs">
       <DependentUpon>GroupDetails.cs</DependentUpon>
     </Compile>
+    <Compile Include="GroupProject.cs" />
+    <Compile Include="GroupStudent.cs" />
+    <Compile Include="Person.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="Project.cs" />
+    <Compile Include="ProjectAdvisor.cs" />
     <Compile Include="ProjectAdvisors.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -359,6 +368,8 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\images.jpg" />
+    <None Include="Resources\o.jpg" />
     <Content Include="Resources\plush-design-studio-571660-unsplash.jpg" />
     <Content Include="plush-design-studio-571660-unsplash.jpg" />
     <None Include="Resources\plush-design-studio-571660-unsplash1.jpg" />

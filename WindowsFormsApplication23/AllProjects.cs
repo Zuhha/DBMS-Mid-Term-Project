@@ -13,14 +13,12 @@ namespace WindowsFormsApplication23
 {
     public partial class AllProjects : Form
     {
-        string conURL = "Data Source=(local);Initial Catalog=ProjectA;Integrated Security=True";
+        
         public AllProjects()
         {
             InitializeComponent();
             this.SuspendLayout();
-            // 
-            // AllProjects
-            // 
+           
             this.ClientSize = new System.Drawing.Size(284, 261);
             this.Font = new System.Drawing.Font("Segoe Print", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "AllProjects";
@@ -30,14 +28,9 @@ namespace WindowsFormsApplication23
 
         private void AllProjects_Load(object sender, EventArgs e)
         {
-            SqlConnection c = new SqlConnection(conURL);
+            
             string s = "Select * from Project";
-
-            SqlDataAdapter ad = new SqlDataAdapter(s, c);
-            DataTable dt = new DataTable();
-            ad.Fill(dt);
-
-            dataGridView1.DataSource = dt;
+            dbConnection.getInstance().fill(s, dataGridView1);
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -58,15 +51,10 @@ namespace WindowsFormsApplication23
                 string st = "Delete from GroupProject where ProjectId = '" + u + "'";
                 string hu = "Delete from Project where Id = '" + u + "'";
 
-                SqlConnection op = new SqlConnection(conURL);
-                op.Open();
-                SqlCommand cmd = new SqlCommand(s, op);
-                cmd.ExecuteNonQuery();
-                SqlCommand cmd1 = new SqlCommand(st, op);
-                cmd1.ExecuteNonQuery();
-                SqlCommand cmd2 = new SqlCommand(hu, op);
-                cmd2.ExecuteNonQuery();
-                op.Close();
+                dbConnection.getInstance().exectuteQuery(s);
+                dbConnection.getInstance().exectuteQuery(st);
+                dbConnection.getInstance().exectuteQuery(hu);
+
                 dataGridView1.Rows.Remove(dataGridView1.Rows[e.RowIndex]);
                 MessageBox.Show("Removed Successfully");
             }
@@ -95,17 +83,12 @@ namespace WindowsFormsApplication23
             }
             else if (st.Allchar(txttitle.Text) == true && st.Allchar(txtdesc.Text) == true)
             {
-                SqlConnection con = new SqlConnection(conURL);
-                con.Open();
+                
                 string k = "Select Count(Id) from Project where Title ='" + txttitle.Text + "' and Id != '"+dataGridView1.CurrentRow.Cells["Id"].Value+"' ";
 
-                SqlCommand cg = new SqlCommand(k, con);
-                int yo = (int)cg.ExecuteScalar();
-                bool ry = true;
-                if (yo >= 1)
-                {
-                    ry = false;
-                }
+                Project P = new Project();
+                bool ry = P.uniqueproject(k); 
+                
                 if (ry == false)
                 {
                     MessageBox.Show("Project with this tittle is already a part of our record :)");
@@ -115,11 +98,7 @@ namespace WindowsFormsApplication23
 
                     int id = Convert.ToInt32(dataGridView1.CurrentRow.Cells["Id"].Value);
                     string s = "Update Project SET Description = '" + txtdesc.Text + "', Title = '" + txttitle.Text + "'  where Id = '" + id + "' ";
-                    SqlConnection c = new SqlConnection(conURL);
-                    c.Open();
-                    SqlCommand q = new SqlCommand(s, c);
-                    q.ExecuteNonQuery();
-                    c.Close();
+                    dbConnection.getInstance().exectuteQuery(s);
                     MessageBox.Show("Updated");
                     this.Hide();
                     AllProjects frm = new AllProjects();
@@ -211,9 +190,18 @@ namespace WindowsFormsApplication23
             frm.Show();
         }
 
-     
+       
+
+        private void AllProjects_Load_1(object sender, EventArgs e)
+        {
+
+        }
 
        
 
+        private void AllProjects_Load_2(object sender, EventArgs e)
+        {
+
+        }
     }
 }

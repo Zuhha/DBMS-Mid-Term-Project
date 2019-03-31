@@ -6,45 +6,13 @@ using System.Threading.Tasks;
 
 namespace WindowsFormsApplication23
 {
-    class Student
+    class Student:Person
     {
-       public bool Allchar(string s)
-        {
-            if(s.All(Char.IsLetter))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
+     
+        public static List<Student> Students = new List<Student>();
+        public string Regno { get; set; }
 
 
-      public  bool Alldigits(string s)
-        {
-            if(s.All(Char.IsDigit) == true &&  s != "")
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
-
-      public  bool Email(string s)
-        {
-            if(s.Contains("@") && s.Contains(".com"))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
 
 
         public bool REGNO(string Reg_No)
@@ -81,11 +49,58 @@ namespace WindowsFormsApplication23
             else
             { return false; }
 
+
+        }
+        public void AddStudent(string firstname, string lastname, string contact, string email, string gender, DateTime dob, string regno)
+        {
+            
+            Student s = new Student();
+            
+            s.FirstName = firstname;
+            s.LastName = lastname;
+            s.Email = email;
+            s.Gender = gender;
+            s.DateOfBirth = dob;
+            s.Contact = contact;
+            s.Regno = regno;
+            Students.Add(s);
+            //int yo = dbConnection.getInstance().getScalerData ("Select Count(Id) from Person where FirstName = '" + firstname + "' and LastName = '" + lastname + "' and Contact = '" + contact + "'");
+
+
+        }
+
+        public void addstindb(string regno)
+        {
+            int y = maxid();
+            dbConnection.getInstance().exectuteQuery("Insert into Student(Id, RegistrationNo) values ('" + y + "','" + regno + "')");
+        }
+
+    
+
+
+        public bool uniqueregno(string regno,string cmd)
+        {
+            int yo = dbConnection.getInstance().getScalerData(cmd);
+            if (yo >= 1)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
 
 
+       
 
 
 
     }
+
+
+
+
+
+    
 }

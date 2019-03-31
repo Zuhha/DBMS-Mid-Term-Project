@@ -9,12 +9,12 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 
+
 namespace WindowsFormsApplication23
 {
     public partial class Evaluation : Form
     {
-        string conURL = "Data Source=(local);Initial Catalog=ProjectA;Integrated Security=True";
-        Student st = new Student();
+        Evaluations st = new Evaluations();
         public Evaluation()
         {
             InitializeComponent();
@@ -23,45 +23,42 @@ namespace WindowsFormsApplication23
         private void Evaluation_Load(object sender, EventArgs e)
         {
             lblerror.Visible = false;
-            SqlConnection con = new SqlConnection(conURL);
-            con.Open();
+           
             string cmd = "Select Id from [Group]";
-            SqlCommand c = new SqlCommand(cmd, con);
-            SqlDataReader rdr = c.ExecuteReader();
-            while (rdr.Read())
-            {
-                int s = rdr.GetInt32(0);
-                comboBox1.Items.Add(s);
-            }
-            rdr.Close();
+            
+            st.load(cmd, comboBox1);
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            
 
-            if (lblname.Text == "" && lblobtained.Text=="" && lbltotalmarks.Text ==""&& lblgroupid.Text == "" && lbltotalwieghtage.Text == "")
+
+            if (lblname.Text == "" && lblobtained.Text == "" && lbltotalmarks.Text == "" && lblgroupid.Text == "" && lbltotalwieghtage.Text == "")
+            {
+                bool c = st.uniqueevaluation(txtname, comboBox1);
+                if (c == false)
                 {
-            
+                    MessageBox.Show("This Group has already been evaluated for this evaluation");
+                }
+                else if (c == true)
+                {
                     string cmd = "Insert into Evaluation (Name, TotalMarks,TotalWeightage) values ('" + txtname.Text + "','" + txttotalmarks.Text + "','" + txttotalwieghtage.Text + "')";
-                    SqlConnection q = new SqlConnection(conURL);
-                    q.Open();
-                    SqlCommand c = new SqlCommand(cmd, q);
-                    c.ExecuteNonQuery();
+                    dbConnection.getInstance().exectuteQuery(cmd);
 
 
-                    string o = "Select max(Id) from Evaluation";
-                    SqlCommand n = new SqlCommand(o, q);
-                    int id = (int)n.ExecuteScalar();
+
+                    int id = st.maxid();
                     string cmd1 = "Insert into GroupEvaluation (GroupId, EvaluationId, ObtainedMarks, EvaluationDate) values ('" + comboBox1.Text + "','" + id + "','" + txtobtained.Text + "','" + DateTime.Now + "') ";
-                    SqlCommand fg = new SqlCommand(cmd1, q);
-                    fg.ExecuteNonQuery();
+                    dbConnection.getInstance().exectuteQuery(cmd1);
 
                     MessageBox.Show("Evaluation Has been marked");
-
-
                 }
-                else
+
+
+            }
+
+
+            else
             {
                 lblerror.Text = "Enter Valid Entries !!!";
                 lblerror.Visible = true;
@@ -246,6 +243,7 @@ namespace WindowsFormsApplication23
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            label6.Text = "";
             if(comboBox1.Text != "")
             {
                 lblgroupid.Visible = false;
@@ -258,6 +256,26 @@ namespace WindowsFormsApplication23
             ViewReports frm = new ViewReports();
             this.Hide();
             frm.Show();
+        }
+
+        private void txtname_TextChanged(object sender, EventArgs e)
+        {
+            label6.Text = "";
+        }
+
+        private void txttotalmarks_TextChanged(object sender, EventArgs e)
+        {
+            label6.Text = "";
+        }
+
+        private void txtobtained_TextChanged(object sender, EventArgs e)
+        {
+            label6.Text = "";
+        }
+
+        private void txttotalwieghtage_TextChanged(object sender, EventArgs e)
+        {
+            label6.Text = "";
         }
     }
 }

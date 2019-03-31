@@ -289,5 +289,12 @@ namespace WindowsFormsApplication23
                 label4.Visible = false;
             }
         }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+            ViewReports frm = new ViewReports();
+            this.Hide();
+            frm.Show();
+        }
     }
 }

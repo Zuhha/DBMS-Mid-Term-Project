@@ -13,7 +13,7 @@ namespace WindowsFormsApplication23
 {
     public partial class Person_Details : Form
     {
-        string conURL = "Data Source=(local);Initial Catalog=ProjectA;Integrated Security=True";
+        
         Student st = new Student();
         public Person_Details()
         {
@@ -42,18 +42,8 @@ namespace WindowsFormsApplication23
             label9.Visible = false;
             label8.Visible = false;
             label11.Visible = false;
-            SqlConnection c = new SqlConnection(conURL);
-            c.Open();
-            string cmd = "Select Value from Lookup where Category = 'DESIGNATION' Order by Value";
-            SqlCommand q = new SqlCommand(cmd, c);
-            SqlDataReader rdr = q.ExecuteReader();
-
-            while (rdr.Read())
-            {
-                string h = rdr[0].ToString();
-                comboBox2.Items.Add(h);
-            }
-            c.Close();
+            Person p = new Person();
+            p.load("Select Value from Lookup where Category = 'DESIGNATION' Order by Value", comboBox2);
             label11.Visible = false;
         }
 
@@ -69,48 +59,25 @@ namespace WindowsFormsApplication23
                 lblerror.Text = "";
             }
            
-           if(lbllastname.Text == "" && lblFirstname.Text == "" && lblcontact.Text == ""&&  lblemail.Text == "" && lblerror.Text == "")
+           if(lbllastname.Text == "" && lblFirstname.Text == "" && lblcontact.Text == ""&&  lblemail.Text == "" && lblerror.Text == "" && lbldob.Text == "")
             { 
 
 
                 try
                 {
 
-                    SqlConnection con = new SqlConnection(conURL);
-                    con.Open();
-
-                    string k = "Select Count(Id) from Person where FirstName ='" + txtfirstname.Text + "' and LastName = '" + txtlastname.Text + "' and Contact = '" + txtcontact.Text + "'";
-                    SqlCommand cg = new SqlCommand(k, con);
-                    int yo = (int)cg.ExecuteScalar();
-                    bool ry = true;
-                    if (yo >= 1)
-                    {
-                        ry = false;
-                    }
-
-
-
-
-                    string kl = "Select Count(Id) from Student where RegistrationNo ='" + txtregno.Text + "'";
-                    SqlCommand cgo = new SqlCommand(kl, con);
-                    int yoo = (int)cgo.ExecuteScalar();
-                    bool v = true;
-                    if (yoo >= 1)
-                    {
-                        v = false;
-                    }
-
-
-
-                    string stmt = "Select max(Id) from Person ";
-                    SqlCommand b = new SqlCommand(stmt, con);
-                    int y = (int)b.ExecuteScalar();
+                    string s = "Select Count(Id) from Person where FirstName = '" + txtfirstname.Text + "' and LastName = '" + txtlastname.Text + "' and Contact = '" + txtcontact.Text + "'";
+                    bool ry = st.uniqueperson(txtfirstname.Text, txtlastname.Text,txtcontact.Text,s);
+                    string ios = "Select Count(Id) from Student where RegistrationNo ='" + txtregno.Text + "'";
+                    bool v = st.uniqueregno(txtregno.Text,ios) ;
+               
+                    int y = st.maxid();
 
                     if (ry == false)
                     {
                         lblerror.Visible = true;
                         lblerror.Text = "This Person has already been added in Record";
-                        //MessageBox.Show("This Person has already been added in Record");
+                        
                     }
 
 
@@ -119,32 +86,20 @@ namespace WindowsFormsApplication23
                     {
                         lblerror.Visible = true;
                         lblerror.Text = "This RegistrationNo is already in Record";
-                       // MessageBox.Show("This RegistrationNo is already in Record");
+                       
                     }
 
                     else if (ry == true && v == true)
                     {
-                        string em = "Select Id from Lookup where Value = '" + cmbgender.Text + "'";
-                        SqlCommand nd = new SqlCommand(em, con);
-                        SqlDataReader r = nd.ExecuteReader();
-                        int id = 0;
-                        while (r.Read())
-                        {
-                            id = r.GetInt32(0);
-                        }
-                        r.Close();
-                        string cmd = "INSERT INTO Person(FirstName, LastName, Contact, Email,DateOfBirth, Gender) values ('" + txtfirstname.Text + "','" + txtlastname.Text + "','" + txtcontact.Text + "','" + txtemail.Text + "','" + (dateTimePicker1.Value) + "','" + id + "')";
-                        SqlCommand command = new SqlCommand(cmd, con);
-                        command.ExecuteNonQuery();
+                        st.Addperson(txtfirstname.Text, txtlastname.Text, txtcontact.Text, txtemail.Text, cmbgender.Text, dateTimePicker1.Value);
 
 
 
                         if (comboBox3.Text == "STUDENT"&& txtregno.Text.Length == 11 && st.REGNO(txtregno.Text) == true)
                         {
                             txtregno.Visible = true;
-                            string Query = "Insert into Student(Id, RegistrationNo) values ('" + y + "','" + txtregno.Text + "')";
-                            SqlCommand o = new SqlCommand(Query, con);
-                            o.ExecuteNonQuery();
+                            st.addstindb(txtregno.Text);
+                            st.AddStudent(txtfirstname.Text, txtlastname.Text, txtcontact.Text, txtemail.Text, cmbgender.Text, dateTimePicker1.Value,txtregno.Text);
                             MessageBox.Show("Student has been added");
 
                         }
@@ -152,12 +107,10 @@ namespace WindowsFormsApplication23
                         {
                             txtsalary.Visible = true;
 
-                            string cmdn = "Select Id from Lookup where Value = '" + comboBox2.Text + "'";
-                            SqlCommand qn = new SqlCommand(cmdn, con);
-                            int yn = (int)qn.ExecuteScalar();
-                            string x = "Insert into Advisor(Id,Designation, Salary) values ('" + y + "','" + yn + "','" + txtsalary.Text + "')";
-                            SqlCommand u = new SqlCommand(x, con);
-                            u.ExecuteNonQuery();
+                            Advisor ad = new Advisor();
+                            ad.AddAdvisor(comboBox2.Text, Convert.ToInt32(txtsalary.Text));
+                            ad.Addadvisorindb();
+                           
                             MessageBox.Show("Advisor has been added");
 
 
@@ -165,7 +118,7 @@ namespace WindowsFormsApplication23
                     
 
 
-                        con.Close();
+                       
 
                     }
                     else
@@ -336,7 +289,9 @@ namespace WindowsFormsApplication23
 
         private void txtfirstname_KeyUp(object sender, KeyEventArgs e)
         {
-            lblerror.Text = "";
+            Person P = new Person();
+            
+             lblerror.Text = "";
             if (st.Allchar(txtfirstname.Text) == false)
             {
                 lblFirstname.Text = "Characters Only!!!";
@@ -346,6 +301,7 @@ namespace WindowsFormsApplication23
             {
                 lblFirstname.Text = "";
             }
+            
         }
 
         private void txtlastname_KeyUp(object sender, KeyEventArgs e)
@@ -380,9 +336,9 @@ namespace WindowsFormsApplication23
         private void txtemail_KeyUp(object sender, KeyEventArgs e)
         {
             lblerror.Text = "";
-            if (st.Email(txtemail.Text) == false)
+            if (st.Emails(txtemail.Text) == false)
             {
-                lblemail.Text = "Characters Only!!!";
+                lblemail.Text = "Enter Correct email!!!";
                 lblerror.Text = "";
             }
             else
@@ -484,6 +440,7 @@ namespace WindowsFormsApplication23
             if (dateTimePicker1.Value >= DateTime.Now)
             {
                 lbldob.Text = "Enter correct Dob";
+                lbldob.Visible = true;
             }
             else
             {
@@ -525,6 +482,12 @@ namespace WindowsFormsApplication23
         {
             ViewReports frm = new ViewReports();
             frm.Show();
+        }
+
+        private void label15_Click(object sender, EventArgs e)
+        {
+            
+            
         }
     }
 }
